@@ -41,14 +41,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final KakaoLink kakaoLink;
-        try {
-            kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
-            final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-
-        } catch (KakaoParameterException e) {
-            e.printStackTrace();
-        }
 
         /* Tab layout */
         // Initializing the TabLayout
@@ -58,15 +50,10 @@ public class MainActivity extends AppCompatActivity
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_play));
         mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        // Initializing ViewPager
         mViewPager = (ViewPager) findViewById(R.id.main_view_papger);
-
-        // Creating TabPagerAdapter adapter
         MainTabPagerAdapter pagerAdapter = new MainTabPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
-        // Set TabSelectedListener
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -98,11 +85,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -114,17 +97,9 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, MapActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 

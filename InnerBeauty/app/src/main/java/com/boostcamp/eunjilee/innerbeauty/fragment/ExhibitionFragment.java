@@ -22,17 +22,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ExhibitionFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ExhibitionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ExhibitionFragment extends Fragment {
     @BindView(R.id.rv_exhibition)
-    RecyclerView mExhibitionRecyclerView;
+    protected RecyclerView mExhibitionRecyclerView;
 
     private List<ExhibitionModel> mExhibitionList;
     private ExhibitionAdapter mExhibitionAdapter;

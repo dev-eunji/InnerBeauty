@@ -57,11 +57,11 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
 
     class PlayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_list_play)
-        ImageView mPlayImageView;
+        protected ImageView mPlayImageView;
         @BindView(R.id.tv_play_date)
-        TextView mPlaytDateTextView;
+        protected TextView mPlaytDateTextView;
         @BindView(R.id.tv_play_place)
-        TextView mPlayPlaceTextView;
+        protected TextView mPlayPlaceTextView;
 
         PlayModel mPlay;
 

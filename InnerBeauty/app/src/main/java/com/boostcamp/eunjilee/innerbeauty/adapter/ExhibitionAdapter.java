@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
@@ -56,18 +59,34 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
 
     class ExhibitionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_list_exhibition)
-        ImageView mExhibitionImageView;
+        protected ImageView mExhibitionImageView;
         @BindView(R.id.tv_exhibition_date)
-        TextView mExhibitionDateTextView;
+        protected TextView mExhibitionDateTextView;
         @BindView(R.id.tv_exhibition_place)
-        TextView mExhibitionPlaceTextView;
+        protected TextView mExhibitionPlaceTextView;
+        @BindView(R.id.btn_like)
+        protected ToggleButton mLikeBtn;
 
         private ExhibitionModel mExhibition;
+        private boolean mIsLike;
 
         public ExhibitionViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+
+            //TODO : Like를 어떻게 관리할지 결정하기
+            mIsLike = true;
+            mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        Toast.makeText(mContext, "unlike->like", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(mContext, "like->unlike", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
         private void setDate(String startDate, String endDate) {
@@ -80,13 +99,12 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
 
         public void setExhibition(ExhibitionModel exhibition) {
             mExhibition = exhibition;
-
             int sCorner = 50;
             int sMargin = 0;
 
             Glide.with(mContext).load(exhibition.getExhibitionPicture())
                     .thumbnail(0.1f)
-                    .bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
+            //        .bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
                     .into(mExhibitionImageView);
             setDate(exhibition.getStartDate(), exhibition.getEndDate());
             setPlace(exhibition.getExhibitionPlace());

@@ -29,7 +29,7 @@ public class PlayFragment extends Fragment {
     private List<PlayModel> mPlayList;
     private PlayAdapter mPlayAdapter;
     private PlayLoadModule mPlayLoadModule;
-    private int PAGE = 1;
+    private int mPage = 1;
 
 
     @Override
@@ -51,7 +51,7 @@ public class PlayFragment extends Fragment {
 
     private void loadPlayList() {
         mPlayLoadModule = new PlayLoadModule();
-        mPlayLoadModule.getPlayListByAsync(PAGE, new PlayService.getPlayListCallback() {
+        mPlayLoadModule.getPlayListByAsync(mPage, new PlayService.getPlayListCallback() {
             @Override
             public void success(List<PlayModel> playModelList) {
                 mPlayList.clear();
