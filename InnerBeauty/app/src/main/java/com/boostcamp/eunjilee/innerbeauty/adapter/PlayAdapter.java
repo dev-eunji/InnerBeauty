@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
+import com.boostcamp.eunjilee.innerbeauty.DetailPlayActivity;
 import com.boostcamp.eunjilee.innerbeauty.DetailContentActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
@@ -57,11 +59,13 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
 
     class PlayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_list_play)
-        ImageView mPlayImageView;
+        protected ImageView mPlayImageView;
         @BindView(R.id.tv_play_date)
-        TextView mPlaytDateTextView;
+        protected TextView mPlaytDateTextView;
         @BindView(R.id.tv_play_place)
-        TextView mPlayPlaceTextView;
+        protected TextView mPlayPlaceTextView;
+
+        PlayModel mPlay;
 
         public PlayViewHolder(View itemView) {
             super(itemView);
@@ -69,8 +73,8 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
             itemView.setOnClickListener(this);
         }
 
-        private void setDate(String date) {
-            mPlaytDateTextView.setText(date);
+        private void setDate(String startDate, String endDate) {
+            mPlaytDateTextView.setText(startDate + " ~ " + endDate);
         }
 
         private void setPlace(String place) {
@@ -78,19 +82,19 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
         }
 
         public void setPlay(PlayModel play) {
-            setDate(play.getStartDate()); // TODO : start~end로 바꾸기
+            mPlay = play;
+            Glide.with(mContext).load(play.getPlayPicture())
+                    .thumbnail(0.1f)
+                    .into(mPlayImageView);
+            setDate(play.getStartDate(), play.getEndDate());
             setPlace(play.getPlayPlace());
-            Glide.with(mContext).load(play.getPlayPicture()).into(mPlayImageView);
         }
 
         @Override
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
-            //int clickedContentId = Integer.parseInt(memoIdTextView.getText().toString());
-            Intent startDetailActivity = new Intent(mContext, DetailContentActivity.class);
-            Bundle bundle = new Bundle();
-            //bundle.putInt("ContentId", clickedItemId);
-            startDetailActivity.putExtras(bundle);
+            Intent startDetailActivity = new Intent(mContext, DetailExhibitionActivity.class);
+            startDetailActivity.putExtra("Play", mPlay);
             mContext.startActivity(startDetailActivity);
         }
     }

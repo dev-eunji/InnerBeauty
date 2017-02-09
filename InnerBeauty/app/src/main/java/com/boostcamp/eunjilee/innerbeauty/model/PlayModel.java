@@ -21,6 +21,12 @@ public class PlayModel implements Serializable {
     String startDate;
     @SerializedName("end_date")
     String endDate;
+    @SerializedName("close_date")
+    String closeDate;
+    @SerializedName("open_time")
+    String openTime;
+    @SerializedName("close_time")
+    String closeTime;
     @SerializedName("play_place")
     String playPlace;
     @SerializedName("play_address")
@@ -63,6 +69,30 @@ public class PlayModel implements Serializable {
 
     public String getPlayTitle() {
         return playTitle;
+    }
+
+    public String getCloseDate() {
+        return closeDate;
+    }
+
+    public void setCloseDate(String closeDate) {
+        this.closeDate = closeDate;
+    }
+
+    public String getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
     }
 
     public void setPlayTitle(String playTitle) {

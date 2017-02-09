@@ -1,16 +1,25 @@
 <resources>
     <string name="app_name">InnerBeauty</string>
-
+    <string name="facebook_app_id">1415141601849975</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-    <!-- tab names -->
+    <string name="nav_my_like_label">나의 관심 작품</string>
+    <string name="nav_setting">Setting</string>
     <string name="tab_popular">인기</string>
     <string name="tab_exhibition">전시</string>
     <string name="tab_play">연극</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="start_end_date_label">기간</string>
+    <string name="open_time_label">시간</string>
+    <string name="close_date_label">휴관</string>
+    <string name="place_label">장소</string>
+    <string name="address_label">주소</string>
+    <string name="price_label">입장료</string>
+    <string name="call_label">문의전화</string>
+    <string name="real_call_label">전화걸기</string>
+    <string name="real_map_label">지도보기</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

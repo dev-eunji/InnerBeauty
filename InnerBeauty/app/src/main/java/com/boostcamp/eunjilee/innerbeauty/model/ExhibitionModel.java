@@ -8,6 +8,7 @@ import java.io.Serializable;
  * Created by eunjilee on 06/02/2017.
  */
 
+
 public class ExhibitionModel implements Serializable {
     @SerializedName("exhibition_id")
     int exhibitionId;
@@ -21,6 +22,12 @@ public class ExhibitionModel implements Serializable {
     String startDate;
     @SerializedName("end_date")
     String endDate;
+    @SerializedName("close_date")
+    String closeDate;
+    @SerializedName("open_time")
+    String openTime;
+    @SerializedName("close_time")
+    String closeTime;
     @SerializedName("exhibition_place")
     String exhibitionPlace;
     @SerializedName("exhibition_address")
@@ -110,6 +117,30 @@ public class ExhibitionModel implements Serializable {
 
     public void setExhibitionAddress(String exhibitionAddress) {
         this.exhibitionAddress = exhibitionAddress;
+    }
+
+    public String getCloseDate() {
+        return closeDate;
+    }
+
+    public void setCloseDate(String closeDate) {
+        this.closeDate = closeDate;
+    }
+
+    public String getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
     }
 
     public String getExhibitionPicture() {
