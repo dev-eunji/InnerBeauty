@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.boostcamp.eunjilee.innerbeauty.DetailPlayActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/imgv_content_detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_menu_camera"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- Detail -->
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity"
+        tools:showIn="@layout/activity_exhibition_detail">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin">
+
+            <!-- basic info -->
+            <LinearLayout
+                android:id="@+id/ll_start_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_end_date_label"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_start_end_date_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_open_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/ll_start_end_date">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_time_label"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_open_time_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_close_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/ll_open_time">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/close_date_label"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_close_date_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/ll_close_date">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/place_label"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_place_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/ll_place">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price_label"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_price_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/ll_price">
+
+                <TextView
+                    android:id="@+id/tv_call_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/call_label"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_call_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_below="@id/ll_call"/>
+            <!-- map -->
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
+    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_naver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_compass"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_kakao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_myplaces"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_share"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end" />
+    <!--</FrameLayout>-->
+
+</android.support.design.widget.CoordinatorLayout>

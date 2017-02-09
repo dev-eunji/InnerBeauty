@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/menu/menu_detail.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/menu/menu_detail.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/menu/activity_main_drawer.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/menu/activity_main_drawer.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/menu/main.xml"
+    }
+]
