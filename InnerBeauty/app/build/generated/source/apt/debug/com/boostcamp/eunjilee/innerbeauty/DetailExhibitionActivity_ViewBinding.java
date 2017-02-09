@@ -16,17 +16,15 @@ import java.lang.Override;
 public class DetailExhibitionActivity_ViewBinding<T extends DetailExhibitionActivity> implements Unbinder {
   protected T target;
 
-  private View view2131624084;
+  private View view2131558532;
 
-  private View view2131624085;
+  private View view2131558533;
 
-  private View view2131624086;
+  private View view2131558535;
 
-  private View view2131624087;
+  private View view2131558546;
 
-  private View view2131624077;
-
-  private View view2131624083;
+  private View view2131558552;
 
   @UiThread
   public DetailExhibitionActivity_ViewBinding(final T target, View source) {
@@ -35,7 +33,7 @@ public class DetailExhibitionActivity_ViewBinding<T extends DetailExhibitionActi
     View view;
     view = Utils.findRequiredView(source, R.id.fab, "field 'mFab' and method 'showShareButtons'");
     target.mFab = Utils.castView(view, R.id.fab, "field 'mFab'", FloatingActionButton.class);
-    view2131624084 = view;
+    view2131558532 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,25 +42,17 @@ public class DetailExhibitionActivity_ViewBinding<T extends DetailExhibitionActi
     });
     view = Utils.findRequiredView(source, R.id.fab_naver, "field 'mNaverFab' and method 'shareNaver'");
     target.mNaverFab = Utils.castView(view, R.id.fab_naver, "field 'mNaverFab'", FloatingActionButton.class);
-    view2131624085 = view;
+    view2131558533 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.shareNaver(p0);
       }
     });
-    view = Utils.findRequiredView(source, R.id.fab_kakao, "field 'mKakaoFab' and method 'shareKakao'");
-    target.mKakaoFab = Utils.castView(view, R.id.fab_kakao, "field 'mKakaoFab'", FloatingActionButton.class);
-    view2131624086 = view;
-    view.setOnClickListener(new DebouncingOnClickListener() {
-      @Override
-      public void doClick(View p0) {
-        target.shareKakao(p0);
-      }
-    });
+    target.mKakaoFab = Utils.findRequiredViewAsType(source, R.id.fab_kakao, "field 'mKakaoFab'", FloatingActionButton.class);
     view = Utils.findRequiredView(source, R.id.fab_facebook, "field 'mFaceBookFab' and method 'shareFacebook'");
     target.mFaceBookFab = Utils.castView(view, R.id.fab_facebook, "field 'mFaceBookFab'", FloatingActionButton.class);
-    view2131624087 = view;
+    view2131558535 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -77,7 +67,7 @@ public class DetailExhibitionActivity_ViewBinding<T extends DetailExhibitionActi
     target.mPriceTextView = Utils.findRequiredViewAsType(source, R.id.tv_price_value, "field 'mPriceTextView'", TextView.class);
     target.mCallTextView = Utils.findRequiredViewAsType(source, R.id.tv_call_value, "field 'mCallTextView'", TextView.class);
     view = Utils.findRequiredView(source, R.id.tv_real_map, "method 'shoqRealMapAction'");
-    view2131624077 = view;
+    view2131558546 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -85,7 +75,7 @@ public class DetailExhibitionActivity_ViewBinding<T extends DetailExhibitionActi
       }
     });
     view = Utils.findRequiredView(source, R.id.tv_real_call, "method 'checkPermissionForRealCall'");
-    view2131624083 = view;
+    view2131558552 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -112,18 +102,16 @@ public class DetailExhibitionActivity_ViewBinding<T extends DetailExhibitionActi
     target.mPriceTextView = null;
     target.mCallTextView = null;
 
-    view2131624084.setOnClickListener(null);
-    view2131624084 = null;
-    view2131624085.setOnClickListener(null);
-    view2131624085 = null;
-    view2131624086.setOnClickListener(null);
-    view2131624086 = null;
-    view2131624087.setOnClickListener(null);
-    view2131624087 = null;
-    view2131624077.setOnClickListener(null);
-    view2131624077 = null;
-    view2131624083.setOnClickListener(null);
-    view2131624083 = null;
+    view2131558532.setOnClickListener(null);
+    view2131558532 = null;
+    view2131558533.setOnClickListener(null);
+    view2131558533 = null;
+    view2131558535.setOnClickListener(null);
+    view2131558535 = null;
+    view2131558546.setOnClickListener(null);
+    view2131558546 = null;
+    view2131558552.setOnClickListener(null);
+    view2131558552 = null;
 
     this.target = null;
   }

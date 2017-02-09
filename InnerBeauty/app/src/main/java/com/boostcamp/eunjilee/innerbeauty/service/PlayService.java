@@ -31,5 +31,4 @@ public interface PlayService {
         void success(List<PlayModel> playModelList);
         void error(Throwable throwable);
     }
-
 }

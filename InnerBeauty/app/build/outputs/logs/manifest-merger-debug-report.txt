@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:2:1-50:12
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:2:1-58:12
 	package
 		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:3:5-49
 		INJECTED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml
@@ -13,32 +13,32 @@ ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/Android
 	android:versionCode
 		INJECTED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:5:5-67
-	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:6:5-79
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:5:5-79
 	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:6:22-76
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:5:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:7:5-81
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:7:22-78
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:6:22-78
 uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:7:5-76
+	android:name
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:7:22-73
+uses-permission#android.permission.CHANGE_WIFI_STATE
 ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:8:5-76
 	android:name
 		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:8:22-73
-uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:9:5-76
-	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:9:22-73
 uses-permission#android.permission.CALL_PHONE
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:10:5-69
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:9:5-69
 	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:10:22-66
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:9:22-66
+uses-permission#android.permission.INTERNET
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:10:5-66
+	android:name
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:10:22-64
 application
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:12:5-49:19
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:12:5-56:19
 MERGED from [com.android.support:design:25.1.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/design/25.1.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:transition:25.1.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.naver.maps.open:naver-map-api:2.1.2] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/AndroidManifest.xml:11:5-14:19
@@ -112,26 +112,34 @@ MERGED from [com.facebook.android:facebook-android-sdk:4.19.0] /Users/eunjilee/D
 		ADDED from [com.facebook.android:facebook-android-sdk:4.19.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/AndroidManifest.xml:32:13-63
 	android:name
 		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:37:19-63
-meta-data#com.kakao.sdk.AppKey
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:41:9-43:53
-	android:value
+activity#com.boostcamp.eunjilee.innerbeauty.DetailContentActivity
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:42:9-45:68
+	android:label
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:44:13-58
+	android:theme
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:45:13-56
+	android:name
 		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:43:13-50
-	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:42:13-48
-meta-data#com.facebook.sdk.ApplicationId
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:44:5-103
+meta-data#com.kakao.sdk.AppKey
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:47:9-49:53
 	android:value
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:44:62-101
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:49:13-50
 	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:44:16-61
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:48:13-48
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:50:9-107
+	android:value
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:50:66-105
+	android:name
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:50:20-65
 provider#com.facebook.FacebookContentProvider
-ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:46:9-48:38
+ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:52:9-54:38
 	android:authorities
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:46:19-97
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:52:19-97
 	android:exported
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:48:13-36
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:54:13-36
 	android:name
-		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:47:13-64
+		ADDED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml:53:13-64
 uses-sdk
 INJECTED from /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:25.1.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/design/25.1.0/AndroidManifest.xml:21:5-23:62
@@ -139,9 +147,6 @@ MERGED from [com.android.support:recyclerview-v7:25.1.0] /Users/eunjilee/Desktop
 MERGED from [com.android.support:transition:25.1.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.jakewharton:butterknife:8.4.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/AndroidManifest.xml:5:5-43
 MERGED from [com.naver.maps.open:naver-map-api:2.1.2] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/AndroidManifest.xml:7:5-9:41
-MERGED from [com.kakao.sdk:kakaolink:1.1.33] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/kakaolink/1.1.33/AndroidManifest.xml:11:5-13:41
-MERGED from [com.kakao.sdk:network:1.1.33] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/network/1.1.33/AndroidManifest.xml:8:5-10:41
-MERGED from [com.kakao.sdk:util:1.1.33] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/AndroidManifest.xml:11:5-13:41
 MERGED from [gun0912.ted:tedpermission:1.0.2] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/gun0912.ted/tedpermission/1.0.2/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.android:facebook-android-sdk:4.19.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/AndroidManifest.xml:24:5-26:41
 MERGED from [com.android.support:appcompat-v7:25.1.0] /Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/AndroidManifest.xml:21:5-23:78

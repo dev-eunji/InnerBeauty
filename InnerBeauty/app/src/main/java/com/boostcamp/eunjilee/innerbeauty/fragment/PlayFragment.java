@@ -1,5 +1,6 @@
 package com.boostcamp.eunjilee.innerbeauty.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +31,6 @@ public class PlayFragment extends Fragment {
     private PlayAdapter mPlayAdapter;
     private PlayLoadModule mPlayLoadModule;
     private int mPage = 1;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

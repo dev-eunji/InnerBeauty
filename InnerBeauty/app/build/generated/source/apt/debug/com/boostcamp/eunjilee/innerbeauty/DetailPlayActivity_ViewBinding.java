@@ -16,7 +16,7 @@ import java.lang.Override;
 public class DetailPlayActivity_ViewBinding<T extends DetailPlayActivity> implements Unbinder {
   protected T target;
 
-  private View view2131624084;
+  private View view2131558532;
 
   @UiThread
   public DetailPlayActivity_ViewBinding(final T target, View source) {
@@ -25,7 +25,7 @@ public class DetailPlayActivity_ViewBinding<T extends DetailPlayActivity> implem
     View view;
     view = Utils.findRequiredView(source, R.id.fab, "field 'mFab' and method 'showShareButtons'");
     target.mFab = Utils.castView(view, R.id.fab, "field 'mFab'", FloatingActionButton.class);
-    view2131624084 = view;
+    view2131558532 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,8 +62,8 @@ public class DetailPlayActivity_ViewBinding<T extends DetailPlayActivity> implem
     target.mPriceTextView = null;
     target.mCallTextView = null;
 
-    view2131624084.setOnClickListener(null);
-    view2131624084 = null;
+    view2131558532.setOnClickListener(null);
+    view2131558532 = null;
 
     this.target = null;
   }

@@ -8,7 +8,8 @@ import java.io.Serializable;
  * Created by eunjilee on 06/02/2017.
  */
 
-public class ExhibitionModel implements Serializable { //휴관
+
+public class ExhibitionModel implements Serializable {
     @SerializedName("exhibition_id")
     int exhibitionId;
     @SerializedName("exhibition_code")

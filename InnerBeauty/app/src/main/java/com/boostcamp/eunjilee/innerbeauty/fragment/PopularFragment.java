@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.boostcamp.eunjilee.innerbeauty.R;
 
-
 public class PopularFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

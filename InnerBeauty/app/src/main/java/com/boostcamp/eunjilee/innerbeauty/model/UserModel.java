@@ -16,10 +16,8 @@ public class UserModel {
     @SerializedName("profile_image")
     public String profileImagePath;
 
-
     //TODO : pw를 클래스변수로 가지고 있는게 보안상 문제가 있을 것 같다.
     //String userPw;
-
 
     public int getUserId() {
         return userId;

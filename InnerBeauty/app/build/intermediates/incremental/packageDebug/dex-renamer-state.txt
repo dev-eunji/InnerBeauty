@@ -1,7 +1,0 @@
-#Thu Feb 09 21:25:45 KST 2017
-base.0=/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_2fdd5336dbc24d55fc4e27dc932d14619201be80
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a9de11749dc7eaeb14aba45aa82c3568893bfe4e/classes.dex
-base.1=/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a9de11749dc7eaeb14aba45aa82c3568893bfe4e
-file.0=/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_2fdd5336dbc24d55fc4e27dc932d14619201be80/classes.dex

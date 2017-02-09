@@ -24,11 +24,11 @@ import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.kakao.kakaolink.AppActionBuilder;
-import com.kakao.kakaolink.AppActionInfoBuilder;
-import com.kakao.kakaolink.KakaoLink;
-import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
-import com.kakao.util.KakaoParameterException;
+//import com.kakao.kakaolink.AppActionBuilder;
+//import com.kakao.kakaolink.AppActionInfoBuilder;
+//import com.kakao.kakaolink.KakaoLink;
+//import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
+//import com.kakao.util.KakaoParameterException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -150,28 +150,28 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         Toast.makeText(getApplication(), "NAVER", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.fab_kakao)
-    public void shareKakao(View view) {
-        try {
-            KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
-            final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-            Map<String, String> executeParam = new HashMap<String, String>();
-            Map<String, String> marketParam = new HashMap<String, String>();
-            executeParam.put("execparamkey1", "1111");
-            marketParam.put("referrer", "kakaotalklink");
-            kakaoTalkLinkMessageBuilder.addAppLink("자세히 보기",
-                    new AppActionBuilder()
-                            .addActionInfo(AppActionInfoBuilder
-                                    .createAndroidActionInfoBuilder()
-                                    .setExecuteParam(executeParam)
-                                    .setMarketParam(marketParam)
-                                    .build())
-                            .setUrl("http://www.naver.com") // PC 카카오톡 에서 사용하게 될 웹사이트 주소
-                            .build());
-        } catch (KakaoParameterException e) {
-            e.printStackTrace();
-        }
-    }
+//    @OnClick(R.id.fab_kakao)
+//    public void shareKakao(View view) {
+//        try {
+//            KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
+//            final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+//            Map<String, String> executeParam = new HashMap<String, String>();
+//            Map<String, String> marketParam = new HashMap<String, String>();
+//            executeParam.put("execparamkey1", "1111");
+//            marketParam.put("referrer", "kakaotalklink");
+//            kakaoTalkLinkMessageBuilder.addAppLink("자세히 보기",
+//                    new AppActionBuilder()
+//                            .addActionInfo(AppActionInfoBuilder
+//                                    .createAndroidActionInfoBuilder()
+//                                    .setExecuteParam(executeParam)
+//                                    .setMarketParam(marketParam)
+//                                    .build())
+//                            .setUrl("http://www.naver.com") // PC 카카오톡 에서 사용하게 될 웹사이트 주소
+//                            .build());
+//        } catch (KakaoParameterException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // TODO : Dialog들끼리 빼내기
     @OnClick(R.id.fab_facebook)
