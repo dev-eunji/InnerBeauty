@@ -23,11 +23,11 @@ public interface PlayService {
     @GET("getPlayList/{page}")
     Call<List<PlayModel>> getPlayList(@Path("page")int page);
 
-    public interface getPlayCallback {
+    interface getPlayCallback {
         void success(PlayModel playModel);
         void error(Throwable throwable);
     }
-    public interface getPlayListCallback {
+    interface getPlayListCallback {
         void success(List<PlayModel> playModelList);
         void error(Throwable throwable);
     }

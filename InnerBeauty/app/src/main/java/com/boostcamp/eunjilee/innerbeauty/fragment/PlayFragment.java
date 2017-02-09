@@ -1,6 +1,5 @@
 package com.boostcamp.eunjilee.innerbeauty.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -10,15 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.boostcamp.eunjilee.innerbeauty.DetailContentActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
-import com.boostcamp.eunjilee.innerbeauty.adapter.ExhibitionAdapter;
 import com.boostcamp.eunjilee.innerbeauty.adapter.PlayAdapter;
-import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
-import com.boostcamp.eunjilee.innerbeauty.module.ExhibitionLoadModule;
 import com.boostcamp.eunjilee.innerbeauty.module.PlayLoadModule;
-import com.boostcamp.eunjilee.innerbeauty.service.ExhibitionService;
 import com.boostcamp.eunjilee.innerbeauty.service.PlayService;
 
 import java.util.ArrayList;

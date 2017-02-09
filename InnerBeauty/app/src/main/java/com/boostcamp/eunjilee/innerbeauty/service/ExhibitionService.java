@@ -21,11 +21,11 @@ public interface ExhibitionService {
     @GET("getExhibitionList/{page}")
     Call<List<ExhibitionModel>> getExhibitionList(@Path("page")int page);
 
-    public interface getExhibitionCallback {
+    interface getExhibitionCallback {
         void success(ExhibitionModel exhibitionModel);
         void error(Throwable throwable);
     }
-    public interface getExhibitionListCallback {
+    interface getExhibitionListCallback {
         void success(List<ExhibitionModel> exhibitionModelList);
         void error(Throwable throwable);
     }
