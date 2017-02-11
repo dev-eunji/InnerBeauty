@@ -13,14 +13,21 @@ public class UserModel {
     String userName;
     @SerializedName("user_email")
     public String userEmail;
+    @SerializedName("sns_type")
+    public String loginSnsType;
     @SerializedName("profile_image")
     public String profileImagePath;
 
-    //TODO : pw를 클래스변수로 가지고 있는게 보안상 문제가 있을 것 같다.
-    //String userPw;
-
     public int getUserId() {
         return userId;
+    }
+
+    public String getLoginSnsType() {
+        return loginSnsType;
+    }
+
+    public void setLoginSnsType(String loginSnsType) {
+        this.loginSnsType = loginSnsType;
     }
 
     public void setUserId(int userId) {

@@ -4,6 +4,10 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/res/drawable-mdpi/library_naver_logo.png"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-mdpi/share_btn_facebook.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-mdpi/share_btn_facebook.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-mdpi/library_btn_navermap_bg.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/res/drawable-mdpi/library_btn_navermap_bg.png"
     },

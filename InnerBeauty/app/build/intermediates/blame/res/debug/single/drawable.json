@@ -4,8 +4,16 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable/messenger_button_blue_bg_selector.xml"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_login_bar.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_login_bar.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_account_logo.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_account_logo.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
@@ -20,20 +28,32 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable/share_btn_facebook.png"
     },
     {
-        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/com_facebook_button_background.xml",
-        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable/com_facebook_button_background.xml"
-    },
-    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/com_facebook_button_background.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable/com_facebook_button_background.xml"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/recycler_rect_view.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable/recycler_rect_view.xml"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_profile_boxbg.9.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_profile_boxbg.9.png"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_editable_profile.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_editable_profile.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/com_facebook_send_button_icon.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable/com_facebook_send_button_icon.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_login_symbol.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_login_symbol.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/messenger_button_white_bg_round.xml",
@@ -48,8 +68,16 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable/com_facebook_button_like_background.xml"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/login_background.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable/login_background.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_ic_voice_search_api_material.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_login_button_background.9.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_login_button_background.9.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_vector_test.xml",
@@ -58,6 +86,10 @@
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/login_btn_selector.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable/login_btn_selector.xml"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/icon_like_pressed.png",
@@ -70,6 +102,10 @@
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_default_profile_image.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_default_profile_image.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
@@ -100,6 +136,10 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/notification_bg.xml"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_cancel_button_background.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_cancel_button_background.xml"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_text_cursor_material.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/abc_text_cursor_material.xml"
     },
@@ -114,6 +154,10 @@
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/kakao_account_button_background.xml",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable/kakao_account_button_background.xml"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/com_facebook_button_login_logo.xml",
@@ -158,6 +202,10 @@
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/messenger_button_blue_bg_round.xml",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable/messenger_button_blue_bg_round.xml"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/login_title_image.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable/login_title_image.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable/design_password_eye.xml",

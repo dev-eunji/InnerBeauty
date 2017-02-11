@@ -20,6 +20,10 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/kakaoaccount_icon.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable-hdpi-v4/kakaoaccount_icon.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
     },
@@ -58,6 +62,10 @@
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/kakaotalk_icon.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable-hdpi-v4/kakaotalk_icon.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_ic_star_black_36dp.png",
@@ -178,6 +186,10 @@
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/messenger_bubble_large_blue.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/res/drawable-hdpi-v4/messenger_bubble_large_blue.png"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/kakaostory_icon.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.33/res/drawable-hdpi-v4/kakaostory_icon.png"
     },
     {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/com_facebook_tooltip_black_xout.png",

@@ -2,9 +2,7 @@ package com.boostcamp.eunjilee.innerbeauty.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
-import com.boostcamp.eunjilee.innerbeauty.DetailPlayActivity;
-import com.boostcamp.eunjilee.innerbeauty.DetailContentActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
 import com.bumptech.glide.Glide;
