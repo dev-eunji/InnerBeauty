@@ -14,12 +14,7 @@ import android.widget.ToggleButton;
 
 import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
-import com.boostcamp.eunjilee.innerbeauty.RoundedCornersTransformation;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.boostcamp.eunjilee.innerbeauty.DetailContentActivity;
-import com.boostcamp.eunjilee.innerbeauty.R;
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.bumptech.glide.Glide;
 

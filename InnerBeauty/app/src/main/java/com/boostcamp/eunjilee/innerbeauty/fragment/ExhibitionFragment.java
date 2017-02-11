@@ -23,14 +23,14 @@ import butterknife.ButterKnife;
 
 
 public class ExhibitionFragment extends Fragment {
+    private static final int PAGE = 1;
+
     @BindView(R.id.rv_exhibition)
     protected RecyclerView mExhibitionRecyclerView;
 
     private List<ExhibitionModel> mExhibitionList;
     private ExhibitionAdapter mExhibitionAdapter;
     private ExhibitionLoadModule mExhibitionLoadModule;
-    private int PAGE = 1;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

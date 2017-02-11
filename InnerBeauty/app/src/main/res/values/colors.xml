@@ -12,4 +12,9 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#212121</color>
+
+    <!-- social -->
+    <color name="colorFacebook">#3b5998</color>
+    <color name="colorNaver">#123456</color> <!--TODO! need to be changed -->
+    <color name="colorKakao">#fcd411</color>
 </resources>

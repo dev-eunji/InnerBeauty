@@ -3,7 +3,6 @@ package com.boostcamp.eunjilee.innerbeauty;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,15 +19,14 @@ import android.widget.Toast;
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.bumptech.glide.Glide;
 import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-//import com.kakao.kakaolink.AppActionBuilder;
-//import com.kakao.kakaolink.AppActionInfoBuilder;
-//import com.kakao.kakaolink.KakaoLink;
-//import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
-//import com.kakao.util.KakaoParameterException;
+import com.kakao.kakaolink.AppActionBuilder;
+import com.kakao.kakaolink.AppActionInfoBuilder;
+import com.kakao.kakaolink.KakaoLink;
+import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
+import com.kakao.util.KakaoParameterException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,8 +35,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.boostcamp.eunjilee.innerbeauty.R.id.toolbar;
 
 public class DetailExhibitionActivity extends AppCompatActivity {
 
@@ -64,34 +60,31 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     protected TextView mPriceTextView;
     @BindView(R.id.tv_call_value)
     protected TextView mCallTextView;
+    @BindView(R.id.toolbar_detail)
+    protected Toolbar mToolbar;
 
     private boolean mFabStatus = false;
+    private Animation mFabShowAnimation;
+    private Animation mFabHideAnimation;
+
     private ExhibitionModel mExhibition;
-
-    //Animations
-    private Animation mShowFaNaver;
-    private Animation mHideFabNaver;
-    private Animation mShowFabKakao;
-    private Animation mHideFabKakao;
-    private Animation mShowFabFacebook;
-    private Animation mHideFabFacebook;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhibition_detail);
-
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
         mExhibition = (ExhibitionModel) intent.getSerializableExtra("Exhibition");
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail);
-        toolbar.setTitle(mExhibition.getExhibitionTitle());
-        setSupportActionBar(toolbar);
+        mToolbar.setTitle(mExhibition.getExhibitionTitle());
+        setSupportActionBar(mToolbar);
+        initDetailExhibitionInfo();
+        initFabAnimation();
+    }
 
-        //testCode
+    private void initDetailExhibitionInfo(){
         Glide.with(this).load(mExhibition.getExhibitionPicture()).into(mDetailTitleImageView);
         mStartEndDateTextView.setText(mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate());
         mOpenTimeTextView.setText(mExhibition.getOpenTime() + " ~ " + mExhibition.getCloseTime());
@@ -100,15 +93,10 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         mPlaceTextView.setText(mExhibition.getExhibitionAddress());
         mPriceTextView.setText("어른 : " + String.valueOf(mExhibition.getPriceAdult()) + " 어린이 : " + String.valueOf(mExhibition.getPriceChildren()));
         mCallTextView.setText(mExhibition.getExhibitionCall());
-
-        //Animations
-        mShowFaNaver = AnimationUtils.loadAnimation(getApplication(), R.anim.naver_share_fab_show);
-        mHideFabNaver = AnimationUtils.loadAnimation(getApplication(), R.anim.naver_share_fab_hide);
-        mShowFabKakao = AnimationUtils.loadAnimation(getApplication(), R.anim.kakao_share_fab_show);
-        mHideFabKakao = AnimationUtils.loadAnimation(getApplication(), R.anim.kakao_share_fab_hide);
-        mShowFabFacebook = AnimationUtils.loadAnimation(getApplication(), R.anim.facebook_share_fab_show);
-        mHideFabFacebook = AnimationUtils.loadAnimation(getApplication(), R.anim.facebook_share_fab_hide);
-
+    }
+    private void initFabAnimation(){
+        mFabShowAnimation = AnimationUtils.loadAnimation(getApplication(), R.anim.share_fab_show);
+        mFabHideAnimation = AnimationUtils.loadAnimation(getApplication(), R.anim.share_fab_hide);
     }
 
     @OnClick(R.id.fab)
@@ -150,35 +138,36 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         Toast.makeText(getApplication(), "NAVER", Toast.LENGTH_SHORT).show();
     }
 
-//    @OnClick(R.id.fab_kakao)
-//    public void shareKakao(View view) {
-//        try {
-//            KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
-//            final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-//            Map<String, String> executeParam = new HashMap<String, String>();
-//            Map<String, String> marketParam = new HashMap<String, String>();
-//            executeParam.put("execparamkey1", "1111");
-//            marketParam.put("referrer", "kakaotalklink");
-//            kakaoTalkLinkMessageBuilder.addAppLink("자세히 보기",
-//                    new AppActionBuilder()
-//                            .addActionInfo(AppActionInfoBuilder
-//                                    .createAndroidActionInfoBuilder()
-//                                    .setExecuteParam(executeParam)
-//                                    .setMarketParam(marketParam)
-//                                    .build())
-//                            .setUrl("http://www.naver.com") // PC 카카오톡 에서 사용하게 될 웹사이트 주소
-//                            .build());
-//        } catch (KakaoParameterException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     // TODO : Dialog들끼리 빼내기
+    @OnClick(R.id.fab_kakao)
+    void shareKakao(View view) {
+        try {
+            KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
+            final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+            Map<String, String> executeParam = new HashMap<String, String>();
+            Map<String, String> marketParam = new HashMap<String, String>();
+            executeParam.put("execparamkey1", "1111");
+            marketParam.put("referrer", "kakaotalklink");
+            kakaoTalkLinkMessageBuilder.addAppLink("자세히 보기",
+                    new AppActionBuilder()
+                            .addActionInfo(AppActionInfoBuilder
+                                    .createAndroidActionInfoBuilder()
+                                    .setExecuteParam(executeParam)
+                                    .setMarketParam(marketParam)
+                                    .build())
+                            .setUrl("http://www.naver.com") // PC 카카오톡 에서 사용하게 될 웹사이트 주소
+                            .build());
+            kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, this);
+        } catch (KakaoParameterException e) {
+            e.printStackTrace();
+        }
+    }
+
     @OnClick(R.id.fab_facebook)
-    void shareFacebook() {
+    void shareFacebook() { // all must be not null
         ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
                 .setContentTitle(mExhibition.getExhibitionTitle())
-                .setContentUrl(Uri.parse(mExhibition.getExhibitionSite()))
+                //.setContentUrl(Uri.parse(mExhibition.getExhibitionSite()))
                 .setImageUrl(Uri.parse(mExhibition.getExhibitionPicture()))
                 .setContentDescription(mExhibition.getExhibitionAddress())
                 .build();
@@ -187,27 +176,25 @@ public class DetailExhibitionActivity extends AppCompatActivity {
 
     //TODO : 애니메이션
     private void expandFAB() {
-        mNaverFab.startAnimation(mShowFaNaver);
+        mNaverFab.startAnimation(mFabShowAnimation);
         mNaverFab.setClickable(true);
-
-        mKakaoFab.startAnimation(mShowFabKakao);
+        mKakaoFab.startAnimation(mFabShowAnimation);
         mKakaoFab.setClickable(true);
-
-        mFaceBookFab.startAnimation(mShowFabFacebook);
+        mFaceBookFab.startAnimation(mFabShowAnimation);
         mFaceBookFab.setClickable(true);
     }
 
 
     private void hideFAB() {
-        mNaverFab.startAnimation(mHideFabNaver);
+        mNaverFab.startAnimation(mFabHideAnimation);
         mNaverFab.setClickable(false);
-
-        mKakaoFab.startAnimation(mHideFabKakao);
+        mKakaoFab.startAnimation(mFabHideAnimation);
         mKakaoFab.setClickable(false);
-
-        mFaceBookFab.startAnimation(mHideFabFacebook);
+        mFaceBookFab.startAnimation(mFabHideAnimation);
         mFaceBookFab.setClickable(false);
+
     }
+
     PermissionListener permissionlistenerCall = new PermissionListener() {
         @Override
         public void onPermissionGranted() {
