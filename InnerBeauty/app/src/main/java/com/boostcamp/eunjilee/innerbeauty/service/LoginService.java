@@ -1,16 +1,12 @@
 package com.boostcamp.eunjilee.innerbeauty.service;
 
-import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.boostcamp.eunjilee.innerbeauty.model.UserModel;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -19,15 +15,15 @@ import retrofit2.http.Query;
 
 public interface LoginService {
 
-    @GET("/getLogin")
-    Call<UserModel> longin(@Query("user_id")String userId, @Query("user_pw")String userPw);
+    @GET("getLogin")
+    Call<UserModel> longin(@Query("user_id") long userId, @Query("user_pw") String userPw);
 
     @FormUrlEncoded
-    @POST("/addUserWithSNS")
-    Call<UserModel> addUserWithSNS(@Field("user_id") String userId, @Field("user_name") String userName, @Field("user_email") String userEmail, @Field("sns_type") int snsType);
+    @POST("addUserWithSNS")
+    Call<UserModel> addUserWithSNS(@Field("user_id") long userId, @Field("user_name") String userName, @Field("user_email") String userEmail, @Field("user_profile") String userProfilePicture, @Field("sns_type") int snsType);
 
     interface LoginCallback {
-        void success(UserModel userModel);
+        void success();
         void error(Throwable throwable);
     }
 }

@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ExhibitionLoadModule {
-    public final static String SERVER_URL = "http://35.166.198.97/index.php/Contents/";
+    private final static String SERVER_URL = "http://35.166.198.97/index.php/Contents/";
 
     public static void getExhibitionByAsync(int exhibitionId, final ExhibitionService.getExhibitionCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()

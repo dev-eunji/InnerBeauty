@@ -24,8 +24,8 @@ import butterknife.ButterKnife;
  */
 
 public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder> {
-    private Context mContext;
-    private List<PlayModel> mPlayList;
+    private final Context mContext;
+    private final List<PlayModel> mPlayList;
 
     public PlayAdapter(Context context, List<PlayModel> playModels) {
         mContext = context;
@@ -88,7 +88,6 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
 
         @Override
         public void onClick(View v) {
-            int clickedPosition = getAdapterPosition();
             Intent startDetailActivity = new Intent(mContext, DetailExhibitionActivity.class);
             startDetailActivity.putExtra("Play", mPlay);
             mContext.startActivity(startDetailActivity);

@@ -11,48 +11,48 @@ import java.io.Serializable;
 
 public class ExhibitionModel implements Serializable {
     @SerializedName("exhibition_id")
-    int exhibitionId;
+    private int exhibitionId;
     @SerializedName("exhibition_code")
-    int exhibitionCode;
+    private int exhibitionCode;
     @SerializedName("exhibition_title")
-    String exhibitionTitle;
+    private String exhibitionTitle;
     @SerializedName("exhibitiion_artist")
-    String exhibitionArtist;
+    private String exhibitionArtist;
     @SerializedName("start_date")
-    String startDate;
+    private String startDate;
     @SerializedName("end_date")
-    String endDate;
+    private String endDate;
     @SerializedName("close_date")
-    String closeDate;
+    private String closeDate;
     @SerializedName("open_time")
-    String openTime;
+    private String openTime;
     @SerializedName("close_time")
-    String closeTime;
+    private String closeTime;
     @SerializedName("exhibition_place")
-    String exhibitionPlace;
+    private String exhibitionPlace;
     @SerializedName("exhibition_address")
-    String exhibitionAddress;
+    private String exhibitionAddress;
     @SerializedName("exhibition_picture")
-    String exhibitionPicture;
+    private String exhibitionPicture;
     @SerializedName("exhibition_price_adult")
-    int priceAdult;
+    private int priceAdult;
     @SerializedName("exhibition_price_student")
-    int priceStudent;
+    private int priceStudent;
     @SerializedName("exhibition_price_children")
-    int priceChildren;
+    private int priceChildren;
     @SerializedName("exhibition_price_old_infirm")
-    int priceOldInfirm;
+    private int priceOldInfirm;
     @SerializedName("play_price_old_infirm")
-    int priceSpecial;
+    private int priceSpecial;
     @SerializedName("exhibition_call")
-    String exhibitionCall;
+    private String exhibitionCall;
     @SerializedName("exhibition_site")
-    String exhibitionSite;
+    private String exhibitionSite;
 
-    int exhibitionclicked;
-    int exhibitionLiked;
-    int exhibitionShared;
-    String exhibitionComments;
+    private int exhibitionclicked;
+    private int exhibitionLiked;
+    private int exhibitionShared;
+    private String exhibitionComments;
 
 
     public int getExhibitionId() {

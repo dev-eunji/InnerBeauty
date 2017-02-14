@@ -1,7 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -12,47 +12,55 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.boostcamp.eunjilee.innerbeauty.adapter.MainTabPagerAdapter;
+import com.bumptech.glide.Glide;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
+    @BindView(R.id.toolbar)
+    protected Toolbar mToolbar;
+    @BindView(R.id.nav_view)
+    protected NavigationView mNavigationView;
+    @BindView(R.id.drawer_layout)
+    protected DrawerLayout mDrawerLayout;
+    @BindView(R.id.main_tab_layout)
+    protected TabLayout mTabLayout;
+    @BindView(R.id.main_view_papger)
+    protected ViewPager mViewPager;
+
+    private UserSharedPreference mUserSharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+        mNavigationView.setNavigationItemSelectedListener(this);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        View header = mNavigationView.getHeaderView(0);
+        HeaderViewHolder headerViewHolder = new HeaderViewHolder(header);
 
+        mUserSharedPreference = new UserSharedPreference(this);
 
-        /* Tab layout */
-        // Initializing the TabLayout
-        mTabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_popular));
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_exhibition));
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_play));
-        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        initTabLayout();
+        initViewPager();
+        headerViewHolder.initNavHeaderMain();
 
-        mViewPager = (ViewPager) findViewById(R.id.main_view_papger);
-        MainTabPagerAdapter pagerAdapter = new MainTabPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
-        mViewPager.setAdapter(pagerAdapter);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
-        // Set TabSelectedListener
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -61,14 +69,24 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
+    }
+
+    private void initTabLayout(){
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_popular));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_exhibition));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_play));
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+    }
+    private void initViewPager(){
+        MainTabPagerAdapter pagerAdapter = new MainTabPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
+        mViewPager.setAdapter(pagerAdapter);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
     }
 
     @Override
@@ -83,7 +101,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -102,7 +119,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_manage) {
@@ -116,5 +133,28 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected class HeaderViewHolder {
+
+        @BindView(R.id.imgv_user_profile)
+        protected ImageView mUserProfileImageView;
+        @BindView(R.id.tv_user_id)
+        protected TextView mUserIdTextView;
+        @BindView(R.id.tv_user_email)
+        protected TextView mUserEmailTextView;
+
+        HeaderViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+        private void initNavHeaderMain(){
+            Glide.with(MainActivity.this).load(mUserSharedPreference.getUserProfileImage())
+                    .thumbnail(0.1f)
+                    .centerCrop()
+                    .bitmapTransform(new CropCircleTransformation(MainActivity.this))
+                    .into(mUserProfileImageView);
+            mUserIdTextView.setText(String.valueOf(mUserSharedPreference.getUserId()));
+            mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
+        }
     }
 }

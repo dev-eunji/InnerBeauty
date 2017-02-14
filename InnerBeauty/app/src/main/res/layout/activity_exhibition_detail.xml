@@ -26,8 +26,10 @@
                 android:id="@+id/imgv_content_detail_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/cd_detail_exhibition"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
+
                 android:src="@drawable/ic_menu_camera"
                 app:layout_collapseMode="parallax" />
 
@@ -214,17 +216,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:elevation="6dp"
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_menu_share" />
+        app:srcCompat="@android:drawable/ic_menu_share"
+        tools:targetApi="lollipop" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="@dimen/fab_margin"
         android:src="@drawable/share_btn_facebook"
         android:visibility="invisible"
@@ -233,13 +238,15 @@
         app:backgroundTint="@color/colorFacebook"
         app:fabSize="mini"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end"
+        tools:targetApi="lollipop" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_naver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="120dp"
+        android:layout_marginEnd="120dp"
         android:layout_marginBottom="@dimen/fab_margin"
         android:src="@android:drawable/ic_menu_compass"
         android:visibility="invisible"
@@ -248,13 +255,15 @@
         app:backgroundTint="@color/colorPrimary"
         app:fabSize="mini"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end"
+        tools:targetApi="lollipop" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_kakao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="160dp"
+        android:layout_marginEnd="160dp"
         android:layout_marginBottom="@dimen/fab_margin"
         android:src="@android:drawable/ic_menu_myplaces"
         android:visibility="invisible"
@@ -263,7 +272,8 @@
         app:backgroundTint="@color/colorPrimary"
         app:fabSize="mini"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end"
+        tools:targetApi="lollipop" />
 
 
 </android.support.design.widget.CoordinatorLayout>

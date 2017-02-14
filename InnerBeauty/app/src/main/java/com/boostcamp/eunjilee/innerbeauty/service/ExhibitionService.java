@@ -1,12 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty.service;
-
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
-import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
-
 import java.util.List;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -14,9 +9,8 @@ import retrofit2.http.Path;
  * Created by eunjilee on 06/02/2017.
  */
 public interface ExhibitionService {
-    /*Exhibition*/
     @GET("getExhibition/{exhibitionId}")
-    Call<ExhibitionModel>getExhibition(@Path("exhibitionId") int playId);
+    Call<ExhibitionModel>getExhibition(@Path("exhibitionId") int exhibitionId);
 
     @GET("getExhibitionList/{page}")
     Call<List<ExhibitionModel>> getExhibitionList(@Path("page")int page);

@@ -14,7 +14,7 @@ import com.boostcamp.eunjilee.innerbeauty.fragment.PopularFragment;
 
 public class MainTabPagerAdapter extends FragmentStatePagerAdapter {
 
-    private int mTabCount;
+    private final int mTabCount;
 
     public MainTabPagerAdapter(FragmentManager fm, int tabCount) {
         super(fm);
@@ -26,14 +26,11 @@ public class MainTabPagerAdapter extends FragmentStatePagerAdapter {
         // Returns the current tab
         switch (position) {
             case 0:
-                PopularFragment popularFragment = new PopularFragment();
-                return popularFragment;
+                return new PopularFragment();
             case 1:
-                ExhibitionFragment exhibitionFragment = new ExhibitionFragment();
-                return exhibitionFragment;
+                return new ExhibitionFragment();
             case 2:
-                PlayFragment playFragment = new PlayFragment();
-                return playFragment;
+                return new PlayFragment();
             default:
                 return null;
         }
