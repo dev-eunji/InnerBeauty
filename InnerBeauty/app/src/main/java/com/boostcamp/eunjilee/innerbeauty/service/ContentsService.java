@@ -1,6 +1,8 @@
 package com.boostcamp.eunjilee.innerbeauty.service;
 import com.boostcamp.eunjilee.innerbeauty.model.FavoriteContentsModel;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -13,8 +15,11 @@ import retrofit2.http.Path;
  */
 
 public interface ContentsService {
-    @GET("getFavoriteContentsList/{userId}/{contentsType}")
-    Call<FavoriteContentsModel> getFavoriteContentsList(@Path("userId") long userId, @Path("contentsType") int contentsType);
+    @GET("getFavoriteContentsList/{userId}")
+    Call<List<FavoriteContentsModel>> getFavoriteContentsList(@Path("userId") long userId);
+
+    @GET("getFavoriteContentsListByContentsType/{userId}/{contentsType}")
+    Call<List<FavoriteContentsModel>> getFavoriteContentsListByContentsType(@Path("userId") long userId, @Path("contentsType") int contentsType);
 
     @FormUrlEncoded
     @POST("registerFavoriteContents")
@@ -25,7 +30,7 @@ public interface ContentsService {
     Call<FavoriteContentsModel> deleteFavoriteContents(@Field("user_id") long userId, @Field("contents_id") int contentsId,@Field("contents_type") int contentsType );
 
     interface getFavoriteContentsListCallback {
-        void success(FavoriteContentsModel favoriteContentsModel);
+        void success(List<FavoriteContentsModel> favoriteContentsModel);
         void error(Throwable throwable);
     }
 

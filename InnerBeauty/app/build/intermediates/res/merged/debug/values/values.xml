@@ -37,16 +37,16 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="colorAccent">#7C4DFF</color>
+    <color name="colorAccent">#8593AE</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorFacebook">#3b5998</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorKakao">#fcd411</color>
     <color name="colorNaver">#123456</color>
-    <color name="colorPrimarLight">#FFCDD2</color>
+    <color name="colorPrimarLight">#DD8C95</color>
     <color name="colorPrimarText">#212121</color>
-    <color name="colorPrimary">#F44336</color>
-    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorPrimary">#DDA288</color>
+    <color name="colorPrimaryDark">#72675E</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="com_facebook_blue">#3B5998</color>
     <color name="com_facebook_button_background_color">#415dae</color>
@@ -617,7 +617,6 @@
     <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
     <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
     <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
-    <item name="ic_menu_slideshow" type="drawable">@android:drawable/ic_menu_slideshow</item>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
     <item name="action_bar_activity_content" type="id"/>
@@ -681,6 +680,12 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="call_label">문의전화</string>
+    <string name="cd_detail_exhibition">전시 상세 이미지</string>
+    <string name="cd_detail_play">연극 상세 이미지</string>
+    <string name="cd_list_exhibition">전시 이미지</string>
+    <string name="cd_list_play">연극 이미지</string>
+    <string name="cd_login_img">로그인 이미지</string>
+    <string name="cd_user_profile">사용자 프로필 이미지</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="close_date_label">휴관</string>
     <string name="com_facebook_device_auth_instructions">Visit &lt;b>facebook.com/device&lt;/b> and enter your code.</string>
@@ -712,8 +717,7 @@
     <string name="com_kakao_account_cancel">Cancel</string>
     <string name="com_kakao_account_cancel_tts">Cancel, Button</string>
     <string name="com_kakao_alert_appKey">need to declare com.kakao.sdk.AppKey in your AndroidManifest.xml</string>
-    <string name="com_kakao_alert_install_kakaotalk">Please update KakaoTalk to the latest version.</string>
-    <string name="com_kakao_alert_uri_too_long">Failed to send message because it exceeds the message size limit. Please contact the app administrator.</string>
+    <string name="com_kakao_alert_install_kakaotalk">There is no installed KakaoTalk version higher than 4.2.0</string>
     <string name="com_kakao_cancel_button">Cancel</string>
     <string name="com_kakao_confirm_logout">Are you sure to log out from this app?</string>
     <string name="com_kakao_confirm_unlink">Are you sure to unlink from this app?</string>
@@ -733,13 +737,15 @@
     <string name="com_kakao_unlink_button">Unlink</string>
     <string name="core_com_kakao_sdk_loading">Loading…</string>
     <string name="facebook_app_id">1415141601849975</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="kakao_app_key">1b1c49678aa37601f38222d4fc3423a5</string>
     <string name="kakao_scheme">kakao1b1c49678aa37601f38222d4fc3423a5</string>
     <string name="kakaolink_host">kakaolink</string>
     <string name="messenger_send_button_text">Send</string>
+    <string name="nav_logout">로그아웃</string>
     <string name="nav_my_like_label">나의 관심 작품</string>
+    <string name="nav_send">보내기</string>
     <string name="nav_setting">Setting</string>
+    <string name="nav_share">공유하기</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="open_time_label">시간</string>
@@ -749,6 +755,8 @@
     <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
     <string name="place_label">장소</string>
+    <string name="popular_exhibition_label">인기 전시</string>
+    <string name="popular_play_label">인기 연극</string>
     <string name="price_label">입장료</string>
     <string name="real_call_label">전화걸기</string>
     <string name="real_map_label">지도보기</string>

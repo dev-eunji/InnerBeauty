@@ -1,9 +1,13 @@
 package com.boostcamp.eunjilee.innerbeauty;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 
 import com.boostcamp.eunjilee.innerbeauty.adapter.MainTabPagerAdapter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +30,9 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int SNS_TYPE_NAVER = 1;
+    private static final int SNS_TYPE_FACEBOOK = 2;
+    private static final int SYS_TYPE_KAKAO = 3;
 
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
@@ -77,13 +85,14 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void initTabLayout(){
+    private void initTabLayout() {
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_popular));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_exhibition));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_play));
         mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     }
-    private void initViewPager(){
+
+    private void initViewPager() {
         MainTabPagerAdapter pagerAdapter = new MainTabPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
@@ -110,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
 
@@ -121,8 +130,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.nav_manage) {
+        if (id == R.id.nav_gallery) {
+            Intent startMyFavoriteContentsActivity = new Intent(this, MyFavoriteContentsActivity.class);
+            startActivity(startMyFavoriteContentsActivity);
+        } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
@@ -136,25 +147,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     protected class HeaderViewHolder {
-
         @BindView(R.id.imgv_user_profile)
         protected ImageView mUserProfileImageView;
-        @BindView(R.id.tv_user_id)
-        protected TextView mUserIdTextView;
+        @BindView(R.id.tv_user_name)
+        protected TextView mUserNameTextView;
         @BindView(R.id.tv_user_email)
         protected TextView mUserEmailTextView;
 
         HeaderViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
-        private void initNavHeaderMain(){
+
+        private void initNavHeaderMain() {
             Glide.with(MainActivity.this).load(mUserSharedPreference.getUserProfileImage())
-                    .thumbnail(0.1f)
                     .centerCrop()
                     .bitmapTransform(new CropCircleTransformation(MainActivity.this))
                     .into(mUserProfileImageView);
-            mUserIdTextView.setText(String.valueOf(mUserSharedPreference.getUserId()));
-            mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
+            mUserNameTextView.setText(String.valueOf(mUserSharedPreference.getUserName()));
+            if (mUserSharedPreference.getUserSnsType() == SNS_TYPE_FACEBOOK) {
+                mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
+            }
         }
     }
 }

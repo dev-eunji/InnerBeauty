@@ -2,7 +2,9 @@ package com.boostcamp.eunjilee.innerbeauty.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +18,11 @@ import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
 import com.boostcamp.eunjilee.innerbeauty.UserSharedPreference;
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
+import com.boostcamp.eunjilee.innerbeauty.model.FavoriteContentsModel;
 import com.boostcamp.eunjilee.innerbeauty.module.ContentsModule;
+import com.boostcamp.eunjilee.innerbeauty.module.ExhibitionLoadModule;
 import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
+import com.boostcamp.eunjilee.innerbeauty.service.ExhibitionService;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
@@ -34,10 +39,17 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
     private static final int EXHIBITION_TYPE=1;
     private final Context mContext;
     private final List<ExhibitionModel> mExhibitionList;
+    private final ContentsModule mContentsModule;
+    private final ExhibitionLoadModule mExhibitionModule;
+    private UserSharedPreference mUserSharedPreference;
 
     public ExhibitionAdapter(Context context, List<ExhibitionModel> exhibitionModels) {
         mContext = context;
         mExhibitionList = exhibitionModels;
+        mContentsModule = new ContentsModule();
+        mExhibitionModule = new ExhibitionLoadModule();
+        mUserSharedPreference = new UserSharedPreference(mContext);
+
     }
 
     @Override
@@ -68,23 +80,15 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
         protected TextView mExhibitionDateTextView;
         @BindView(R.id.tv_exhibition_place)
         protected TextView mExhibitionPlaceTextView;
-        @BindView(R.id.btn_like)
+        @BindView(R.id.btn_like_exhibition)
         protected ToggleButton mLikeBtn;
 
         private ExhibitionModel mExhibition;
-
-        private UserSharedPreference mUserSharedPreference;
-        private ContentsModule mContentsModule;
 
         public ExhibitionViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
-
-            //TODO : Like를 어떻게 관리할지 결정하기
-            mUserSharedPreference = new UserSharedPreference(mContext);
-            mContentsModule = new ContentsModule();
-
         }
 
         private void setDate(String startDate, String endDate) {
@@ -99,32 +103,29 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             mExhibition = exhibition;
             //int sCorner = 50;
             //int sMargin = 0;
-
             Glide.with(mContext).load(mExhibition.getExhibitionPicture())
                     .thumbnail(0.1f)
                     //.bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
                     .into(mExhibitionImageView);
             setDate(mExhibition.getStartDate(), mExhibition.getEndDate());
             setPlace(mExhibition.getExhibitionPlace());
+            setLikeBtn();
             mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        // TODO; contentsId가 계속 null인 문제가 있다. 해결이 필요
-                        // TODO; LIKE테이블에 userId, contentType, contentId 저장하기
                         mContentsModule.registerFavoriteContents(mUserSharedPreference.getUserId(), mExhibition.getExhibitionId(),EXHIBITION_TYPE, new ContentsService.registerFavoriteContentsCallback(){
                             @Override
                             public void success() {
-                                Toast.makeText(mContext, "unlike->like", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_success, Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void error(Throwable throwable) {
-
+                                Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_fail, Toast.LENGTH_SHORT).show();
                             }
                         });
                     } else {
-                        // TODO; LIKE테이블에 userId, contentType, contentId 삭제하기
                         mContentsModule.deleteFavoriteContents(mUserSharedPreference.getUserId(), exhibition.getExhibitionId(),EXHIBITION_TYPE, new ContentsService.deleteFavoriteContentsCallback(){
                             @Override
                             public void success() {
@@ -140,9 +141,34 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
                 }
             });
         }
+        private void setLikeBtn(){
+            mContentsModule.getFavoriteContentsListByContentsType(mUserSharedPreference.getUserId(), EXHIBITION_TYPE, new ContentsService.getFavoriteContentsListCallback() {
+                @Override
+                public void success(List<FavoriteContentsModel> favoriteContentsModel) {
+                    for(int i=0; i<favoriteContentsModel.size(); i++) {
+                        if (favoriteContentsModel.get(i).getContentsId() == mExhibition.getExhibitionId())
+                            mLikeBtn.setChecked(true);
+                    }
+                }
 
+                @Override
+                public void error(Throwable throwable) {
+                    Log.v("error", "setLikeBtn");
+                }
+            });
+        }
         @Override
         public void onClick(View v) {
+            mExhibitionModule.addClickNumToExhibition(mExhibition.getExhibitionId(), new ExhibitionService.addClickNumCallback() {
+                @Override
+                public void success() {
+                    Log.v("daisy", "add success");
+                }
+                @Override
+                public void error(Throwable throwable) {
+
+                }
+            });
             Intent startDetailActivity = new Intent(mContext, DetailExhibitionActivity.class);
             startDetailActivity.putExtra("Exhibition", mExhibition);
             mContext.startActivity(startDetailActivity);

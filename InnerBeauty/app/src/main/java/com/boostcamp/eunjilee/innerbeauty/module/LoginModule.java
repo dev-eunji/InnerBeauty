@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.boostcamp.eunjilee.innerbeauty.UserSharedPreference;
+import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
 import com.boostcamp.eunjilee.innerbeauty.model.UserModel;
 import com.boostcamp.eunjilee.innerbeauty.service.LoginService;
+import com.boostcamp.eunjilee.innerbeauty.service.PlayService;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
@@ -18,6 +20,8 @@ import com.kakao.util.exception.KakaoException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -128,4 +132,36 @@ public class LoginModule {
             }
         });
     }
+    /*
+    * 앱 전체 사용자들에게 관심을 많이 받은 연극 컨첸츠를 불러온다
+    * 기준 : 현재는 click수로 하였다 (향후 변경 가능)
+    * */
+    public static void getGlobalFavoriteExhibitionList(final PlayService.getGlobalFavoritePlayListCallback callback) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        PlayService playService = retrofit.create(PlayService.class);
+        Call<List<PlayModel>> call = playService.getGlobalFavoritePlay();
+        call.enqueue(new Callback<List<PlayModel>>() {
+            @Override
+            public void onResponse(Call<List<PlayModel>> call, Response<List<PlayModel>> response) {
+                if (response.isSuccessful()) {
+                    List<PlayModel> favoriteEhibitionModelList = response.body();
+                    callback.success(favoriteEhibitionModelList);
+                } else {
+                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PlayModel>> call, Throwable t) {
+                Log.d("Retrofit", "Fail to Asnyc Callback");
+                callback.error(t);
+            }
+        });
+    }
+
 }
+
