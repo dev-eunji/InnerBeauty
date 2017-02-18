@@ -23,7 +23,6 @@ import android.widget.TextView;
 import com.boostcamp.eunjilee.innerbeauty.adapter.MainTabPagerAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -91,7 +90,6 @@ public class MainActivity extends AppCompatActivity
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_play));
         mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     }
-
     private void initViewPager() {
         MainTabPagerAdapter pagerAdapter = new MainTabPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(pagerAdapter);
@@ -157,7 +155,6 @@ public class MainActivity extends AppCompatActivity
         HeaderViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
-
         private void initNavHeaderMain() {
             Glide.with(MainActivity.this).load(mUserSharedPreference.getUserProfileImage())
                     .centerCrop()

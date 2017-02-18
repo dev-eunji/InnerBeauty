@@ -6,9 +6,9 @@ import android.util.Log;
 
 import com.boostcamp.eunjilee.innerbeauty.UserSharedPreference;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
+
 import com.boostcamp.eunjilee.innerbeauty.model.UserModel;
 import com.boostcamp.eunjilee.innerbeauty.service.LoginService;
-import com.boostcamp.eunjilee.innerbeauty.service.PlayService;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
@@ -35,13 +35,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginModule {
     private final static String SERVER_URL = "http://35.166.198.97/index.php/Users/";
-
     private static final int FACEBOOK_LOGIN = 1;
     private static final int NAVER_LOGIN = 2;
     private static final int KAKAO_LOGIN = 3;
 
     private final UserSharedPreference mUserSharedPreference;
-
     public LoginModule(Context context) {
         mUserSharedPreference = new UserSharedPreference(context);
     }
@@ -151,10 +149,10 @@ public class LoginModule {
                     List<PlayModel> favoriteEhibitionModelList = response.body();
                     callback.success(favoriteEhibitionModelList);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("Retrofit", "Error Http Code = " + response.code()); //TODO:이미 저장되어있으면 500에러 발생 해결 > id가 있는지 검사할 필요가 있을 듯
+
                 }
             }
-
             @Override
             public void onFailure(Call<List<PlayModel>> call, Throwable t) {
                 Log.d("Retrofit", "Fail to Asnyc Callback");

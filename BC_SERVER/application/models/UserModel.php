@@ -6,13 +6,11 @@ class UserModel extends CI_Model {
         $this->load->database();
         $this->load->helper('date');
     }
-    
     function changeDateTimeFormat($date){
         $date = strtotime($date);
         $date = date('y.m.d',$date);
         return $date;
     }
-
     function getUserInfoIfUserExist($userId){
         $this->db->select('user_id, user_name, user_email, user_profile, sns_type');
         $this->db->from('user');
@@ -28,7 +26,6 @@ class UserModel extends CI_Model {
         $user['sns_type'] = $row->sns_type;
         return $user;
     }
-
     function addUserWithSNS($data){
         $user = array(
             'user_id' => $data['user_id'],

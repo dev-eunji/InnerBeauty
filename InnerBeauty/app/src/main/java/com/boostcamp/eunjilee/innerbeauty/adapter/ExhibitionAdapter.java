@@ -23,6 +23,7 @@ import com.boostcamp.eunjilee.innerbeauty.module.ContentsModule;
 import com.boostcamp.eunjilee.innerbeauty.module.ExhibitionLoadModule;
 import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
 import com.boostcamp.eunjilee.innerbeauty.service.ExhibitionService;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
@@ -42,6 +43,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
     private final ContentsModule mContentsModule;
     private final ExhibitionLoadModule mExhibitionModule;
     private UserSharedPreference mUserSharedPreference;
+
 
     public ExhibitionAdapter(Context context, List<ExhibitionModel> exhibitionModels) {
         mContext = context;
@@ -83,12 +85,13 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
         @BindView(R.id.btn_like_exhibition)
         protected ToggleButton mLikeBtn;
 
-        private ExhibitionModel mExhibition;
+      private ExhibitionModel mExhibition;
 
-        public ExhibitionViewHolder(View itemView) {
+      public ExhibitionViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+
         }
 
         private void setDate(String startDate, String endDate) {
@@ -101,8 +104,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
 
         public void setExhibition(final ExhibitionModel exhibition) {
             mExhibition = exhibition;
-            //int sCorner = 50;
-            //int sMargin = 0;
+
             Glide.with(mContext).load(mExhibition.getExhibitionPicture())
                     .thumbnail(0.1f)
                     //.bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
@@ -110,6 +112,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             setDate(mExhibition.getStartDate(), mExhibition.getEndDate());
             setPlace(mExhibition.getExhibitionPlace());
             setLikeBtn();
+
             mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

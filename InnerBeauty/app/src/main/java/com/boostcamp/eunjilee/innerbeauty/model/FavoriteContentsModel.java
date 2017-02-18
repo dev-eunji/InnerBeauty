@@ -14,6 +14,7 @@ public class FavoriteContentsModel {
     @SerializedName("contents_type")
     private int contentsType;
 
+
     public int getUserId() {
         return userId;
     }
@@ -35,6 +36,7 @@ public class FavoriteContentsModel {
     }
 
     public void setContentsType(int contentsType) {
+
         this.contentsType = contentsType;
     }
 }

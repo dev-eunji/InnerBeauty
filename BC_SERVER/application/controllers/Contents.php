@@ -25,6 +25,15 @@ class Contents extends CI_Controller {
 		$this->output->set_header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($result);
 	}
+	public function getFavoriteContentsList($userId, $contentsType){
+		$favoriteContentsList = $this->ContentsModel->getFavoriteContentsList($userId, $contentsType);
+		$this->output->set_header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($favoriteContentsList);
+	}
+	public function registerFavoriteContents(){
+		$favoriteValue['user_id'] = $this->input->post('user_id');
+   		$favoriteValue['contents_id'] = $this->input->post('contents_id');
+   		$favoriteValue['contents_type'] = $this->input->post('contents_type');
 
 	public function deleteFavoriteContents(){
 		$deleteValue['user_id'] = $this->input->post('user_id');

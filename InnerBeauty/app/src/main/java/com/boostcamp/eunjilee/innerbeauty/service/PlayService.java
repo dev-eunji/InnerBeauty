@@ -1,9 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty.service;
 
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

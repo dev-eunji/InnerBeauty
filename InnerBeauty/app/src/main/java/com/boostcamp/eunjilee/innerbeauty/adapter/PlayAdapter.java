@@ -41,6 +41,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
     private final PlayLoadModule mPlayModule;
     private UserSharedPreference mUserSharedPreference;
 
+
     public PlayAdapter(Context context, List<PlayModel> playModels) {
         mContext = context;
         mPlayList = playModels;
@@ -148,6 +149,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                 }
             });
             Intent startDetailActivity = new Intent(mContext, DetailPlayActivity.class);
+
             startDetailActivity.putExtra("Play", mPlay);
             mContext.startActivity(startDetailActivity);
         }
