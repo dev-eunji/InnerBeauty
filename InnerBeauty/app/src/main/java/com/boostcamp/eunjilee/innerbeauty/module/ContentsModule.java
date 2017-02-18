@@ -2,8 +2,11 @@ package com.boostcamp.eunjilee.innerbeauty.module;
 
 import android.util.Log;
 
+import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.boostcamp.eunjilee.innerbeauty.model.FavoriteContentsModel;
 import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,19 +21,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ContentsModule {
     private final static String SERVER_URL = "http://35.166.198.97/index.php/Contents/";
 
-    public static void getFavoriteContentsList(long userId, int contentsType, final ContentsService.getFavoriteContentsListCallback callback) {
+    public static void getFavoriteContentsList(long userId, final ContentsService.getFavoriteContentsListCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ContentsService contentsService = retrofit.create(ContentsService.class);
-        Call<FavoriteContentsModel> call = contentsService.getFavoriteContentsList(userId, contentsType);
-        call.enqueue(new Callback<FavoriteContentsModel>() {
+        Call<List<FavoriteContentsModel>> call = contentsService.getFavoriteContentsList(userId);
+        call.enqueue(new Callback<List<FavoriteContentsModel>>() {
             @Override
-            public void onResponse(Call<FavoriteContentsModel> call, Response<FavoriteContentsModel> response) {
+            public void onResponse(Call<List<FavoriteContentsModel>> call, Response<List<FavoriteContentsModel>> response) {
                 if (response.isSuccessful()) {
-                    FavoriteContentsModel favoriteContentsModel = response.body();
+                    List<FavoriteContentsModel> favoriteContentsModel = response.body();
                     callback.success(favoriteContentsModel);
                 } else {
                     Log.d("Retrofit", "Error Http Code = " + response.code());
@@ -38,7 +41,37 @@ public class ContentsModule {
             }
 
             @Override
-            public void onFailure(Call<FavoriteContentsModel> call, Throwable t) {
+            public void onFailure(Call<List<FavoriteContentsModel>> call, Throwable t) {
+                Log.d("Retrofit", "Fail to Asnyc Callback");
+                callback.error(t);
+            }
+        });
+    }
+
+    /*
+    * user가 좋아하는 컨텐츠의 리스트를 contentsType에 맞춰 불러온다
+    * */
+    public static void getFavoriteContentsListByContentsType(long userId, int contentsType, final ContentsService.getFavoriteContentsListCallback callback) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ContentsService contentsService = retrofit.create(ContentsService.class);
+        Call<List<FavoriteContentsModel>> call = contentsService.getFavoriteContentsListByContentsType(userId, contentsType);
+        call.enqueue(new Callback<List<FavoriteContentsModel>>() {
+            @Override
+            public void onResponse(Call<List<FavoriteContentsModel>> call, Response<List<FavoriteContentsModel>> response) {
+                if (response.isSuccessful()) {
+                    List<FavoriteContentsModel> favoriteContentsModel = response.body();
+                    callback.success(favoriteContentsModel);
+                } else {
+                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<FavoriteContentsModel>> call, Throwable t) {
                 Log.d("Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
@@ -95,6 +128,5 @@ public class ContentsModule {
                 callback.error(t);
             }
         });
-
     }
 }

@@ -2,16 +2,26 @@ package com.boostcamp.eunjilee.innerbeauty.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
-import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
+import com.boostcamp.eunjilee.innerbeauty.DetailPlayActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
+import com.boostcamp.eunjilee.innerbeauty.UserSharedPreference;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
+import com.boostcamp.eunjilee.innerbeauty.module.ContentsModule;
+import com.boostcamp.eunjilee.innerbeauty.module.PlayLoadModule;
+import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
+import com.boostcamp.eunjilee.innerbeauty.service.PlayService;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -24,12 +34,20 @@ import butterknife.ButterKnife;
  */
 
 public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder> {
+    private static final int PLAY_TYPE=2;
     private final Context mContext;
     private final List<PlayModel> mPlayList;
+    private final ContentsModule mContentsModule;
+    private final PlayLoadModule mPlayModule;
+    private UserSharedPreference mUserSharedPreference;
+
 
     public PlayAdapter(Context context, List<PlayModel> playModels) {
         mContext = context;
         mPlayList = playModels;
+        mContentsModule = new ContentsModule();
+        mPlayModule = new PlayLoadModule();
+        mUserSharedPreference = new UserSharedPreference(mContext);
     }
 
     @Override
@@ -60,8 +78,10 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
         protected TextView mPlaytDateTextView;
         @BindView(R.id.tv_play_place)
         protected TextView mPlayPlaceTextView;
+        @BindView(R.id.btn_like_play)
+        protected ToggleButton mLikeBtn;
 
-        PlayModel mPlay;
+        private PlayModel mPlay;
 
         public PlayViewHolder(View itemView) {
             super(itemView);
@@ -84,11 +104,52 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                     .into(mPlayImageView);
             setDate(play.getStartDate(), play.getEndDate());
             setPlace(play.getPlayPlace());
+            mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        mContentsModule.registerFavoriteContents(mUserSharedPreference.getUserId(), mPlay.getPlayId(), PLAY_TYPE, new ContentsService.registerFavoriteContentsCallback(){
+                            @Override
+                            public void success() {
+                                Snackbar.make(mPlayImageView, R.string.snb_add_favorite_play_success, Snackbar.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void error(Throwable throwable) {
+                                Snackbar.make(mPlayImageView, R.string.snb_add_favorite_play_fail, Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        mContentsModule.deleteFavoriteContents(mUserSharedPreference.getUserId(), mPlay.getPlayId(), PLAY_TYPE, new ContentsService.deleteFavoriteContentsCallback(){
+                            @Override
+                            public void success() {
+                                Toast.makeText(mContext, "like->unlike", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void error(Throwable throwable) {
+
+                            }
+                        });
+                    }
+                }
+            });
         }
 
         @Override
         public void onClick(View v) {
-            Intent startDetailActivity = new Intent(mContext, DetailExhibitionActivity.class);
+            mPlayModule.addClickNumToPlay(mPlay.getPlayId(), new PlayService.addClickNumCallback() {
+                @Override
+                public void success() {
+                    Log.v("daisy", "add success");
+                }
+                @Override
+                public void error(Throwable throwable) {
+
+                }
+            });
+            Intent startDetailActivity = new Intent(mContext, DetailPlayActivity.class);
+
             startDetailActivity.putExtra("Play", mPlay);
             mContext.startActivity(startDetailActivity);
         }

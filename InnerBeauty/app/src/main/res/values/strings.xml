@@ -32,4 +32,15 @@
     <string name="cd_detail_exhibition">전시 상세 이미지</string>
     <string name="cd_login_img">로그인 이미지</string>
     <string name="cd_user_profile">사용자 프로필 이미지</string>
+
+    <!-- popular fragment -->
+    <string name="popular_exhibition_label">인기 전시</string>
+    <string name="popular_play_label">인기 연극</string>
+
+    <!-- snackbar -->
+    <string name="snb_add_favorite_exhibition_success">관심 전시에 추가되었습니다!</string>
+    <string name="snb_add_favorite_play_success">관심 연극에 추가되었습니다!</string>
+    <string name="snb_add_favorite_exhibition_fail">관심 전시 추가를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
+    <string name="snb_add_favorite_play_fail">관심 연극 추가를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
+
 </resources>
