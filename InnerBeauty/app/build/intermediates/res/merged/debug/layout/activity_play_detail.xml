@@ -26,6 +26,7 @@
                 android:id="@+id/imgv_content_detail_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/cd_detail_play"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_menu_camera"

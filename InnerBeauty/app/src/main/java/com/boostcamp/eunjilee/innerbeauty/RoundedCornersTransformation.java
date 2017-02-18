@@ -29,7 +29,7 @@ public class RoundedCornersTransformation implements Transformation<Bitmap> {
         this(Glide.get(context).getBitmapPool(), radius, margin);
     }
 
-    public RoundedCornersTransformation(BitmapPool pool, int radius, int margin) {
+    private RoundedCornersTransformation(BitmapPool pool, int radius, int margin) {
         mBitmapPool = pool;
         mRadius = radius;
         mDiameter = mRadius * 2;
@@ -39,7 +39,6 @@ public class RoundedCornersTransformation implements Transformation<Bitmap> {
     @Override
     public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
         Bitmap source = resource.get();
-
         int width = source.getWidth();
         int height = source.getHeight();
 
@@ -63,8 +62,7 @@ public class RoundedCornersTransformation implements Transformation<Bitmap> {
     }
 
     private void drawTopRoundRect(Canvas canvas, Paint paint, float right, float bottom) {
-        canvas.drawRoundRect(new RectF(mMargin, mMargin, right, mMargin + mDiameter), mRadius, mRadius,
-                paint);
+        canvas.drawRoundRect(new RectF(mMargin, mMargin, right, mMargin + mDiameter), mRadius, mRadius, paint);
         canvas.drawRect(new RectF(mMargin, mMargin + mRadius, right, bottom), paint);
     }
 }

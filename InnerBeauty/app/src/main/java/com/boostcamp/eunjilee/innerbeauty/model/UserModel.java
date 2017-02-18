@@ -8,29 +8,30 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserModel {
     @SerializedName("user_id")
-    int userId;
+    private long userId;
     @SerializedName("user_name")
-    String userName;
+    private String userName;
     @SerializedName("user_email")
-    public String userEmail;
+    private String userEmail;
+    @SerializedName("user_profile")
+    private String userProfile;
     @SerializedName("sns_type")
-    public String loginSnsType;
-    @SerializedName("profile_image")
-    public String profileImagePath;
+    private int loginSnsType;
 
-    public int getUserId() {
+
+    public long getUserId() {
         return userId;
     }
 
-    public String getLoginSnsType() {
+    public int getLoginSnsType() {
         return loginSnsType;
     }
 
-    public void setLoginSnsType(String loginSnsType) {
+    public void setLoginSnsType(int loginSnsType) {
         this.loginSnsType = loginSnsType;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -50,11 +51,11 @@ public class UserModel {
         this.userEmail = userEmail;
     }
 
-    public String getProfileImagePath() {
-        return profileImagePath;
+    public String getUserProfile() {
+        return userProfile;
     }
 
-    public void setProfileImagePath(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
+    public void setUserProfile(String userProfile) {
+        this.userProfile = userProfile;
     }
 }

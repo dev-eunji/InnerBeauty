@@ -1,6 +1,5 @@
 package com.boostcamp.eunjilee.innerbeauty.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -24,13 +23,13 @@ import butterknife.ButterKnife;
 
 
 public class PlayFragment extends Fragment {
+    private static final int PAGE = 1;
+
     @BindView(R.id.rv_play)
-    RecyclerView mPlayRecyclerView;
+    protected RecyclerView mPlayRecyclerView;
 
     private List<PlayModel> mPlayList;
     private PlayAdapter mPlayAdapter;
-    private PlayLoadModule mPlayLoadModule;
-    private int mPage = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,15 +42,15 @@ public class PlayFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        mPlayList = new ArrayList<PlayModel>();
+        mPlayList = new ArrayList<>();
         mPlayRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)); // 2 items in a vertical line.
         mPlayAdapter = new PlayAdapter(getActivity(), mPlayList);
         mPlayRecyclerView.setAdapter(mPlayAdapter);
     }
 
     private void loadPlayList() {
-        mPlayLoadModule = new PlayLoadModule();
-        mPlayLoadModule.getPlayListByAsync(mPage, new PlayService.getPlayListCallback() {
+        PlayLoadModule playLoadModule = new PlayLoadModule();
+        playLoadModule.getPlayListByAsync(PAGE, new PlayService.getPlayListCallback() {
             @Override
             public void success(List<PlayModel> playModelList) {
                 mPlayList.clear();

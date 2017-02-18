@@ -10,48 +10,48 @@ import java.io.Serializable;
 
 public class PlayModel implements Serializable {
     @SerializedName("play_id")
-    int playId;
+    private int playId;
     @SerializedName("play_code")
-    int playCode;
+    private int playCode;
     @SerializedName("play_title")
-    String playTitle;
+    private String playTitle;
     @SerializedName("play_actors") //TODO : Actor객체로 바꿔야하지 않을까. Actor 테이블을 만들어서 join해서 사용해야하나?
-    String playActors;
+    private String playActors;
     @SerializedName("start_date")
-    String startDate;
+    private  String startDate;
     @SerializedName("end_date")
-    String endDate;
+    private  String endDate;
     @SerializedName("close_date")
-    String closeDate;
+    private  String closeDate;
     @SerializedName("open_time")
-    String openTime;
+    private  String openTime;
     @SerializedName("close_time")
-    String closeTime;
+    private  String closeTime;
     @SerializedName("play_place")
-    String playPlace;
+    private  String playPlace;
     @SerializedName("play_address")
-    String playAddress;
+    private  String playAddress;
     @SerializedName("play_picture")
-    String playPicture;
+    private  String playPicture;
     @SerializedName("play_price_adult")
-    int priceAdult;
+    private  int priceAdult;
     @SerializedName("play_price_student")
-    int priceStudent;
+    private  int priceStudent;
     @SerializedName("play_price_children")
-    int priceChildren;
+    private  int priceChildren;
     @SerializedName("play_price_old_infirm")
-    int priceOldInfirm;
+    private  int priceOldInfirm;
     @SerializedName("play_price_special")
-    int priceSpecial;
+    private  int priceSpecial;
     @SerializedName("play_call")
-    String playCall;
+    private  String playCall;
     @SerializedName("play_site")
-    String playSite;
+    private  String playSite;
 
-    int playclicked;
-    int playLiked;
-    int playShared;
-    String playComments;
+    private int playClicked;
+    private int playLiked;
+    private int playShared;
+    private String playComments;
 
     public int getPlayId() {
         return playId;
@@ -195,12 +195,12 @@ public class PlayModel implements Serializable {
         this.playSite = playSite;
     }
 
-    public int getPlayclicked() {
-        return playclicked;
+    public int getPlayClicked() {
+        return playClicked;
     }
 
-    public void setPlayclicked(int playclicked) {
-        this.playclicked = playclicked;
+    public void setPlayClicked(int playClicked) {
+        this.playClicked = playClicked;
     }
 
     public int getPlayLiked() {

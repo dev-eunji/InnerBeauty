@@ -84,7 +84,7 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         initFabAnimation();
     }
 
-    private void initDetailExhibitionInfo(){
+    private void initDetailExhibitionInfo() {
         Glide.with(this).load(mExhibition.getExhibitionPicture()).into(mDetailTitleImageView);
         mStartEndDateTextView.setText(mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate());
         mOpenTimeTextView.setText(mExhibition.getOpenTime() + " ~ " + mExhibition.getCloseTime());
@@ -94,14 +94,15 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         mPriceTextView.setText("어른 : " + String.valueOf(mExhibition.getPriceAdult()) + " 어린이 : " + String.valueOf(mExhibition.getPriceChildren()));
         mCallTextView.setText(mExhibition.getExhibitionCall());
     }
-    private void initFabAnimation(){
+
+    private void initFabAnimation() {
         mFabShowAnimation = AnimationUtils.loadAnimation(getApplication(), R.anim.share_fab_show);
         mFabHideAnimation = AnimationUtils.loadAnimation(getApplication(), R.anim.share_fab_hide);
     }
 
     @OnClick(R.id.fab)
     public void showShareButtons(View view) {
-        if (mFabStatus == false) { //show
+        if (!mFabStatus) { //show
             expandFAB();
             mFabStatus = true;
         } else {
@@ -111,18 +112,20 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.tv_real_map)
-    public void shoqRealMapAction(){
+    public void shoqRealMapAction() {
         //Intent showMap = new Intent(this, MapActivity.class);
         //startActivity(showMap);
     }
+
     @OnClick(R.id.tv_real_call)
-    public void checkPermissionForRealCall(){
+    public void checkPermissionForRealCall() {
         new TedPermission(this)
                 .setPermissionListener(permissionlistenerCall)
                 .setDeniedMessage("If you reject permission,you can not use setting address service\n\nPlease turn on permissions at [Setting] > [Permission]")
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .check();
     }
+
     private void realCallAction() {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + mExhibition.getExhibitionCall()));
@@ -144,8 +147,8 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         try {
             KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
             final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-            Map<String, String> executeParam = new HashMap<String, String>();
-            Map<String, String> marketParam = new HashMap<String, String>();
+            Map<String, String> executeParam = new HashMap<>();
+            Map<String, String> marketParam = new HashMap<>();
             executeParam.put("execparamkey1", "1111");
             marketParam.put("referrer", "kakaotalklink");
             kakaoTalkLinkMessageBuilder.addAppLink("자세히 보기",
@@ -199,9 +202,9 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         @Override
         public void onPermissionGranted() {
             if (ActivityCompat.checkSelfPermission(DetailExhibitionActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                    realCallAction();
-            }else{
-                Toast.makeText(DetailExhibitionActivity.this, "Phone call Permission Denied\n" ,  Toast.LENGTH_SHORT).show();
+                realCallAction();
+            } else {
+                Toast.makeText(DetailExhibitionActivity.this, "Phone call Permission Denied\n", Toast.LENGTH_SHORT).show();
             }
         }
 

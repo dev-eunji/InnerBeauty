@@ -30,7 +30,6 @@ public class ExhibitionFragment extends Fragment {
 
     private List<ExhibitionModel> mExhibitionList;
     private ExhibitionAdapter mExhibitionAdapter;
-    private ExhibitionLoadModule mExhibitionLoadModule;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,15 +42,17 @@ public class ExhibitionFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        mExhibitionList = new ArrayList<ExhibitionModel>();
+        mExhibitionList = new ArrayList<>();
         mExhibitionRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)); // 2 items in a vertical line.
         mExhibitionAdapter = new ExhibitionAdapter(getActivity(), mExhibitionList);
         mExhibitionRecyclerView.setAdapter(mExhibitionAdapter);
     }
 
+    @SuppressWarnings("AccessStaticViaInstance")
     private void loadExhibitionList() {
-        mExhibitionLoadModule = new ExhibitionLoadModule();
-        mExhibitionLoadModule.getExhibitionListByAsync(PAGE, new ExhibitionService.getExhibitionListCallback() {
+        ExhibitionLoadModule exhibitionLoadModule = new ExhibitionLoadModule();
+        //noinspection AccessStaticViaInstance,AccessStaticViaInstance,AccessStaticViaInstance
+        exhibitionLoadModule.getExhibitionListByAsync(PAGE, new ExhibitionService.getExhibitionListCallback() {
             @Override
             public void success(List<ExhibitionModel> exhibitionModelList) {
                 mExhibitionList.clear();

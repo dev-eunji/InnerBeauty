@@ -1,15 +1,10 @@
 package com.boostcamp.eunjilee.innerbeauty.service;
 
-import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
-
 import java.util.List;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Created by eunjilee on 06/02/2017.

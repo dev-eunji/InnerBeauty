@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class PlayLoadModule {
-    public final static String SERVER_URL = "http://35.166.198.97/index.php/Contents/";
+    private final static String SERVER_URL = "http://35.166.198.97/index.php/Contents/";
 
     public static void getPlayByAsync(int playId, final PlayService.getPlayCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -41,7 +41,7 @@ public class PlayLoadModule {
 
             @Override
             public void onFailure(Call<PlayModel> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("Retrofit", "Fail to Async Callback");
                 callback.error(t);
             }
         });
@@ -68,7 +68,7 @@ public class PlayLoadModule {
 
             @Override
             public void onFailure(Call<List<PlayModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("Retrofit", "Fail to Async Callback");
                 callback.error(t);
             }
         });

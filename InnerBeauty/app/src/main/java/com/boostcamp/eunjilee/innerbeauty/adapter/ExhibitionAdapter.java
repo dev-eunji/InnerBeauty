@@ -14,9 +14,12 @@ import android.widget.ToggleButton;
 
 import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
-
+import com.boostcamp.eunjilee.innerbeauty.UserSharedPreference;
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
+import com.boostcamp.eunjilee.innerbeauty.module.ContentsModule;
+import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 
 import java.util.List;
 
@@ -28,8 +31,9 @@ import butterknife.ButterKnife;
  */
 
 public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.ExhibitionViewHolder> {
-    private Context mContext;
-    private List<ExhibitionModel> mExhibitionList;
+    private static final int EXHIBITION_TYPE=1;
+    private final Context mContext;
+    private final List<ExhibitionModel> mExhibitionList;
 
     public ExhibitionAdapter(Context context, List<ExhibitionModel> exhibitionModels) {
         mContext = context;
@@ -68,7 +72,9 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
         protected ToggleButton mLikeBtn;
 
         private ExhibitionModel mExhibition;
-        private boolean mIsLike;
+
+        private UserSharedPreference mUserSharedPreference;
+        private ContentsModule mContentsModule;
 
         public ExhibitionViewHolder(View itemView) {
             super(itemView);
@@ -76,17 +82,9 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             itemView.setOnClickListener(this);
 
             //TODO : Like를 어떻게 관리할지 결정하기
-            mIsLike = true;
-            mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked){
-                        Toast.makeText(mContext, "unlike->like", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(mContext, "like->unlike", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            mUserSharedPreference = new UserSharedPreference(mContext);
+            mContentsModule = new ContentsModule();
+
         }
 
         private void setDate(String startDate, String endDate) {
@@ -97,22 +95,54 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             mExhibitionPlaceTextView.setText(place);
         }
 
-        public void setExhibition(ExhibitionModel exhibition) {
+        public void setExhibition(final ExhibitionModel exhibition) {
             mExhibition = exhibition;
-            int sCorner = 50;
-            int sMargin = 0;
+            //int sCorner = 50;
+            //int sMargin = 0;
 
-            Glide.with(mContext).load(exhibition.getExhibitionPicture())
+            Glide.with(mContext).load(mExhibition.getExhibitionPicture())
                     .thumbnail(0.1f)
-            //        .bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
+                    //.bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
                     .into(mExhibitionImageView);
-            setDate(exhibition.getStartDate(), exhibition.getEndDate());
-            setPlace(exhibition.getExhibitionPlace());
+            setDate(mExhibition.getStartDate(), mExhibition.getEndDate());
+            setPlace(mExhibition.getExhibitionPlace());
+            mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        // TODO; contentsId가 계속 null인 문제가 있다. 해결이 필요
+                        // TODO; LIKE테이블에 userId, contentType, contentId 저장하기
+                        mContentsModule.registerFavoriteContents(mUserSharedPreference.getUserId(), mExhibition.getExhibitionId(),EXHIBITION_TYPE, new ContentsService.registerFavoriteContentsCallback(){
+                            @Override
+                            public void success() {
+                                Toast.makeText(mContext, "unlike->like", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void error(Throwable throwable) {
+
+                            }
+                        });
+                    } else {
+                        // TODO; LIKE테이블에 userId, contentType, contentId 삭제하기
+                        mContentsModule.deleteFavoriteContents(mUserSharedPreference.getUserId(), exhibition.getExhibitionId(),EXHIBITION_TYPE, new ContentsService.deleteFavoriteContentsCallback(){
+                            @Override
+                            public void success() {
+                                Toast.makeText(mContext, "like->unlike", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void error(Throwable throwable) {
+
+                            }
+                        });
+                    }
+                }
+            });
         }
 
         @Override
         public void onClick(View v) {
-            int clickedPosition = getAdapterPosition();
             Intent startDetailActivity = new Intent(mContext, DetailExhibitionActivity.class);
             startDetailActivity.putExtra("Exhibition", mExhibition);
             mContext.startActivity(startDetailActivity);
