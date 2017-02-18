@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-import com.facebook.FacebookSdk;
 import com.kakao.auth.ApprovalType;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.IApplicationConfig;
@@ -18,15 +17,15 @@ import com.kakao.auth.KakaoSDK;
 
 public class InnerBeautyActivity extends Application {
 
-    //TODO; Do not place Android context classes in static fields; this is a memory leak (and also breaks Instant Run)
+    //TODO: Do not place Android context classes in static fields; this is a memory leak (and also breaks Instant Run)
     private static Activity mCurrentActivity;
     private static Application mApplication;
+    public static final String SERVER_PREFIX = BuildConfig.SERVER_PREFIX;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mApplication = this;
-        FacebookSdk.sdkInitialize(this);
         KakaoSDK.init(new KakaoSDKAdapter());
     }
 

@@ -48,7 +48,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="@dimen/activity_vertical_margin_half"
-        android:layout_gravity="top|right"
+        android:layout_gravity="top|end"
         android:textOff=""
         android:textOn=""
         android:background="@drawable/like_icon_selector" />

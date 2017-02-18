@@ -5,9 +5,13 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="activity_horizontal_margin_half">8dp</dimen>
-    <dimen name="activity_vertical_margin_half">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <!--custom margins-->
+    <dimen name="activity_horizontal_margin_half">8dp</dimen>
+    <dimen name="activity_vertical_margin_half">8dp</dimen>
+    <dimen name="view_divide_line">1dp</dimen>
+    <dimen name="tb_like_contents_width">30dp</dimen>
+    <dimen name="tb_like_contents_height">30dp</dimen>
 </resources>

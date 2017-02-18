@@ -13,7 +13,6 @@ import com.boostcamp.eunjilee.innerbeauty.fragment.PopularFragment;
  */
 
 public class MainTabPagerAdapter extends FragmentStatePagerAdapter {
-
     private final int mTabCount;
 
     public MainTabPagerAdapter(FragmentManager fm, int tabCount) {

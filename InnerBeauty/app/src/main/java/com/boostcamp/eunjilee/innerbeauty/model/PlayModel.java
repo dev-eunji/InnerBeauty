@@ -18,35 +18,35 @@ public class PlayModel implements Serializable {
     @SerializedName("play_actors") //TODO : Actor객체로 바꿔야하지 않을까. Actor 테이블을 만들어서 join해서 사용해야하나?
     private String playActors;
     @SerializedName("start_date")
-    private  String startDate;
+    private String startDate;
     @SerializedName("end_date")
-    private  String endDate;
+    private String endDate;
     @SerializedName("close_date")
-    private  String closeDate;
+    private String closeDate;
     @SerializedName("open_time")
-    private  String openTime;
+    private String openTime;
     @SerializedName("close_time")
-    private  String closeTime;
+    private String closeTime;
     @SerializedName("play_place")
-    private  String playPlace;
+    private String playPlace;
     @SerializedName("play_address")
-    private  String playAddress;
+    private String playAddress;
     @SerializedName("play_picture")
-    private  String playPicture;
+    private String playPicture;
     @SerializedName("play_price_adult")
-    private  int priceAdult;
+    private int priceAdult;
     @SerializedName("play_price_student")
-    private  int priceStudent;
+    private int priceStudent;
     @SerializedName("play_price_children")
-    private  int priceChildren;
+    private int priceChildren;
     @SerializedName("play_price_old_infirm")
-    private  int priceOldInfirm;
+    private int priceOldInfirm;
     @SerializedName("play_price_special")
-    private  int priceSpecial;
+    private int priceSpecial;
     @SerializedName("play_call")
-    private  String playCall;
+    private String playCall;
     @SerializedName("play_site")
-    private  String playSite;
+    private String playSite;
 
     private int playClicked;
     private int playLiked;

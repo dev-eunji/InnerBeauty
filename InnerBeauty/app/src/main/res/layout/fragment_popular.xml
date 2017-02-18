@@ -19,12 +19,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/popular_exhibition_label" />
+                android:text="@string/popular_exhibition_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/view_divide_line"
                 android:layout_margin="@dimen/activity_horizontal_margin_half"
                 android:background="@color/colorDivider" />
 
@@ -38,8 +40,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/popular_play_label" />
+                android:text="@string/popular_play_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
             <View
                 android:layout_width="match_parent"

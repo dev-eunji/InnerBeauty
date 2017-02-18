@@ -1,9 +1,10 @@
 package com.boostcamp.eunjilee.innerbeauty.module;
 
+import static com.boostcamp.eunjilee.innerbeauty.InnerBeautyActivity.SERVER_PREFIX;
+
 import android.util.Log;
 
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
-import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
 import com.boostcamp.eunjilee.innerbeauty.service.ExhibitionService;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ExhibitionLoadModule {
-    private final static String SERVER_URL = "http://35.166.198.97/index.php/Exhibition/";
+    private final static String SERVER_URL = SERVER_PREFIX + "Exhibition/";
 
     public static void getExhibitionByAsync(int exhibitionId, final ExhibitionService.getExhibitionCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()

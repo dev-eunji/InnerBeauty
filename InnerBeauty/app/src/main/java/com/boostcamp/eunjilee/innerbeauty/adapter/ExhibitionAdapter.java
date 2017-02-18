@@ -1,5 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty.adapter;
 
+import static com.boostcamp.eunjilee.innerbeauty.Constant.EXHIBITION_TYPE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -24,7 +26,6 @@ import com.boostcamp.eunjilee.innerbeauty.module.ExhibitionLoadModule;
 import com.boostcamp.eunjilee.innerbeauty.service.ContentsService;
 import com.boostcamp.eunjilee.innerbeauty.service.ExhibitionService;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
 
 import java.util.List;
 
@@ -36,18 +37,15 @@ import butterknife.ButterKnife;
  */
 
 public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.ExhibitionViewHolder> {
-    private static final int EXHIBITION_TYPE=1;
     private final Context mContext;
     private final List<ExhibitionModel> mExhibitionList;
     private final ContentsModule mContentsModule;
-    private final ExhibitionLoadModule mExhibitionModule;
     private UserSharedPreference mUserSharedPreference;
 
     public ExhibitionAdapter(Context context, List<ExhibitionModel> exhibitionModels) {
         mContext = context;
         mExhibitionList = exhibitionModels;
         mContentsModule = new ContentsModule();
-        mExhibitionModule = new ExhibitionLoadModule();
         mUserSharedPreference = new UserSharedPreference(mContext);
 
     }
@@ -101,11 +99,8 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
 
         public void setExhibition(final ExhibitionModel exhibition) {
             mExhibition = exhibition;
-            //int sCorner = 50;
-            //int sMargin = 0;
             Glide.with(mContext).load(mExhibition.getExhibitionPicture())
                     .thumbnail(0.1f)
-                    //.bitmapTransform(new RoundedCornersTransformation( mContext,sCorner, sMargin))
                     .into(mExhibitionImageView);
             setDate(mExhibition.getStartDate(), mExhibition.getEndDate());
             setPlace(mExhibition.getExhibitionPlace());
@@ -122,19 +117,21 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
 
                             @Override
                             public void error(Throwable throwable) {
-                                Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_fail, Toast.LENGTH_SHORT).show();
+                                Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_fail, Snackbar.LENGTH_SHORT).show();
+                                //mLikeBtn.setChecked(false);
                             }
                         });
                     } else {
                         mContentsModule.deleteFavoriteContents(mUserSharedPreference.getUserId(), exhibition.getExhibitionId(),EXHIBITION_TYPE, new ContentsService.deleteFavoriteContentsCallback(){
                             @Override
                             public void success() {
-                                Toast.makeText(mContext, "like->unlike", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(mExhibitionImageView, R.string.snb_delete_favorite_exhibition_success, Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void error(Throwable throwable) {
-
+                                Snackbar.make(mExhibitionImageView, R.string.snb_delete_favorite_exhibition_fail, Snackbar.LENGTH_SHORT).show();
+                                //mLikeBtn.setChecked(true);
                             }
                         });
                     }
@@ -142,7 +139,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             });
         }
         private void setLikeBtn(){
-            mContentsModule.getFavoriteContentsListByContentsType(mUserSharedPreference.getUserId(), EXHIBITION_TYPE, new ContentsService.getFavoriteContentsListCallback() {
+            ContentsModule.getFavoriteContentsListByContentsType(mUserSharedPreference.getUserId(), EXHIBITION_TYPE, new ContentsService.getFavoriteContentsListCallback() {
                 @Override
                 public void success(List<FavoriteContentsModel> favoriteContentsModel) {
                     for(int i=0; i<favoriteContentsModel.size(); i++) {
@@ -159,7 +156,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
         }
         @Override
         public void onClick(View v) {
-            mExhibitionModule.addClickNumToExhibition(mExhibition.getExhibitionId(), new ExhibitionService.addClickNumCallback() {
+            ExhibitionLoadModule.addClickNumToExhibition(mExhibition.getExhibitionId(), new ExhibitionService.addClickNumCallback() {
                 @Override
                 public void success() {
                     Log.v("daisy", "add success");

@@ -1,19 +1,21 @@
 package com.boostcamp.eunjilee.innerbeauty;
 
+import static com.boostcamp.eunjilee.innerbeauty.Constant.FACEBOOK_TYPE;
+import static com.boostcamp.eunjilee.innerbeauty.Constant.KAKAO_TYPE;
+
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +24,8 @@ import android.widget.TextView;
 
 import com.boostcamp.eunjilee.innerbeauty.adapter.MainTabPagerAdapter;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,9 +33,6 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final int SNS_TYPE_NAVER = 1;
-    private static final int SNS_TYPE_FACEBOOK = 2;
-    private static final int SYS_TYPE_KAKAO = 3;
 
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            return true;
+            startActivity(new Intent(this, SearchActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout) {
+            doLogout(mUserSharedPreference.getUserSnsType());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -164,9 +164,31 @@ public class MainActivity extends AppCompatActivity
                     .bitmapTransform(new CropCircleTransformation(MainActivity.this))
                     .into(mUserProfileImageView);
             mUserNameTextView.setText(String.valueOf(mUserSharedPreference.getUserName()));
-            if (mUserSharedPreference.getUserSnsType() == SNS_TYPE_FACEBOOK) {
+            Log.v("daisy", String.valueOf(mUserSharedPreference.getUserSnsType()));
+            if (mUserSharedPreference.getUserSnsType() == FACEBOOK_TYPE) {
                 mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
+
             }
         }
+        protected void resetNavHeaderMain(){
+            Glide.with(MainActivity.this).load("")
+                    .into(mUserProfileImageView);
+            mUserNameTextView.setText(String.valueOf(mUserSharedPreference.getUserName()));
+            mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
+        }
     }
+    private void doLogout(int userSnsType) {
+        if(userSnsType == KAKAO_TYPE) {
+            UserManagement.requestLogout(new LogoutResponseCallback() {
+                @Override
+                public void onCompleteLogout() {
+                    Snackbar.make(mNavigationView, R.string.logout_success, Snackbar.LENGTH_LONG ).show();
+                }
+            });
+        }
+        mUserSharedPreference.resetUserInfo();
+        HeaderViewHolder hvh = new HeaderViewHolder(mNavigationView.getHeaderView(0));
+        hvh.resetNavHeaderMain();
+    }
+
 }

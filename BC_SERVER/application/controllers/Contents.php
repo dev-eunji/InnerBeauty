@@ -30,8 +30,9 @@ class Contents extends CI_Controller {
 		$deleteValue['user_id'] = $this->input->post('user_id');
    		$deleteValue['contents_id'] = $this->input->post('contents_id');
    		$deleteValue['contents_type'] = $this->input->post('contents_type');
-
-		$this->ContentsModel->deleteFavoriteContents($deleteValue);
+		$result = $this->ContentsModel->deleteFavoriteContents($deleteValue);
+		$this->output->set_header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($result);
 	}
 }
 ?>

@@ -1,5 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty.adapter;
 
+import static com.boostcamp.eunjilee.innerbeauty.Constant.PLAY_TYPE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -34,18 +36,13 @@ import butterknife.ButterKnife;
  */
 
 public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder> {
-    private static final int PLAY_TYPE=2;
     private final Context mContext;
     private final List<PlayModel> mPlayList;
-    private final ContentsModule mContentsModule;
-    private final PlayLoadModule mPlayModule;
     private UserSharedPreference mUserSharedPreference;
 
     public PlayAdapter(Context context, List<PlayModel> playModels) {
         mContext = context;
         mPlayList = playModels;
-        mContentsModule = new ContentsModule();
-        mPlayModule = new PlayLoadModule();
         mUserSharedPreference = new UserSharedPreference(mContext);
     }
 
@@ -107,7 +104,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        mContentsModule.registerFavoriteContents(mUserSharedPreference.getUserId(), mPlay.getPlayId(), PLAY_TYPE, new ContentsService.registerFavoriteContentsCallback(){
+                        ContentsModule.registerFavoriteContents(mUserSharedPreference.getUserId(), mPlay.getPlayId(), PLAY_TYPE, new ContentsService.registerFavoriteContentsCallback(){
                             @Override
                             public void success() {
                                 Snackbar.make(mPlayImageView, R.string.snb_add_favorite_play_success, Snackbar.LENGTH_SHORT).show();
@@ -116,18 +113,20 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                             @Override
                             public void error(Throwable throwable) {
                                 Snackbar.make(mPlayImageView, R.string.snb_add_favorite_play_fail, Snackbar.LENGTH_SHORT).show();
+                                //mLikeBtn.setChecked(false);
                             }
                         });
                     } else {
-                        mContentsModule.deleteFavoriteContents(mUserSharedPreference.getUserId(), mPlay.getPlayId(), PLAY_TYPE, new ContentsService.deleteFavoriteContentsCallback(){
+                        ContentsModule.deleteFavoriteContents(mUserSharedPreference.getUserId(), mPlay.getPlayId(), PLAY_TYPE, new ContentsService.deleteFavoriteContentsCallback(){
                             @Override
                             public void success() {
-                                Toast.makeText(mContext, "like->unlike", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(mPlayImageView, R.string.snb_delete_favorite_play_success, Snackbar.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void error(Throwable throwable) {
-
+                                Snackbar.make(mPlayImageView, R.string.snb_delete_favorite_play_fail, Snackbar.LENGTH_SHORT).show();
+                                //mLikeBtn.setChecked(true);
                             }
                         });
                     }
@@ -137,7 +136,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
 
         @Override
         public void onClick(View v) {
-            mPlayModule.addClickNumToPlay(mPlay.getPlayId(), new PlayService.addClickNumCallback() {
+            PlayLoadModule.addClickNumToPlay(mPlay.getPlayId(), new PlayService.addClickNumCallback() {
                 @Override
                 public void success() {
                     Log.v("daisy", "add success");

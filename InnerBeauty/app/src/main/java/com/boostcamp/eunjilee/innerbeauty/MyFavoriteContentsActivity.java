@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyFavoriteContentsActivity extends AppCompatActivity {
+public class MyFavoriteContentsActivity extends AppCompatActivity{
 
     @BindView(R.id.rv_my_favorite_contents)
     protected RecyclerView mMyFavoriteRecyclerView;
@@ -31,11 +31,11 @@ public class MyFavoriteContentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_favorite_contents);
         ButterKnife.bind(this);
-
         mUserPreference = new UserSharedPreference(this);
         initRecyclerView();
         loadMyFavoriteContents();
     }
+
 
     private void initRecyclerView(){
         mMyFavoriteContentsList = new ArrayList<>();

@@ -47,18 +47,13 @@ public class DetailPlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_detail);
-
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
         mPlay = (PlayModel) intent.getSerializableExtra("Play");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail);
         toolbar.setTitle(mPlay.getPlayTitle());
         setSupportActionBar(toolbar);
-
         initDetailPlayInfo();
-
     }
 
     private void initDetailPlayInfo() {
@@ -67,7 +62,7 @@ public class DetailPlayActivity extends AppCompatActivity {
         mOpenTimeTextView.setText(mPlay.getOpenTime() + " ~ " + mPlay.getCloseTime());
         mCloseDateTextView.setText(mPlay.getCloseDate());
         mPlaceTextView.setText(mPlay.getPlayPlace());
-        mPriceTextView.setText("어른 : " + String.valueOf(mPlay.getPriceAdult()) + " 어린이 : " + String.valueOf(mPlay.getPriceChildren()));
+        mPriceTextView.setText("어른 : " + mPlay.getPriceAdult() + " 어린이 : " + mPlay.getPriceChildren());
         mCallTextView.setText(mPlay.getPlayCall());
 
     }

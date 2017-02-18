@@ -1,5 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty.module;
 
+import static com.boostcamp.eunjilee.innerbeauty.InnerBeautyActivity.SERVER_PREFIX;
+
 import android.util.Log;
 
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
@@ -18,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class PlayLoadModule {
-    private final static String SERVER_URL = "http://35.166.198.97/index.php/Play/";
+    private final static String SERVER_URL = SERVER_PREFIX + "Play/";
 
     public static void getPlayByAsync(int playId, final PlayService.getPlayCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()

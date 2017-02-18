@@ -1,11 +1,13 @@
 package com.boostcamp.eunjilee.innerbeauty;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +30,8 @@ import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +67,7 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_detail)
     protected Toolbar mToolbar;
 
+    private static final String APP_WEB_SITE = "https://eunjilee0430.github.io/GoodDonation/";
     private boolean mFabStatus = false;
     private Animation mFabShowAnimation;
     private Animation mFabHideAnimation;
@@ -74,10 +79,8 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhibition_detail);
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
         mExhibition = (ExhibitionModel) intent.getSerializableExtra("Exhibition");
-
         mToolbar.setTitle(mExhibition.getExhibitionTitle());
         setSupportActionBar(mToolbar);
         initDetailExhibitionInfo();
@@ -91,7 +94,7 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         mCloseDateTextView.setText(mExhibition.getCloseDate());
         mPlaceTextView.setText(mExhibition.getExhibitionPlace());
         mPlaceTextView.setText(mExhibition.getExhibitionAddress());
-        mPriceTextView.setText("어른 : " + String.valueOf(mExhibition.getPriceAdult()) + " 어린이 : " + String.valueOf(mExhibition.getPriceChildren()));
+        mPriceTextView.setText("어른 : " + mExhibition.getPriceAdult() + " 어린이 : " + mExhibition.getPriceChildren());
         mCallTextView.setText(mExhibition.getExhibitionCall());
     }
 
@@ -138,28 +141,39 @@ public class DetailExhibitionActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab_naver)
     public void shareNaver(View view) {
-        Toast.makeText(getApplication(), "NAVER", Toast.LENGTH_SHORT).show();
+        PackageManager packageManager = getBaseContext().getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage("com.nhn.android.band");
+        if(intent == null){
+            intent = new Intent(intent.ACTION_VIEW, Uri.parse("market://details?id=com.nhn.android.band"));
+            startActivity(intent);
+        } else{
+            try {
+                String serviceDomain = APP_WEB_SITE; //앱 도메인 ( 임시:앱 소개 사이트)
+                String encodedText = URLEncoder.encode(mExhibition.getExhibitionTitle() + "\n"
+                        + mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate()
+                        + "\n" + mExhibition.getExhibitionPlace(), "utf-8");
+                Uri uri = Uri.parse("bandapp://create/post?text=" + encodedText
+                        + "&route=" + serviceDomain);
+                Intent bandIntent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(bandIntent);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // TODO : Dialog들끼리 빼내기
     @OnClick(R.id.fab_kakao)
     void shareKakao(View view) {
         try {
-            KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
+            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
             final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-            Map<String, String> executeParam = new HashMap<>();
-            Map<String, String> marketParam = new HashMap<>();
-            executeParam.put("execparamkey1", "1111");
-            marketParam.put("referrer", "kakaotalklink");
-            kakaoTalkLinkMessageBuilder.addAppLink("자세히 보기",
-                    new AppActionBuilder()
-                            .addActionInfo(AppActionInfoBuilder
-                                    .createAndroidActionInfoBuilder()
-                                    .setExecuteParam(executeParam)
-                                    .setMarketParam(marketParam)
-                                    .build())
-                            .setUrl("http://www.naver.com") // PC 카카오톡 에서 사용하게 될 웹사이트 주소
-                            .build());
+            kakaoTalkLinkMessageBuilder.addText(mExhibition.getExhibitionTitle() + "\n"
+                    + mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate()
+                    + "\n" + mExhibition.getExhibitionPlace());
+            kakaoTalkLinkMessageBuilder.addImage(mExhibition.getExhibitionPicture(), 160, 160);
+            kakaoTalkLinkMessageBuilder.addWebButton(APP_WEB_SITE);
+            //kakaoTalkLinkMessageBuilder.addAppButton("")
             kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, this);
         } catch (KakaoParameterException e) {
             e.printStackTrace();
