@@ -12,11 +12,11 @@ public final class R {
 	public static final class color {
 	}
 	public static final class drawable {
-		public static final int library_btn_navermap_bg = 0x7f02008b;
-		public static final int library_btn_navermap_bg_pressed = 0x7f02008c;
-		public static final int library_naver_logo = 0x7f02008d;
-		public static final int mapbg_blank = 0x7f020092;
-		public static final int selector_btn_navermap_bg = 0x7f0200a8;
+		public static final int library_btn_navermap_bg = 0x7f02008c;
+		public static final int library_btn_navermap_bg_pressed = 0x7f02008d;
+		public static final int library_naver_logo = 0x7f02008e;
+		public static final int mapbg_blank = 0x7f020093;
+		public static final int selector_btn_navermap_bg = 0x7f0200a9;
 	}
 	public static final class id {
 		public static final int auto = 0x7f0e0025;
@@ -27,7 +27,7 @@ public final class R {
 	public static final class integer {
 	}
 	public static final class string {
-		public static final int app_name = 0x7f07004e;
+		public static final int app_name = 0x7f07004f;
 	}
 	public static final class styleable {
 	}

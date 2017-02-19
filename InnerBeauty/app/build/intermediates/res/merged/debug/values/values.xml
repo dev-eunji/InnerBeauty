@@ -611,7 +611,10 @@
     <dimen name="notification_subtext_size">13sp</dimen>
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <dimen name="tb_like_contents_height">30dp</dimen>
+    <dimen name="tb_like_contents_width">30dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="view_divide_line">1dp</dimen>
     <item name="ic_menu_camera" type="drawable">@android:drawable/ic_menu_camera</item>
     <item name="ic_menu_gallery" type="drawable">@android:drawable/ic_menu_gallery</item>
     <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
@@ -675,13 +678,17 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="action_settings">Settings</string>
+    <string name="activity_my_favorite_contents_label">나의 관심 작품</string>
+    <string name="activity_search_label">Search</string>
     <string name="address_label">주소</string>
     <string name="app_name">InnerBeauty</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
+    <string name="btn_search">검색</string>
     <string name="call_label">문의전화</string>
     <string name="cd_detail_exhibition">전시 상세 이미지</string>
     <string name="cd_detail_play">연극 상세 이미지</string>
+    <string name="cd_favorite_contents_list_item_img">favorite 이미지</string>
     <string name="cd_list_exhibition">전시 이미지</string>
     <string name="cd_list_play">연극 이미지</string>
     <string name="cd_login_img">로그인 이미지</string>
@@ -740,6 +747,10 @@
     <string name="kakao_app_key">1b1c49678aa37601f38222d4fc3423a5</string>
     <string name="kakao_scheme">kakao1b1c49678aa37601f38222d4fc3423a5</string>
     <string name="kakaolink_host">kakaolink</string>
+    <string name="license_butter_knife"/>
+    <string name="license_glide"/>
+    <string name="license_retrofit"/>
+    <string name="logout_success">로그아웃 되었습니다.</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="nav_logout">로그아웃</string>
     <string name="nav_my_like_label">나의 관심 작품</string>
@@ -756,11 +767,20 @@
     <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
     <string name="place_label">장소</string>
     <string name="popular_exhibition_label">인기 전시</string>
+    <string name="popular_more_contents_label">more</string>
     <string name="popular_play_label">인기 연극</string>
     <string name="price_label">입장료</string>
     <string name="real_call_label">전화걸기</string>
     <string name="real_map_label">지도보기</string>
     <string name="search_menu_title">Search</string>
+    <string name="snb_add_favorite_exhibition_fail">관심 전시 추가를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
+    <string name="snb_add_favorite_exhibition_success">관심 전시에 추가되었습니다.</string>
+    <string name="snb_add_favorite_play_fail">관심 연극 추가를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
+    <string name="snb_add_favorite_play_success">관심 연극에 추가되었습니다.</string>
+    <string name="snb_delete_favorite_exhibition_fail">관심 전시 삭제를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
+    <string name="snb_delete_favorite_exhibition_success">관심 전시에서 삭제되었습니다.</string>
+    <string name="snb_delete_favorite_play_fail">관심 연극 삭제를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
+    <string name="snb_delete_favorite_play_success">관심 연극에서 삭제되었습니다.</string>
     <string name="start_end_date_label">기간</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="tab_exhibition">전시</string>
@@ -1819,6 +1839,9 @@
         <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <style name="BtnSearchTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
     <style name="CardView" parent="Base.CardView">
     </style>

@@ -6,11 +6,13 @@ class ContentsModel extends CI_Model {
         $this->load->database();
         $this->load->helper('date');
     }
+    
     function changeDateTimeFormat($date){
         $date = strtotime($date);
         $date = date('y.m.d',$date);
         return $date;
     }
+
     function getFavoriteContentsList($userId){
         $this->db->select('user_id, contents_id, contents_type');
         $this->db->from('favorite_contents');
@@ -20,7 +22,6 @@ class ContentsModel extends CI_Model {
         foreach($query->result() as $row){
             $data[$pos]['user_id'] = $row->user_id;
             $data[$pos]['contents_id'] = $row->contents_id;
-
             $data[$pos++]['contents_type'] = $row->contents_type;
         }
         return $data;
@@ -40,7 +41,7 @@ class ContentsModel extends CI_Model {
         }
         return $data;
     }
-   
+
     function registerFavoriteContents($data){
         $favoriteContents = array(
             'user_id' => $data['user_id'],
@@ -48,13 +49,15 @@ class ContentsModel extends CI_Model {
             'contents_type' => $data['contents_type']
         );
         $this->db->insert('favorite_contents', $favoriteContents);
-        return $favoriteContents;
+        return $data;
     }
+    
     function deleteFavoriteContents($data){
         $this->db->where('user_id', $data['user_id']);
         $this->db->where('contents_id', $data['contents_id']);
         $this->db->where('contents_type', $data['contents_type']);
         $this->db->delete('favorite_contents'); 
+        return $data;
     }
 }
 ?>

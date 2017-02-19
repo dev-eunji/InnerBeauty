@@ -27,12 +27,9 @@ import butterknife.OnClick;
 import static com.kakao.auth.Session.getCurrentSession;
 
 public class LoginActivity extends AppCompatActivity {
-
-
     private CallbackManager mFacebookCallbackManager;
     private SessionCallback mKakaoCallback;
     private AccessToken mFacebookToken = null;
-
     private LoginModule mLoginModule;
 
     @Override
@@ -86,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void error(Throwable throwable) {
-
+                        Log.v("LOGIN ERROR", "LOGINERROR_facebook");
                     }
                 });
             }
@@ -97,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException error) {
-
+                Log.v("LOGIN ERROR", "LOGINERROR_facebook(onError)");
             }
         });
     }
@@ -124,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void error(Throwable throwable) {
-                    Log.v("LOGIN ERROR", "LOGINERROR");
+                    Log.v("LOGIN ERROR", "LOGINERROR_kakao");
                 }
             });
         }

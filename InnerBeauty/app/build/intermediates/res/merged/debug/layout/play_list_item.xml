@@ -46,9 +46,9 @@
 
     <ToggleButton
         android:id="@+id/btn_like_play"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="top|right"
+        android:layout_width="@dimen/tb_like_contents_width"
+        android:layout_height="@dimen/tb_like_contents_height"
+        android:layout_gravity="top|end"
         android:layout_margin="@dimen/activity_vertical_margin_half"
         android:background="@drawable/like_icon_selector"
         android:textOff=""

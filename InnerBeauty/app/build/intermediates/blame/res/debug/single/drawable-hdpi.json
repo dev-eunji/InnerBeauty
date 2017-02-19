@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/icon_like.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-hdpi/icon_like.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/library_naver_logo.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/res/drawable-hdpi/library_naver_logo.png"
     },
@@ -8,11 +12,27 @@
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-hdpi/share_btn_facebook.png"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/icon_like_pressed.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-hdpi/icon_like_pressed.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/library_btn_navermap_bg.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/res/drawable-hdpi/library_btn_navermap_bg.png"
     },
     {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/share_btn_kakaotalk.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-hdpi/share_btn_kakaotalk.png"
+    },
+    {
         "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/library_btn_navermap_bg_pressed.png",
         "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/exploded-aar/com.naver.maps.open/naver-map-api/2.1.2/res/drawable-hdpi/library_btn_navermap_bg_pressed.png"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/icon_logout.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-hdpi/icon_logout.png"
+    },
+    {
+        "merged": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/build/intermediates/res/merged/debug/drawable-hdpi/icon_search.png",
+        "source": "/Users/eunjilee/Desktop/GoodDonation/InnerBeauty/app/src/main/res/drawable-hdpi/icon_search.png"
     }
 ]

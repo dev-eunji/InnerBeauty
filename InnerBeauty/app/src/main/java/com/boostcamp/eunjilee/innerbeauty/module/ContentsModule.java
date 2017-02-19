@@ -1,5 +1,7 @@
 package com.boostcamp.eunjilee.innerbeauty.module;
 
+import static com.boostcamp.eunjilee.innerbeauty.InnerBeautyActivity.SERVER_PREFIX;
+
 import android.util.Log;
 
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
@@ -19,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ContentsModule {
-    private final static String SERVER_URL = "http://35.166.198.97/index.php/Contents/";
+    private final static String SERVER_URL = SERVER_PREFIX + "Contents/";
 
     public static void getFavoriteContentsList(long userId, final ContentsService.getFavoriteContentsListCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -78,7 +80,7 @@ public class ContentsModule {
         });
     }
 
-    public void registerFavoriteContents(long userId, int contentId, int contentsType, final ContentsService.registerFavoriteContentsCallback callback) {
+    public static void registerFavoriteContents(long userId, int contentId, int contentsType, final ContentsService.registerFavoriteContentsCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -104,7 +106,7 @@ public class ContentsModule {
         });
     }
 
-    public void deleteFavoriteContents(long userId, int contentId, int contentsType, final ContentsService.deleteFavoriteContentsCallback callback) {
+    public static void deleteFavoriteContents(long userId, int contentId, int contentsType, final ContentsService.deleteFavoriteContentsCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())

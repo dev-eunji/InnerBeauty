@@ -31,7 +31,6 @@ public class MyFavoriteContentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_favorite_contents);
         ButterKnife.bind(this);
-
         mUserPreference = new UserSharedPreference(this);
         initRecyclerView();
         loadMyFavoriteContents();

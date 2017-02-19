@@ -1,5 +1,8 @@
 package com.boostcamp.eunjilee.innerbeauty.adapter;
 
+import static com.boostcamp.eunjilee.innerbeauty.Constant.EXHIBITION_TYPE;
+import static com.boostcamp.eunjilee.innerbeauty.Constant.PLAY_TYPE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +20,7 @@ import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.boostcamp.eunjilee.innerbeauty.model.FavoriteContentsModel;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
 import com.boostcamp.eunjilee.innerbeauty.module.ContentsModule;
+
 import com.boostcamp.eunjilee.innerbeauty.module.ExhibitionLoadModule;
 import com.boostcamp.eunjilee.innerbeauty.module.PlayLoadModule;
 import com.boostcamp.eunjilee.innerbeauty.service.ExhibitionService;
@@ -33,19 +37,12 @@ import butterknife.ButterKnife;
  */
 
 public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteContentsAdapter.MyFavoriteContentsViewHolder> {
-    private static final int EXHIBITION_TYPE=1;
-    private static final int PLAY_TYPE=2;
-
     private final Context mContext;
     private final List<FavoriteContentsModel> mMyFavoriteContentsList;
-    private final ExhibitionLoadModule mExhibitionModule;
-    private final PlayLoadModule mPlayModule;
 
     public MyFavoriteContentsAdapter(Context context, List<FavoriteContentsModel> favoriteContentsModels) {
         mContext = context;
         mMyFavoriteContentsList = favoriteContentsModels;
-        mExhibitionModule = new ExhibitionLoadModule();
-        mPlayModule = new PlayLoadModule();
     }
 
     @Override
@@ -104,7 +101,7 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
             int contentId = mMyFavoriteContents.getContentsId();
             int contentType = mMyFavoriteContents.getContentsType();
             if(contentType == EXHIBITION_TYPE){
-                mExhibitionModule.getExhibitionByAsync(contentId, new ExhibitionService.getExhibitionCallback() {
+                ExhibitionLoadModule.getExhibitionByAsync(contentId, new ExhibitionService.getExhibitionCallback() {
                     @Override
                     public void success(ExhibitionModel exhibitionModel) {
                         mExhibition = exhibitionModel;
@@ -122,7 +119,7 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
                     }
                 });
             } else if(contentType == PLAY_TYPE){
-                mPlayModule.getPlayByAsync(contentId, new PlayService.getPlayCallback(){
+                PlayLoadModule.getPlayByAsync(contentId, new PlayService.getPlayCallback(){
                     @Override
                     public void success(PlayModel playModel) {
                         mPlay = playModel;

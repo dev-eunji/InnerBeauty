@@ -50,7 +50,7 @@ public class PlayFragment extends Fragment {
 
     private void loadPlayList() {
         PlayLoadModule playLoadModule = new PlayLoadModule();
-        playLoadModule.getPlayListByAsync(PAGE, new PlayService.getPlayListCallback() {
+        PlayLoadModule.getPlayListByAsync(PAGE, new PlayService.getPlayListCallback() {
             @Override
             public void success(List<PlayModel> playModelList) {
                 mPlayList.clear();
