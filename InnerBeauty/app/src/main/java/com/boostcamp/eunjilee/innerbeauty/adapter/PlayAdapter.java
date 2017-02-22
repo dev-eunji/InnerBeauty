@@ -19,6 +19,7 @@ import android.widget.ToggleButton;
 import com.boostcamp.eunjilee.innerbeauty.DetailPlayActivity;
 import com.boostcamp.eunjilee.innerbeauty.R;
 import com.boostcamp.eunjilee.innerbeauty.UserSharedPreference;
+import com.boostcamp.eunjilee.innerbeauty.model.FavoriteContentsModel;
 import com.boostcamp.eunjilee.innerbeauty.model.PlayModel;
 import com.boostcamp.eunjilee.innerbeauty.module.ContentsModule;
 import com.boostcamp.eunjilee.innerbeauty.module.PlayLoadModule;
@@ -100,6 +101,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                     .into(mPlayImageView);
             setDate(play.getStartDate(), play.getEndDate());
             setPlace(play.getPlayPlace());
+            setLikeBtn();
             mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -131,7 +133,21 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                 }
             });
         }
-
+        private void setLikeBtn(){
+            ContentsModule.getFavoriteContentsListByContentsType(mUserSharedPreference.getUserId(), PLAY_TYPE, new ContentsService.getFavoriteContentsListCallback() {
+                @Override
+                public void success(List<FavoriteContentsModel> favoriteContentsModel) {
+                    for(int i=0; i<favoriteContentsModel.size(); i++) {
+                        if (favoriteContentsModel.get(i).getContentsId() == mPlay.getPlayId())
+                            mLikeBtn.setChecked(true);
+                    }
+                }
+                @Override
+                public void error(Throwable throwable) {
+                    Log.v("error", "setLikeBtn");
+                }
+            });
+        }
         @Override
         public void onClick(View v) {
             PlayLoadModule.addClickNumToPlay(mPlay.getPlayId(), new PlayService.addClickNumCallback() {

@@ -6,21 +6,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by eunjilee on 13/02/2017.
  */
 
-public class FavoriteContentsModel {
-    @SerializedName("user_id")
-    private long userId;
+public class SearchContentsModel {
     @SerializedName("contents_id")
     private int contentsId;
     @SerializedName("contents_type")
     private int contentsType;
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public int getContentsId() {
         return contentsId;

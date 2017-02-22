@@ -23,10 +23,10 @@ public class PlayModel implements Serializable {
     private  String endDate;
     @SerializedName("close_date")
     private  String closeDate;
-    @SerializedName("open_time")
-    private  String openTime;
-    @SerializedName("close_time")
-    private  String closeTime;
+    @SerializedName("play_time")
+    private  String playTime;
+    @SerializedName("play_run_time")
+    private  String playRunTime;
     @SerializedName("play_place")
     private  String playPlace;
     @SerializedName("play_address")
@@ -41,12 +41,18 @@ public class PlayModel implements Serializable {
     private  int priceChildren;
     @SerializedName("play_price_old_infirm")
     private  int priceOldInfirm;
-    @SerializedName("play_price_special")
-    private  int priceSpecial;
+    @SerializedName("play_price")
+    private  String pricePlay;
     @SerializedName("play_call")
     private  String playCall;
     @SerializedName("play_site")
     private  String playSite;
+    @SerializedName("play_detail_info")
+    private  String playDetailInfo;
+    @SerializedName("play_ticket_site1")
+    private  String playTicketSite1;
+    @SerializedName("play_ticket_site2")
+    private  String playTicketSite2;
 
     private int playClicked;
     private int playLiked;
@@ -79,20 +85,20 @@ public class PlayModel implements Serializable {
         this.closeDate = closeDate;
     }
 
-    public String getOpenTime() {
-        return openTime;
+    public String getPlayTime() {
+        return playTime;
     }
 
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
+    public void setPlayTime(String playTime) {
+        this.playTime = playTime;
     }
 
-    public String getCloseTime() {
-        return closeTime;
+    public String getPlayRunTime() {
+        return playRunTime;
     }
 
-    public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
+    public void setPlayRunTime(String playRunTime) {
+        this.playRunTime = playRunTime;
     }
 
     public void setPlayTitle(String playTitle) {
@@ -227,11 +233,35 @@ public class PlayModel implements Serializable {
         this.playComments = playComments;
     }
 
-    public int getPriceSpecial() {
-        return priceSpecial;
+    public String getPricePlay() {
+        return pricePlay;
     }
 
-    public void setPriceSpecial(int priceSpecial) {
-        this.priceSpecial = priceSpecial;
+    public void setPricePlay(String pricePlay) {
+        this.pricePlay = pricePlay;
+    }
+
+    public String getPlayDetailInfo() {
+        return playDetailInfo;
+    }
+
+    public void setPlayDetailInfo(String playDetailInfo) {
+        this.playDetailInfo = playDetailInfo;
+    }
+
+    public String getPlayTicketSite1() {
+        return playTicketSite1;
+    }
+
+    public void setPlayTicketSite1(String playTicketSite1) {
+        this.playTicketSite1 = playTicketSite1;
+    }
+
+    public String getPlayTicketSite2() {
+        return playTicketSite2;
+    }
+
+    public void setPlayTicketSite2(String playTicketSite2) {
+        this.playTicketSite2 = playTicketSite2;
     }
 }
