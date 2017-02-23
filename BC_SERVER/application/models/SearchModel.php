@@ -21,7 +21,6 @@ class SearchModel extends CI_Model {
         $this->db->like('exhibition_title', $searchWord, 'both'); 
         $this->db->order_by('exhibition_id','DESC');
         $query = $this->db->get();
-
         $pos = 0;
         foreach($query->result() as $row){
             $data[$pos]['contents_id'] = $row->exhibition_id;

@@ -263,7 +263,7 @@ public class NaverMapFragment extends Fragment {
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(getContext(),
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-                //startMyLocation();
+                    //startMyLocation();
             } else {
                 Snackbar.make(mNMapView, "Location Permission Denied\n", Snackbar.LENGTH_SHORT).show();
             }
@@ -294,6 +294,11 @@ public class NaverMapFragment extends Fragment {
         @Override
         public boolean onLocationChanged(NMapLocationManager locationManager, NGeoPoint myLocation) {
             mMapContext.findPlacemarkAtLocation(myLocation.getLongitude(), myLocation.getLatitude());
+            Log.d("myLog", "myLocation  lat " + myLocation.getLatitude());
+            Log.d("myLog", "myLocation  lng " + myLocation.getLongitude());
+
+            mMapContext.findPlacemarkAtLocation(myLocation.getLongitude(), myLocation.getLatitude());
+            //위도경도를 주소로 변환
             return true;
         }
 
@@ -317,6 +322,7 @@ public class NaverMapFragment extends Fragment {
             if (mNMapView.isAutoRotateEnabled()) {
                 mMyLocationOverlay.setCompassHeadingVisible(false);
                 mMapCompassManager.disableCompass();
+                mNMapView.setAutoRotateEnabled(false, false);
             }
         }
     }
