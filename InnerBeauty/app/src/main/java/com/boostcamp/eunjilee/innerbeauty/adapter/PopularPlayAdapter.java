@@ -61,6 +61,8 @@ public class PopularPlayAdapter extends RecyclerView.Adapter<PopularPlayAdapter.
     class PopoularPlayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_popular_play)
         protected ImageView mPopularPlayImageView;
+        @BindView(R.id.tv_popular_play_title)
+        protected TextView mPopularPlayTitleTextView;
         @BindView(R.id.tv_popular_play_date)
         protected TextView mPopularPlayDateTextView;
         @BindView(R.id.tv_popular_play_place)
@@ -74,7 +76,13 @@ public class PopularPlayAdapter extends RecyclerView.Adapter<PopularPlayAdapter.
             itemView.setOnClickListener(this);
         }
 
+        private void setPlayTitle(String title){
+            mPopularPlayTitleTextView.setText(title);
+        }
         private void setDate(String startDate, String endDate) {
+            if(endDate.equals("70.01.01")){
+                endDate="오픈런";
+            }
             mPopularPlayDateTextView.setText(startDate + " ~ " + endDate);
         }
 
@@ -82,12 +90,13 @@ public class PopularPlayAdapter extends RecyclerView.Adapter<PopularPlayAdapter.
             mPopularPlayPlaceTextView.setText(place);
         }
 
-        public void setPopularPlay(final PlayModel exhibition) {
-            mPopularPlay = exhibition;
+        public void setPopularPlay(final PlayModel play) {
+            mPopularPlay = play;
             Glide.with(mContext).load(mPopularPlay.getPlayPicture())
                     .thumbnail(0.1f)
                     .override(650,650)
                     .into(mPopularPlayImageView);
+            setPlayTitle(mPopularPlay.getPlayTitle());
             setDate(mPopularPlay.getStartDate(), mPopularPlay.getEndDate());
             setPlace(mPopularPlay.getPlayPlace());
         }
@@ -105,7 +114,7 @@ public class PopularPlayAdapter extends RecyclerView.Adapter<PopularPlayAdapter.
                 }
             });
             Intent startDetailActivity = new Intent(mContext, DetailPlayActivity.class);
-            startDetailActivity.putExtra("Exhibition", mPopularPlay);
+            startDetailActivity.putExtra("Play", mPopularPlay);
             mContext.startActivity(startDetailActivity);
         }
     }

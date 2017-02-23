@@ -6,5 +6,5 @@
     <com.nhn.android.maps.NMapView
         android:id="@+id/nmv_map"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/naver_map_height"/>
+        android:layout_height="500dp"/>
 </LinearLayout>

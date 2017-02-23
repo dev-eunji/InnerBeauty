@@ -41,6 +41,12 @@ public class PlayFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPlayAdapter.notifyDataSetChanged();
+    }
+
     private void initRecyclerView() {
         mPlayList = new ArrayList<>();
         mPlayRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)); // 2 items in a vertical line.

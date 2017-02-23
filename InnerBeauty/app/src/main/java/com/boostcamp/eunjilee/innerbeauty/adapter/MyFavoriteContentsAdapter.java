@@ -89,6 +89,9 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
             mMyFavoriteContentsTitleTextView.setText(title);
         }
         private void setDate(String startDate, String endDate) {
+            if(endDate.equals("70.01.01")){
+                endDate="오픈런";
+            }
             mMyFavoriteContentsDateTextView.setText(startDate + " ~ " + endDate);
         }
 
@@ -138,7 +141,6 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
                 });
             }
         }
-
         @Override
         public void onClick(View v) {
             if(mMyFavoriteContents.getContentsType() == EXHIBITION_TYPE){

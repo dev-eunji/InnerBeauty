@@ -42,6 +42,12 @@ public class ExhibitionFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mExhibitionAdapter.notifyDataSetChanged();
+    }
+
     private void initRecyclerView() {
         mExhibitionList = new ArrayList<>();
         mExhibitionRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)); // 2 items in a vertical line.

@@ -38,13 +38,13 @@ public class ContentsModule {
                     List<FavoriteContentsModel> favoriteContentsModel = response.body();
                     callback.success(favoriteContentsModel);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("FCList Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<FavoriteContentsModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("FCList Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
@@ -68,13 +68,13 @@ public class ContentsModule {
                     List<FavoriteContentsModel> favoriteContentsModel = response.body();
                     callback.success(favoriteContentsModel);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("FCListB Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<FavoriteContentsModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("FCListB Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
@@ -94,13 +94,13 @@ public class ContentsModule {
                 if (response.isSuccessful()) {
                     callback.success();
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("RFC Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<FavoriteContentsModel> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("RFC Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
@@ -120,13 +120,13 @@ public class ContentsModule {
                 if (response.isSuccessful()) {
                     callback.success();
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("DFC Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<FavoriteContentsModel> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("DFC Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });

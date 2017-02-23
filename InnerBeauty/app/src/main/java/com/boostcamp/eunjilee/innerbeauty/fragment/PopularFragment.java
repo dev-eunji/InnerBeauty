@@ -52,6 +52,12 @@ public class PopularFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPopularExhibitionAdapter.notifyDataSetChanged();
+        mPopularPlayAdapter.notifyDataSetChanged();
+    }
 
     private void initRecyclerView() {
         mPopularExhibitionList = new ArrayList<>();

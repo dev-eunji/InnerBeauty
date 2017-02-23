@@ -5,7 +5,10 @@ import com.boostcamp.eunjilee.innerbeauty.model.SearchContentsModel;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -13,8 +16,9 @@ import retrofit2.http.Path;
  */
 
 public interface SearchService {
-    @GET("searchContentsList/{searchWord}")
-    Call<List<SearchContentsModel>> searchContentsList(@Path("searchWord") String searchWord);
+    @FormUrlEncoded
+    @POST("searchContentsList")
+    Call<List<SearchContentsModel>> searchContentsList(@Field("search_word") String searchWord);
 
     interface searchContentsListCallback {
         void success(List<SearchContentsModel> contentsModelList);

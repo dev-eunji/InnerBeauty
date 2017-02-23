@@ -71,6 +71,8 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
     class PlayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_list_play)
         protected ImageView mPlayImageView;
+        @BindView(R.id.tv_play_title)
+        protected TextView mPlaytTitleTextView;
         @BindView(R.id.tv_play_date)
         protected TextView mPlaytDateTextView;
         @BindView(R.id.tv_play_place)
@@ -86,7 +88,14 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
             itemView.setOnClickListener(this);
         }
 
+        private void setTitle(String title) {
+            mPlaytTitleTextView.setText(title);
+        }
+
         private void setDate(String startDate, String endDate) {
+            if(endDate.equals("70.01.01")){
+                endDate="오픈런";
+            }
             mPlaytDateTextView.setText(startDate + " ~ " + endDate);
         }
 
@@ -96,11 +105,12 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
 
         public void setPlay(PlayModel play) {
             mPlay = play;
-            Glide.with(mContext).load(play.getPlayPicture())
+            Glide.with(mContext).load(mPlay.getPlayPicture())
                     .thumbnail(0.1f)
                     .into(mPlayImageView);
-            setDate(play.getStartDate(), play.getEndDate());
-            setPlace(play.getPlayPlace());
+            setTitle(mPlay.getPlayTitle());
+            setDate(mPlay.getStartDate(), mPlay.getEndDate());
+            setPlace(mPlay.getPlayPlace());
             setLikeBtn();
             mLikeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

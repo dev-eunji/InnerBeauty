@@ -39,17 +39,13 @@ public class SearchActivity extends AppCompatActivity {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Snackbar.make(mSearchRecyclerView, "BeforeTextChanged", Snackbar.LENGTH_LONG).show();
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchContents();
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-                //Snackbar.make(mSearchRecyclerView, "afterTextChanged", Snackbar.LENGTH_LONG).show();
             }
         };
         mSearchEditText.addTextChangedListener(textWatcher);
@@ -70,7 +66,6 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void error(Throwable throwable) {
-
             }
         });
     }

@@ -14,7 +14,7 @@ class ExhibitionModel extends CI_Model {
     }
 
     function getExhibitionInfo($exhibitionId){
-        $this->db->select('hb.exhibition_id, hb.exhibition_code, hb.exhibition_title, hb.exhibition_artist, hb.start_date, hb.end_date, hb.exhibition_place, hb.exhibition_address, hb.exhibition_picture,hb.exhibition_price_adult, hb.exhibition_price_student, hb.exhibition_price_children, hb.exhibition_price_old_infirm,hb.exhibition_price, hb.exhibition_call, hb.exhibition_site, hb.exhibition_detail_info, hb.exhibition_ticket_site1, hb.exhibition_ticket_site2');
+        $this->db->select('hb.exhibition_id, hb.exhibition_code, hb.exhibition_title, hb.exhibition_artist, hb.start_date, hb.end_date, hb.close_date, hb.open_time, hb.close_time, hb.exhibition_place, hb.exhibition_address, hb.exhibition_picture,hb.exhibition_price_adult, hb.exhibition_price_student, hb.exhibition_price_children, hb.exhibition_price_old_infirm,hb.exhibition_price, hb.exhibition_call, hb.exhibition_site, hb.exhibition_detail_info, hb.exhibition_ticket_site1, hb.exhibition_ticket_site2');
         $this->db->from('exhibition as hb');
         $this->db->where('hb.exhibition_id',$exhibitionId);
         $this->db->order_by('hb.exhibition_id','DESC');
@@ -28,6 +28,9 @@ class ExhibitionModel extends CI_Model {
             $data[$pos]['exhibition_artist'] = $row->exhibition_artist;
             $data[$pos]['start_date'] = $this->changeDateTimeFormat($row->start_date);
             $data[$pos]['end_date'] = $this->changeDateTimeFormat($row->end_date);
+            $data[$pos]['close_date'] = $row->close_date;
+            $data[$pos]['open_time'] = $row->open_time;
+            $data[$pos]['close_time'] = $row->close_time;
             $data[$pos]['exhibition_place'] = $row->exhibition_place;
             $data[$pos]['exhibition_address'] = $row->exhibition_address;
             $data[$pos]['exhibition_picture'] = $row->exhibition_picture;
@@ -46,7 +49,7 @@ class ExhibitionModel extends CI_Model {
     }
 
     function getExhibitionList($page){
-        $this->db->select('hb.exhibition_id, hb.exhibition_code, hb.exhibition_title, hb.exhibition_artist, hb.start_date, hb.end_date, hb.exhibition_place, hb.exhibition_address, hb.exhibition_picture,hb.exhibition_price_adult, hb.exhibition_price_student, hb.exhibition_price_children, hb.exhibition_price_old_infirm,hb.exhibition_price, hb.exhibition_call, hb.exhibition_site, hb.exhibition_detail_info, hb.exhibition_ticket_site1, hb.exhibition_ticket_site2');
+        $this->db->select('hb.exhibition_id, hb.exhibition_code, hb.exhibition_title, hb.exhibition_artist, hb.start_date, hb.end_date, hb.close_date, hb.open_time, hb.close_time, hb.exhibition_place, hb.exhibition_address, hb.exhibition_picture,hb.exhibition_price_adult, hb.exhibition_price_student, hb.exhibition_price_children, hb.exhibition_price_old_infirm,hb.exhibition_price, hb.exhibition_call, hb.exhibition_site, hb.exhibition_detail_info, hb.exhibition_ticket_site1, hb.exhibition_ticket_site2');
         $this->db->from('exhibition as hb');
         $this->db->order_by('hb.exhibition_id','DESC');
         //$this->db->limit(2,$page*2);
@@ -59,6 +62,9 @@ class ExhibitionModel extends CI_Model {
             $data[$pos]['exhibition_artist'] = $row->exhibition_artist;
             $data[$pos]['start_date'] = $this->changeDateTimeFormat($row->start_date);
             $data[$pos]['end_date'] = $this->changeDateTimeFormat($row->end_date);
+            $data[$pos]['close_date'] = $row->close_date;
+            $data[$pos]['open_time'] = $row->open_time;
+            $data[$pos]['close_time'] = $row->close_time;
             $data[$pos]['exhibition_place'] = $row->exhibition_place;
             $data[$pos]['exhibition_address'] = $row->exhibition_address;
             $data[$pos]['exhibition_picture'] = $row->exhibition_picture;
@@ -83,13 +89,11 @@ class ExhibitionModel extends CI_Model {
         return $result;
     }
 
-    //TODO; getExhibitionList와 order_by를 제외하고는 다 같은데, 매개변수로 구분하는게 더 나을지..
-    //TODO: favorite_contents테이블에 clicked를 추가하고 id만 불러오는게 더 나을지..
-    //       > 이렇게 하면, 테이블은 깔끔해지고 코드도 줄지만, join연산을 해야함.
     function getGlobalFavoriteExhibition(){
-       $this->db->select('hb.exhibition_id, hb.exhibition_code, hb.exhibition_title, hb.exhibition_artist, hb.start_date, hb.end_date, hb.exhibition_place, hb.exhibition_address, hb.exhibition_picture,hb.exhibition_price_adult, hb.exhibition_price_student, hb.exhibition_price_children, hb.exhibition_price_old_infirm,hb.exhibition_price, hb.exhibition_call, hb.exhibition_site, hb.exhibition_detail_info, hb.exhibition_ticket_site1, hb.exhibition_ticket_site2');
+       $this->db->select('hb.exhibition_id, hb.exhibition_code, hb.exhibition_title, hb.exhibition_artist, hb.start_date, hb.end_date, hb.close_date, hb.open_time, hb.close_time, hb.exhibition_place, hb.exhibition_address, hb.exhibition_picture,hb.exhibition_price_adult, hb.exhibition_price_student, hb.exhibition_price_children, hb.exhibition_price_old_infirm,hb.exhibition_price, hb.exhibition_call, hb.exhibition_site, hb.exhibition_detail_info, hb.exhibition_ticket_site1, hb.exhibition_ticket_site2');
        $this->db->from('exhibition as hb');
        $this->db->order_by('hb.exhibition_clicked', 'DESC');
+       $this->db->limit(7);
        $query = $this->db->get();
         $pos = 0;
         foreach($query->result() as $row){
@@ -99,6 +103,9 @@ class ExhibitionModel extends CI_Model {
             $data[$pos]['exhibition_artist'] = $row->exhibition_artist;
             $data[$pos]['start_date'] = $this->changeDateTimeFormat($row->start_date);
             $data[$pos]['end_date'] = $this->changeDateTimeFormat($row->end_date);
+            $data[$pos]['close_date'] = $row->close_date;
+            $data[$pos]['open_time'] = $row->open_time;
+            $data[$pos]['close_time'] = $row->close_time;
             $data[$pos]['exhibition_place'] = $row->exhibition_place;
             $data[$pos]['exhibition_address'] = $row->exhibition_address;
             $data[$pos]['exhibition_picture'] = $row->exhibition_picture;

@@ -61,6 +61,8 @@ public class PopularExhibitionAdapter extends RecyclerView.Adapter<PopularExhibi
     class PopoularExhibitionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_popular_exhibition)
         protected ImageView mPopularExhibitionImageView;
+        @BindView(R.id.tv_popular_exhibition_title)
+        protected TextView mPopularExhibitionTitleTextView;
         @BindView(R.id.tv_popular_exhibition_date)
         protected TextView mPopularExhibitionDateTextView;
         @BindView(R.id.tv_popular_exhibition_place)
@@ -73,7 +75,9 @@ public class PopularExhibitionAdapter extends RecyclerView.Adapter<PopularExhibi
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
-
+        private void setTitle(String title){
+            mPopularExhibitionTitleTextView.setText(title);
+        }
         private void setDate(String startDate, String endDate) {
             mPopularExhibitionDateTextView.setText(startDate + " ~ " + endDate);
         }
@@ -88,6 +92,7 @@ public class PopularExhibitionAdapter extends RecyclerView.Adapter<PopularExhibi
                     .thumbnail(0.1f)
                     .override(650,650)
                     .into(mPopularExhibitionImageView);
+            setTitle(mPopularExhibition.getExhibitionTitle());
             setDate(mPopularExhibition.getStartDate(), mPopularExhibition.getEndDate());
             setPlace(mPopularExhibition.getExhibitionPlace());
         }

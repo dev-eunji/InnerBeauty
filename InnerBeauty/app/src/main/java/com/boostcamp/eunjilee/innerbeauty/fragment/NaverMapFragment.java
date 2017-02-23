@@ -85,7 +85,8 @@ public class NaverMapFragment extends Fragment {
         mNMapView.setClickable(true);
         mNMapView.setOnMapStateChangeListener(onMapViewStateChangeListener);
         mNMapView.setOnMapViewTouchEventListener(onMapViewTouchEventListener);
-
+        mNMapView.setBuiltInZoomControls(true, null);
+        mNMapView.setScalingFactor(1.5f);
         // create resource provider
         mMapViewerResourceProvider = new NMapViewerResourceProvider(getContext());
 
@@ -242,7 +243,7 @@ public class NaverMapFragment extends Fragment {
 
         @Override
         public void onCalloutClick(NMapPOIdataOverlay poiDataOverlay, NMapPOIitem item) { // POI가 클릭되면 호출
-            Snackbar.make(mNMapView, item.getTitle() + item.getHeadText(), Snackbar.LENGTH_LONG).show();
+            mNMapView.executeNaverMap();
         }
 
         @Override
@@ -262,7 +263,7 @@ public class NaverMapFragment extends Fragment {
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(getContext(),
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-                startMyLocation();
+                //startMyLocation();
             } else {
                 Snackbar.make(mNMapView, "Location Permission Denied\n", Snackbar.LENGTH_SHORT).show();
             }
@@ -292,39 +293,18 @@ public class NaverMapFragment extends Fragment {
 
         @Override
         public boolean onLocationChanged(NMapLocationManager locationManager, NGeoPoint myLocation) {
-
-//            if (mMapController != null) {
-//                mMapController.animateTo(myLocation);
-//            }
-//
-//            return true;
-            Log.d("myLog", "myLocation  lat " + myLocation.getLatitude());
-            Log.d("myLog", "myLocation  lng " + myLocation.getLongitude());
-
             mMapContext.findPlacemarkAtLocation(myLocation.getLongitude(), myLocation.getLatitude());
-            //위도경도를 주소로 변환
             return true;
         }
 
         @Override
         public void onLocationUpdateTimeout(NMapLocationManager locationManager) {
-
-            // stop location updating
-            //			Runnable runnable = new Runnable() {
-            //				public void run() {
-            //					stopMyLocation();
-            //				}
-            //			};
-            //			runnable.run();
-
             //Snackbar.make(mNMapView, "Your current location is temporarily unavailable.", Snackbar.LENGTH_LONG).show();
         }
 
         @Override
         public void onLocationUnavailableArea(NMapLocationManager locationManager, NGeoPoint myLocation) {
-
             Snackbar.make(mNMapView, "Your current location is unavailable area.", Snackbar.LENGTH_LONG).show();
-
             stopMyLocation();
         }
 
@@ -336,12 +316,7 @@ public class NaverMapFragment extends Fragment {
 
             if (mNMapView.isAutoRotateEnabled()) {
                 mMyLocationOverlay.setCompassHeadingVisible(false);
-
                 mMapCompassManager.disableCompass();
-
-                mNMapView.setAutoRotateEnabled(false, false);
-
-                //MapContainer.requestLayout();
             }
         }
     }
