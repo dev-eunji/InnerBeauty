@@ -42,12 +42,18 @@ public class ExhibitionModel implements Serializable {
     private int priceChildren;
     @SerializedName("exhibition_price_old_infirm")
     private int priceOldInfirm;
-    @SerializedName("play_price_old_infirm")
-    private int priceSpecial;
+    @SerializedName("exhibition_price")
+    private String priceExhibition;
     @SerializedName("exhibition_call")
     private String exhibitionCall;
     @SerializedName("exhibition_site")
     private String exhibitionSite;
+    @SerializedName("exhibition_detail_info")
+    private  String exhibitionDetailInfo;
+    @SerializedName("exhibition_ticket_site1")
+    private  String exhibitionTicketSite1;
+    @SerializedName("exhibition_ticket_site2")
+    private  String exhibitionTicketSite2;
 
     private int exhibitionclicked;
     private int exhibitionLiked;
@@ -231,12 +237,36 @@ public class ExhibitionModel implements Serializable {
         this.exhibitionComments = exhibitionComments;
     }
 
-    public int getPriceSpecial() {
-        return priceSpecial;
+    public String getPriceExhibition() {
+        return priceExhibition;
     }
 
-    public void setPriceSpecial(int priceSpecial) {
-        this.priceSpecial = priceSpecial;
+    public void setPriceExhibition(String priceExhibition) {
+        this.priceExhibition = priceExhibition;
+    }
+
+    public String getExhibitionDetailInfo() {
+        return exhibitionDetailInfo;
+    }
+
+    public void setExhibitionDetailInfo(String exhibitionDetailInfo) {
+        this.exhibitionDetailInfo = exhibitionDetailInfo;
+    }
+
+    public String getExhibitionTicketSite1() {
+        return exhibitionTicketSite1;
+    }
+
+    public void setExhibitionTicketSite1(String exhibitionTicketSite1) {
+        this.exhibitionTicketSite1 = exhibitionTicketSite1;
+    }
+
+    public String getExhibitionTicketSite2() {
+        return exhibitionTicketSite2;
+    }
+
+    public void setExhibitionTicketSite2(String exhibitionTicketSite2) {
+        this.exhibitionTicketSite2 = exhibitionTicketSite2;
     }
 }
 

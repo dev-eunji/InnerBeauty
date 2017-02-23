@@ -19,7 +19,7 @@ class Play extends CI_Controller {
 
 	public function addClickNumToPlay(){
 		$playId = $this->input->post('play_id');
-		$result = $this->PlayModel->addClickNumToExhibition($playId);
+		$result = $this->PlayModel->addClickNumToPlay($playId);
 		$this->output->set_header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($result);
 	}

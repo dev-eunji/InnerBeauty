@@ -17,5 +17,12 @@ class Users extends CI_Controller {
 		$this->output->set_header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($userInfo); 
 	}
+
+	public function test($userId){
+		$userInfo = $this->UserModel->getUserInfoIfUserExist($userId);
+		$this->output->set_header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($userInfo); 
+
+	}
 }
 ?>

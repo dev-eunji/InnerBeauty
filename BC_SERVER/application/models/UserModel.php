@@ -14,13 +14,10 @@ class UserModel extends CI_Model {
     }
 
     function getUserInfoIfUserExist($userId){
-        $this->db->select('user_id, user_name, user_email, user_profile, sns_type');
-        $this->db->from('user');
-        $this->db->where('user_id',$userId);
-        $query = $this->db->get();
-        if($query->num_rows()==0) // new user
+        $row = $this->db->get_where('user', array('user_id' => $userId))->row();
+        if ($row == null) {
             return null;
-        $row = $query->row();
+        }
         $user['user_id'] = $row->user_id;
         $user['user_name'] = $row->user_name;
         $user['user_email'] = $row->user_email;
