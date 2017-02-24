@@ -19,8 +19,10 @@ before_script:
   - adb shell input keyevent 82 &
   - chmod +x ./InnerBeauty/gradlew
   
-script: ./InnerBeauty/gradlew assemble
-
+script:
+  - cd ./InnerBeauty/gradlew
+  - assemble
+  
 licenses:
   - 'android-sdk-preview-license-.+'
   - 'android-sdk-license-.+'
