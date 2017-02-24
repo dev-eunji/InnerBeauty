@@ -38,12 +38,12 @@ public class ExhibitionLoadModule {
                     ExhibitionModel exhibitionModel = response.body();
                     callback.success(exhibitionModel);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("Exhibition Retrofit", "Error Http Code = " + response.code());
                 }
             }
             @Override
             public void onFailure(Call<ExhibitionModel> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("Exhibition Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
@@ -64,13 +64,13 @@ public class ExhibitionLoadModule {
                     List<ExhibitionModel> exhibitionModelList = response.body();
                     callback.success(exhibitionModelList);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("Exhibition Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<ExhibitionModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("Exhibition Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
@@ -90,12 +90,12 @@ public class ExhibitionLoadModule {
                 if (response.isSuccessful()) {
                     callback.success();
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("Exhibition Retrofit", "Error Http Code = " + response.code());
                 }
             }
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("Exhibition Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
@@ -120,16 +120,15 @@ public class ExhibitionLoadModule {
                     List<ExhibitionModel> favoriteEhibitionModelList = response.body();
                     callback.success(favoriteEhibitionModelList);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("Exhibition Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<ExhibitionModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("Exhibition Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
     }
-
 }

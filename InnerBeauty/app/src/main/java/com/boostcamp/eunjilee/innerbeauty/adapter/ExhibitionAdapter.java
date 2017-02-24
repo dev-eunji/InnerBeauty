@@ -76,6 +76,8 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
     class ExhibitionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_list_exhibition)
         protected ImageView mExhibitionImageView;
+        @BindView(R.id.tv_exhibition_title)
+        protected TextView mExhibitionTitleTextView;
         @BindView(R.id.tv_exhibition_date)
         protected TextView mExhibitionDateTextView;
         @BindView(R.id.tv_exhibition_place)
@@ -89,6 +91,10 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+        }
+
+        private void setTitle(String title) {
+            mExhibitionTitleTextView.setText(title);
         }
 
         private void setDate(String startDate, String endDate) {
@@ -105,6 +111,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
             Glide.with(mContext).load(mExhibition.getExhibitionPicture())
                     .thumbnail(0.1f)
                     .into(mExhibitionImageView);
+            setTitle(mExhibition.getExhibitionTitle());
             setDate(mExhibition.getStartDate(), mExhibition.getEndDate());
             setPlace(mExhibition.getExhibitionPlace());
             setLikeBtn();
@@ -117,7 +124,6 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
                             public void success() {
                                 Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_success, Toast.LENGTH_SHORT).show();
                             }
-
                             @Override
                             public void error(Throwable throwable) {
                                 Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_fail, Snackbar.LENGTH_SHORT).show();

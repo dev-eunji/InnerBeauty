@@ -2,6 +2,7 @@ package com.boostcamp.eunjilee.innerbeauty;
 
 import static com.boostcamp.eunjilee.innerbeauty.Constant.FACEBOOK_TYPE;
 import static com.boostcamp.eunjilee.innerbeauty.Constant.KAKAO_TYPE;
+import static com.boostcamp.eunjilee.innerbeauty.Constant.NAVER_TYPE;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,8 +29,10 @@ import android.widget.TextView;
 import com.boostcamp.eunjilee.innerbeauty.adapter.MainTabPagerAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.facebook.login.LoginManager;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
+import com.nhn.android.naverlogin.OAuthLogin;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +40,6 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
     @BindView(R.id.nav_view)
@@ -48,7 +50,6 @@ public class MainActivity extends AppCompatActivity
     protected TabLayout mTabLayout;
     @BindView(R.id.main_view_papger)
     protected ViewPager mViewPager;
-
     private UserSharedPreference mUserSharedPreference;
 
     @Override
@@ -137,13 +138,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_gallery) {
-            Intent startMyFavoriteContentsActivity = new Intent(this,
-                    MyFavoriteContentsActivity.class);
+            Intent startMyFavoriteContentsActivity = new Intent(this, MyFavoriteContentsActivity.class);
             startActivity(startMyFavoriteContentsActivity);
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_setting) {
+            Intent startSettingActivity = new Intent(this, SettingActivity.class);
+            startActivity(startSettingActivity);
         } else if (id == R.id.nav_logout) {
             doLogout(mUserSharedPreference.getUserSnsType());
         }
@@ -171,30 +170,31 @@ public class MainActivity extends AppCompatActivity
                     .bitmapTransform(new CropCircleTransformation(MainActivity.this))
                     .into(mUserProfileImageView);
             mUserNameTextView.setText(String.valueOf(mUserSharedPreference.getUserName()));
-            if (mUserSharedPreference.getUserSnsType() == FACEBOOK_TYPE) {
+            if (mUserSharedPreference.getUserSnsType() == KAKAO_TYPE) {
+                mUserEmailTextView.setText("");
+            } else {
                 mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
             }
         }
     }
 
-    protected void resetNavHeaderMain(){
-        //Glide.with(MainActivity.this).load("")
-        //        .into(mUserProfileImageView);
-        //mUserNameTextView.setText(String.valueOf(mUserSharedPreference.getUserName()));
-        //mUserEmailTextView.setText(mUserSharedPreference.getUserEmail());
-    }
-
     private void doLogout(int userSnsType) {
-        if(userSnsType == KAKAO_TYPE) {
+        if(userSnsType == NAVER_TYPE){
+            OAuthLogin.getInstance().logout(this);
+            Snackbar.make(mNavigationView, R.string.logout_success, Snackbar.LENGTH_LONG ).show();
+        } else if(userSnsType == KAKAO_TYPE) {
             UserManagement.requestLogout(new LogoutResponseCallback() {
                 @Override
                 public void onCompleteLogout() {
                     Snackbar.make(mNavigationView, R.string.logout_success, Snackbar.LENGTH_LONG ).show();
                 }
             });
+        } else if(userSnsType == FACEBOOK_TYPE) {
+            LoginManager.getInstance().logOut();
+            Snackbar.make(mNavigationView, R.string.logout_success, Snackbar.LENGTH_LONG ).show();
         }
         mUserSharedPreference.resetUserInfo();
-        HeaderViewHolder hvh = new HeaderViewHolder(mNavigationView.getHeaderView(0));
-        //hvh.resetNavHeaderMain();
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }

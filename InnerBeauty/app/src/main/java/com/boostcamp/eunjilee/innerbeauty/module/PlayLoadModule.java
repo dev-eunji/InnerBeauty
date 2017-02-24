@@ -37,17 +37,18 @@ public class PlayLoadModule {
                     PlayModel playModel = response.body();
                     callback.success(playModel);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("PlayLoadModule Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<PlayModel> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Async Callback");
+                Log.d("PlayLoadModule Retrofit", "Fail to Async Callback");
                 callback.error(t);
             }
         });
     }
+
     public static void addClickNumToPlay(int playId, final PlayService.addClickNumCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
@@ -62,16 +63,17 @@ public class PlayLoadModule {
                 if (response.isSuccessful()) {
                     callback.success();
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("PlayLoadModule Retrofit", "Error Http Code = " + response.code());
                 }
             }
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("PlayLoadModule Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
     }
+
     public static void getPlayListByAsync(int page, final PlayService.getPlayListCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
@@ -87,13 +89,13 @@ public class PlayLoadModule {
                     List<PlayModel> playModelList = response.body();
                     callback.success(playModelList);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("PlayLoadModule Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<PlayModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Async Callback");
+                Log.d("PlayLoadModule Retrofit", "Fail to Async Callback");
                 callback.error(t);
             }
         });
@@ -117,17 +119,15 @@ public class PlayLoadModule {
                     List<PlayModel> favoritePlayModelList = response.body();
                     callback.success(favoritePlayModelList);
                 } else {
-                    Log.d("Retrofit", "Error Http Code = " + response.code());
+                    Log.d("PlayLoadModule Retrofit", "Error Http Code = " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<PlayModel>> call, Throwable t) {
-                Log.d("Retrofit", "Fail to Asnyc Callback");
+                Log.d("PlayLoadModule Retrofit", "Fail to Asnyc Callback");
                 callback.error(t);
             }
         });
     }
-
-
 }

@@ -49,7 +49,7 @@ class ContentsModel extends CI_Model {
             'contents_type' => $data['contents_type']
         );
         $this->db->insert('favorite_contents', $favoriteContents);
-        return $data;
+        return $favoriteContents;
     }
     
     function deleteFavoriteContents($data){

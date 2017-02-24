@@ -24,10 +24,8 @@ import butterknife.ButterKnife;
 
 public class PlayFragment extends Fragment {
     private static final int PAGE = 1;
-
     @BindView(R.id.rv_play)
     protected RecyclerView mPlayRecyclerView;
-
     private List<PlayModel> mPlayList;
     private PlayAdapter mPlayAdapter;
 
@@ -39,6 +37,12 @@ public class PlayFragment extends Fragment {
         initRecyclerView();
         loadPlayList();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPlayAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {

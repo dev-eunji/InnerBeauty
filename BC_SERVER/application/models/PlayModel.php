@@ -48,7 +48,6 @@ class PlayModel extends CI_Model {
         $this->db->select('hb.play_id, hb.play_code, hb.play_title, hb.play_actors, hb.start_date, hb.end_date, hb.play_time, hb.play_run_time, hb.play_place, hb.play_address, hb.play_picture,hb.play_price_adult, hb.play_price_student, hb.play_price_children, hb.play_price_old_infirm,hb.play_price, hb.play_call, hb.play_site, hb.play_detail_info, hb.play_ticket_site1, hb.play_ticket_site2');
         $this->db->from('play as hb');
         $this->db->order_by('hb.play_id','DESC');
-        //$this->db->limit(2,$page*2);
         $query = $this->db->get();
         $pos = 0;
         foreach($query->result() as $row){
@@ -88,6 +87,7 @@ class PlayModel extends CI_Model {
         $this->db->select('hb.play_id, hb.play_code, hb.play_title, hb.play_actors, hb.start_date, hb.end_date, hb.play_time, hb.play_run_time, hb.play_place, hb.play_address, hb.play_picture,hb.play_price_adult, hb.play_price_student, hb.play_price_children, hb.play_price_old_infirm,hb.play_price, hb.play_call, hb.play_site, hb.play_detail_info, hb.play_ticket_site1, hb.play_ticket_site2');
         $this->db->from('play as hb');
         $this->db->order_by('hb.play_clicked', 'DESC');
+        $this->db->limit(7);
         $query = $this->db->get();
         $pos = 0;
         foreach($query->result() as $row){

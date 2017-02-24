@@ -57,7 +57,6 @@ public class NaverMapFragment extends Fragment {
     private NMapLocationManager mMapLocationManager;
     private NMapCompassManager mMapCompassManager;
     private NMapViewerResourceProvider mMapViewerResourceProvider;
-
     private String mAddress;
     private static final String CLIENT_ID = "IIUrL9SHY62I8qM3OdtT";// 애플리케이션 클라이언트 아이디 값
 
@@ -85,7 +84,8 @@ public class NaverMapFragment extends Fragment {
         mNMapView.setClickable(true);
         mNMapView.setOnMapStateChangeListener(onMapViewStateChangeListener);
         mNMapView.setOnMapViewTouchEventListener(onMapViewTouchEventListener);
-
+        mNMapView.setBuiltInZoomControls(true, null);
+        mNMapView.setScalingFactor(1.5f);
         // create resource provider
         mMapViewerResourceProvider = new NMapViewerResourceProvider(getContext());
 
@@ -113,7 +113,6 @@ public class NaverMapFragment extends Fragment {
                 });
     }
 
-
     /* MapView State Change Listener*/
     private final NMapView.OnMapStateChangeListener onMapViewStateChangeListener = new NMapView.OnMapStateChangeListener() {
         @Override
@@ -123,7 +122,7 @@ public class NaverMapFragment extends Fragment {
                 //restoreInstanceState();
                 new TedPermission(getContext())
                         .setPermissionListener(permissionlistenerLocation)
-                        .setDeniedMessage("If you reject permission,you can not use setting address service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                        .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
                         .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                         .check();
             } else { // fail
@@ -242,7 +241,7 @@ public class NaverMapFragment extends Fragment {
 
         @Override
         public void onCalloutClick(NMapPOIdataOverlay poiDataOverlay, NMapPOIitem item) { // POI가 클릭되면 호출
-            Snackbar.make(mNMapView, item.getTitle() + item.getHeadText(), Snackbar.LENGTH_LONG).show();
+            mNMapView.executeNaverMap();
         }
 
         @Override
@@ -262,7 +261,7 @@ public class NaverMapFragment extends Fragment {
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(getContext(),
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-                startMyLocation();
+                    //startMyLocation();
             } else {
                 Snackbar.make(mNMapView, "Location Permission Denied\n", Snackbar.LENGTH_SHORT).show();
             }
@@ -292,12 +291,7 @@ public class NaverMapFragment extends Fragment {
 
         @Override
         public boolean onLocationChanged(NMapLocationManager locationManager, NGeoPoint myLocation) {
-
-//            if (mMapController != null) {
-//                mMapController.animateTo(myLocation);
-//            }
-//
-//            return true;
+            mMapContext.findPlacemarkAtLocation(myLocation.getLongitude(), myLocation.getLatitude());
             Log.d("myLog", "myLocation  lat " + myLocation.getLatitude());
             Log.d("myLog", "myLocation  lng " + myLocation.getLongitude());
 
@@ -308,23 +302,12 @@ public class NaverMapFragment extends Fragment {
 
         @Override
         public void onLocationUpdateTimeout(NMapLocationManager locationManager) {
-
-            // stop location updating
-            //			Runnable runnable = new Runnable() {
-            //				public void run() {
-            //					stopMyLocation();
-            //				}
-            //			};
-            //			runnable.run();
-
             //Snackbar.make(mNMapView, "Your current location is temporarily unavailable.", Snackbar.LENGTH_LONG).show();
         }
 
         @Override
         public void onLocationUnavailableArea(NMapLocationManager locationManager, NGeoPoint myLocation) {
-
             Snackbar.make(mNMapView, "Your current location is unavailable area.", Snackbar.LENGTH_LONG).show();
-
             stopMyLocation();
         }
 
@@ -336,12 +319,8 @@ public class NaverMapFragment extends Fragment {
 
             if (mNMapView.isAutoRotateEnabled()) {
                 mMyLocationOverlay.setCompassHeadingVisible(false);
-
                 mMapCompassManager.disableCompass();
-
                 mNMapView.setAutoRotateEnabled(false, false);
-
-                //MapContainer.requestLayout();
             }
         }
     }

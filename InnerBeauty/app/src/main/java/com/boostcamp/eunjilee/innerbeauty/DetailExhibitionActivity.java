@@ -1,14 +1,18 @@
 package com.boostcamp.eunjilee.innerbeauty;
 
+import static android.view.View.GONE;
+
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,16 +20,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.boostcamp.eunjilee.innerbeauty.fragment.NaverMapFragment;
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
 import com.bumptech.glide.Glide;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.kakao.kakaolink.AppActionBuilder;
-import com.kakao.kakaolink.AppActionInfoBuilder;
 import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
@@ -33,19 +35,20 @@ import com.kakao.util.KakaoParameterException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailExhibitionActivity extends AppCompatActivity {
-
+    @BindView(R.id.app_bar)
+    protected AppBarLayout mAppBarLayout;
     @BindView(R.id.fab)
     protected FloatingActionButton mFab;
     @BindView(R.id.fab_naver)
     protected FloatingActionButton mNaverFab;
+    @BindView(R.id.fab_naver_band)
+    protected FloatingActionButton mNaverBandFab;
     @BindView(R.id.fab_kakao)
     protected FloatingActionButton mKakaoFab;
     @BindView(R.id.fab_facebook)
@@ -62,8 +65,22 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     protected TextView mPlaceTextView;
     @BindView(R.id.tv_price_value)
     protected TextView mPriceTextView;
+    @BindView(R.id.tv_address_value)
+    protected TextView mAddressTextView;
     @BindView(R.id.tv_call_value)
     protected TextView mCallTextView;
+    @BindView(R.id.tv_ticket_site1_label)
+    protected TextView mTicketSite1Label;
+    @BindView(R.id.tv_ticket_site2_label)
+    protected TextView mTicketSite2Label;
+    @BindView(R.id.imgv_ticket_site2)
+    protected ImageView mTicketSite2ImageView;
+    @BindView(R.id.tv_ticket_site1_value)
+    protected TextView mTicketSiteTextView1;
+    @BindView(R.id.tv_ticket_site2_value)
+    protected TextView mTicketSiteTextView2;
+    @BindView(R.id.tv_detail_info_value)
+    protected TextView mDetailInfoTextView;
     @BindView(R.id.toolbar_detail)
     protected Toolbar mToolbar;
 
@@ -71,18 +88,19 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     private boolean mFabStatus = false;
     private Animation mFabShowAnimation;
     private Animation mFabHideAnimation;
-
     private ExhibitionModel mExhibition;
+    private boolean mShowMapFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exhibition_detail);
+        setContentView(R.layout.activity_detail_exhibition);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         mExhibition = (ExhibitionModel) intent.getSerializableExtra("Exhibition");
         mToolbar.setTitle(mExhibition.getExhibitionTitle());
         setSupportActionBar(mToolbar);
+        mAppBarLayout.setExpanded(false);
         initDetailExhibitionInfo();
         initFabAnimation();
     }
@@ -93,9 +111,20 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         mOpenTimeTextView.setText(mExhibition.getOpenTime() + " ~ " + mExhibition.getCloseTime());
         mCloseDateTextView.setText(mExhibition.getCloseDate());
         mPlaceTextView.setText(mExhibition.getExhibitionPlace());
-        mPlaceTextView.setText(mExhibition.getExhibitionAddress());
-        mPriceTextView.setText("어른 : " + mExhibition.getPriceAdult() + " 어린이 : " + mExhibition.getPriceChildren());
+        mAddressTextView.setText(mExhibition.getExhibitionAddress());
+        mPriceTextView.setText(mExhibition.getPriceExhibition());
         mCallTextView.setText(mExhibition.getExhibitionCall());
+        if(mExhibition.getExhibitionTicketSite2()==null){
+            mTicketSite1Label.setText("예매 사이트");
+            mTicketSiteTextView1.setText(mExhibition.getExhibitionTicketSite1());
+            mTicketSite2Label.setVisibility(GONE);
+            mTicketSiteTextView2.setVisibility(GONE);
+            mTicketSite2ImageView.setVisibility(GONE);
+        } else{
+            mTicketSiteTextView1.setText(mExhibition.getExhibitionTicketSite1());
+            mTicketSiteTextView2.setText(mExhibition.getExhibitionTicketSite2());
+        }
+        mDetailInfoTextView.setText(mExhibition.getExhibitionDetailInfo());
     }
 
     private void initFabAnimation() {
@@ -115,16 +144,25 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.tv_real_map)
-    public void shoqRealMapAction() {
-        //Intent showMap = new Intent(this, MapActivity.class);
-        //startActivity(showMap);
+    public void showRealMapAction() {
+        if(!mShowMapFlag) {
+            mShowMapFlag = true;
+            Bundle bundle = new Bundle();
+            bundle.putString("address", mExhibition.getExhibitionAddress());
+            NaverMapFragment naverMapFragment = new NaverMapFragment();
+            naverMapFragment.setArguments(bundle);
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.add(R.id.ll_naver_map, naverMapFragment);
+            fragmentTransaction.commit();
+        }
     }
 
     @OnClick(R.id.tv_real_call)
     public void checkPermissionForRealCall() {
         new TedPermission(this)
                 .setPermissionListener(permissionlistenerCall)
-                .setDeniedMessage("If you reject permission,you can not use setting address service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .check();
     }
@@ -141,6 +179,20 @@ public class DetailExhibitionActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab_naver)
     public void shareNaver(View view) {
+        try {
+            String encodedURL = URLEncoder.encode(mExhibition.getExhibitionSite(), "utf-8");
+            String encodedTitle = URLEncoder.encode("[ " + mExhibition.getExhibitionTitle() + " ] _InnerBeuty","utf-8");
+            Uri uri = Uri.parse("http://share.naver.com/web/shareView.nhn?url=" + encodedURL
+                    + "&title=" + encodedTitle );
+            Intent naverIntent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(naverIntent);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @OnClick(R.id.fab_naver_band)
+    public void shareNaverBand(View view) {
         PackageManager packageManager = getBaseContext().getPackageManager();
         Intent intent = packageManager.getLaunchIntentForPackage("com.nhn.android.band");
         if(intent == null){
@@ -149,9 +201,13 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         } else{
             try {
                 String serviceDomain = APP_WEB_SITE; //앱 도메인 ( 임시:앱 소개 사이트)
-                String encodedText = URLEncoder.encode(mExhibition.getExhibitionTitle() + "\n"
-                        + mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate()
-                        + "\n" + mExhibition.getExhibitionPlace(), "utf-8");
+                StringBuilder sb = new StringBuilder();
+                sb.append("[ " ).append(mExhibition.getExhibitionTitle()).append(" ]\n")
+                        .append("전시 기간: ").append(mExhibition.getStartDate()).append(" ~ ").append(mExhibition.getEndDate()).append("\n")
+                        .append("장소: ").append(mExhibition.getExhibitionPlace()).append("\n")
+                        .append("주소: ").append(mExhibition.getExhibitionPlace())
+                        .append("상세 정보 ").append(mExhibition.getExhibitionDetailInfo());
+                String encodedText = URLEncoder.encode(sb.toString(), "utf-8");
                 Uri uri = Uri.parse("bandapp://create/post?text=" + encodedText
                         + "&route=" + serviceDomain);
                 Intent bandIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -161,18 +217,19 @@ public class DetailExhibitionActivity extends AppCompatActivity {
             }
         }
     }
-
-    // TODO : Dialog들끼리 빼내기
     @OnClick(R.id.fab_kakao)
     void shareKakao(View view) {
         try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[ " ).append(mExhibition.getExhibitionTitle()).append(" ]\n")
+                    .append("전시 기간: ").append(mExhibition.getStartDate()).append(" ~ ").append(mExhibition.getEndDate()).append("\n")
+                    .append("장소: ").append(mExhibition.getExhibitionPlace()).append("\n")
+                    .append("주소: ").append(mExhibition.getExhibitionAddress());
             final KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
             final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-            kakaoTalkLinkMessageBuilder.addText(mExhibition.getExhibitionTitle() + "\n"
-                    + mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate()
-                    + "\n" + mExhibition.getExhibitionPlace());
-            kakaoTalkLinkMessageBuilder.addImage(mExhibition.getExhibitionPicture(), 160, 160);
-            kakaoTalkLinkMessageBuilder.addWebButton(APP_WEB_SITE);
+            kakaoTalkLinkMessageBuilder.addText(sb.toString());
+            kakaoTalkLinkMessageBuilder.addImage(mExhibition.getExhibitionPicture(), 100, 150);
+            //kakaoTalkLinkMessageBuilder.addWebButton(APP_WEB_SITE);
             //kakaoTalkLinkMessageBuilder.addAppButton("")
             kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, this);
         } catch (KakaoParameterException e) {
@@ -184,17 +241,18 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     void shareFacebook() { // all must be not null
         ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
                 .setContentTitle(mExhibition.getExhibitionTitle())
-                //.setContentUrl(Uri.parse(mExhibition.getExhibitionSite()))
                 .setImageUrl(Uri.parse(mExhibition.getExhibitionPicture()))
-                .setContentDescription(mExhibition.getExhibitionAddress())
+                .setContentDescription(mExhibition.getExhibitionDetailInfo())
+                .setContentUrl(Uri.parse(mExhibition.getExhibitionSite()))
                 .build();
         ShareDialog.show(this, shareLinkContent);
     }
 
-    //TODO : 애니메이션
     private void expandFAB() {
         mNaverFab.startAnimation(mFabShowAnimation);
         mNaverFab.setClickable(true);
+        mNaverBandFab.startAnimation(mFabShowAnimation);
+        mNaverBandFab.setClickable(true);
         mKakaoFab.startAnimation(mFabShowAnimation);
         mKakaoFab.setClickable(true);
         mFaceBookFab.startAnimation(mFabShowAnimation);
@@ -205,6 +263,8 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     private void hideFAB() {
         mNaverFab.startAnimation(mFabHideAnimation);
         mNaverFab.setClickable(false);
+        mNaverBandFab.startAnimation(mFabHideAnimation);
+        mNaverBandFab.setClickable(false);
         mKakaoFab.startAnimation(mFabHideAnimation);
         mKakaoFab.setClickable(false);
         mFaceBookFab.startAnimation(mFabHideAnimation);
@@ -218,13 +278,13 @@ public class DetailExhibitionActivity extends AppCompatActivity {
             if (ActivityCompat.checkSelfPermission(DetailExhibitionActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                 realCallAction();
             } else {
-                Toast.makeText(DetailExhibitionActivity.this, "Phone call Permission Denied\n", Toast.LENGTH_SHORT).show();
+                Snackbar.make(mCallTextView, "Phone call Permission Denied\n", Snackbar.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-            Toast.makeText(DetailExhibitionActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            Snackbar.make(mCallTextView, "Permission Denied\n" + deniedPermissions.toString(), Snackbar.LENGTH_SHORT).show();
         }
     };
 }

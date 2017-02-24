@@ -8,55 +8,69 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/login_background"
+    android:background="@color/colorPrimary"
     tools:context="com.boostcamp.eunjilee.innerbeauty.LoginActivity">
 
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/login_title_image"
         android:contentDescription="@string/cd_login_img"
+        android:layout_above="@+id/btn_login_naver"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="90dp" />
+
+    <!--android:drawableTop="@drawable/share_btn_facebook"-->
+
+    <Button
+        android:id="@+id/btn_login_naver"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/login_btn_selector"
+        android:backgroundTint="@color/colorNaver"
+        android:text="@string/naver_login_label"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:layout_marginBottom="25dp"
+        tools:targetApi="lollipop"
+        android:elevation="6dp"
+        android:layout_above="@+id/btn_login_kakao"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_login_kakao"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:background="@drawable/login_btn_selector"
         android:backgroundTint="@color/colorKakao"
-        android:drawableTop="@drawable/share_btn_facebook"
-        android:layout_alignParentBottom="true"
+        android:text="@string/kakao_login_label"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:layout_marginBottom="25dp"
+        tools:targetApi="lollipop"
+        android:elevation="6dp"
+        android:layout_above="@+id/btn_login_facebook"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="13dp"
-        tools:targetApi="lollipop" />
-
-    <Button
-        android:id="@+id/btn_login_naver"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/login_btn_selector"
-        android:backgroundTint="@color/colorNaver"
-        android:drawableTop="@drawable/share_btn_facebook"
-        android:layout_above="@+id/btn_login_kakao"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="34dp"
-        tools:targetApi="lollipop" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_login_facebook"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:background="@drawable/login_btn_selector"
         android:backgroundTint="@color/colorFacebook"
-        android:drawableTop="@drawable/share_btn_facebook"
-        android:layout_above="@+id/btn_login_naver"
+        android:text="@string/facebook_login_label"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        tools:targetApi="lollipop"
+        android:elevation="6dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="31dp"
-        tools:targetApi="lollipop" />
+        android:layout_marginBottom="25dp" />
 
 </RelativeLayout>

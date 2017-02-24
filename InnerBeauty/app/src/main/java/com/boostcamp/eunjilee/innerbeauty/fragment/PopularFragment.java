@@ -30,12 +30,10 @@ import butterknife.ButterKnife;
 
 public class PopularFragment extends Fragment {
     private static final int PAGE = 1;
-
     @BindView(R.id.rv_popular_exhibition)
     protected RecyclerView mPopularExhibitionRecyclerView;
     @BindView(R.id.rv_popular_play)
     protected RecyclerView mPopularPlayRecyclerView;
-
     private List<ExhibitionModel> mPopularExhibitionList;
     private PopularExhibitionAdapter mPopularExhibitionAdapter;
     private List<PlayModel> mPopularPlayList;
@@ -52,6 +50,12 @@ public class PopularFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPopularExhibitionAdapter.notifyDataSetChanged();
+        mPopularPlayAdapter.notifyDataSetChanged();
+    }
 
     private void initRecyclerView() {
         mPopularExhibitionList = new ArrayList<>();
@@ -81,6 +85,7 @@ public class PopularFragment extends Fragment {
             }
         });
     }
+
     private void loadPlayList(){
         PlayLoadModule playLoadModule = new PlayLoadModule();
         playLoadModule.getGlobalFavoritePlayList(new PlayService.getGlobalFavoritePlayListCallback() {
