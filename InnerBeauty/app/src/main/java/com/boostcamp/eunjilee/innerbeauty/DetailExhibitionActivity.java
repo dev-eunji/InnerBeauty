@@ -3,7 +3,6 @@ package com.boostcamp.eunjilee.innerbeauty;
 import static android.view.View.GONE;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -21,7 +20,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.boostcamp.eunjilee.innerbeauty.fragment.NaverMapFragment;
 import com.boostcamp.eunjilee.innerbeauty.model.ExhibitionModel;
@@ -30,8 +28,6 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.kakao.kakaolink.AppActionBuilder;
-import com.kakao.kakaolink.AppActionInfoBuilder;
 import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
@@ -39,15 +35,12 @@ import com.kakao.util.KakaoParameterException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailExhibitionActivity extends AppCompatActivity {
-
     @BindView(R.id.app_bar)
     protected AppBarLayout mAppBarLayout;
     @BindView(R.id.fab)
@@ -96,12 +89,12 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     private Animation mFabShowAnimation;
     private Animation mFabHideAnimation;
     private ExhibitionModel mExhibition;
-    private boolean mShowMapFlag=false;
+    private boolean mShowMapFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exhibition_detail);
+        setContentView(R.layout.activity_detail_exhibition);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         mExhibition = (ExhibitionModel) intent.getSerializableExtra("Exhibition");
@@ -169,7 +162,7 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     public void checkPermissionForRealCall() {
         new TedPermission(this)
                 .setPermissionListener(permissionlistenerCall)
-                .setDeniedMessage("If you reject permission,you can not use setting address service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .check();
     }
@@ -208,11 +201,13 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         } else{
             try {
                 String serviceDomain = APP_WEB_SITE; //앱 도메인 ( 임시:앱 소개 사이트)
-                String encodedText = URLEncoder.encode("[ " + mExhibition.getExhibitionTitle() + " ] " + "\n"
-                        + "전시 기간: " + mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate()+ "\n"
-                        + "장소: " + mExhibition.getExhibitionPlace() + "\n"
-                        + "주소: " + mExhibition.getExhibitionAddress() + "\n"
-                        + "상세 정보 " + mExhibition.getExhibitionDetailInfo(), "utf-8");
+                StringBuilder sb = new StringBuilder();
+                sb.append("[ " ).append(mExhibition.getExhibitionTitle()).append(" ]\n")
+                        .append("전시 기간: ").append(mExhibition.getStartDate()).append(" ~ ").append(mExhibition.getEndDate()).append("\n")
+                        .append("장소: ").append(mExhibition.getExhibitionPlace()).append("\n")
+                        .append("주소: ").append(mExhibition.getExhibitionPlace())
+                        .append("상세 정보 ").append(mExhibition.getExhibitionDetailInfo());
+                String encodedText = URLEncoder.encode(sb.toString(), "utf-8");
                 Uri uri = Uri.parse("bandapp://create/post?text=" + encodedText
                         + "&route=" + serviceDomain);
                 Intent bandIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -225,12 +220,14 @@ public class DetailExhibitionActivity extends AppCompatActivity {
     @OnClick(R.id.fab_kakao)
     void shareKakao(View view) {
         try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[ " ).append(mExhibition.getExhibitionTitle()).append(" ]\n")
+                    .append("전시 기간: ").append(mExhibition.getStartDate()).append(" ~ ").append(mExhibition.getEndDate()).append("\n")
+                    .append("장소: ").append(mExhibition.getExhibitionPlace()).append("\n")
+                    .append("주소: ").append(mExhibition.getExhibitionAddress());
             final KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
             final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-            kakaoTalkLinkMessageBuilder.addText("[ " + mExhibition.getExhibitionTitle() + " ]"+ "\n"
-                    + "전시 기간: " + mExhibition.getStartDate() + " ~ " + mExhibition.getEndDate()+ "\n"
-                    + "장소: " + mExhibition.getExhibitionPlace()+ "\n"
-                    + "주소: " +mExhibition.getExhibitionPlace());
+            kakaoTalkLinkMessageBuilder.addText(sb.toString());
             kakaoTalkLinkMessageBuilder.addImage(mExhibition.getExhibitionPicture(), 100, 150);
             //kakaoTalkLinkMessageBuilder.addWebButton(APP_WEB_SITE);
             //kakaoTalkLinkMessageBuilder.addAppButton("")
@@ -251,7 +248,6 @@ public class DetailExhibitionActivity extends AppCompatActivity {
         ShareDialog.show(this, shareLinkContent);
     }
 
-    //TODO : 애니메이션
     private void expandFAB() {
         mNaverFab.startAnimation(mFabShowAnimation);
         mNaverFab.setClickable(true);

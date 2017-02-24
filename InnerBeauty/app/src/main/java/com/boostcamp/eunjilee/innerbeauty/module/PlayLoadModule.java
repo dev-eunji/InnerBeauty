@@ -48,6 +48,7 @@ public class PlayLoadModule {
             }
         });
     }
+
     public static void addClickNumToPlay(int playId, final PlayService.addClickNumCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
@@ -72,6 +73,7 @@ public class PlayLoadModule {
             }
         });
     }
+
     public static void getPlayListByAsync(int page, final PlayService.getPlayListCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)

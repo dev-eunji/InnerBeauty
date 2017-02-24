@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">InnerBeauty</string>
     <string name="activity_search_label">Search</string>
+    <string name="activity_opensource_library_license_label">오픈소스 라이브버리</string>
     <string name="activity_my_favorite_contents_label">나의 관심 작품</string>
     <string name="facebook_app_id">1415141601849975</string>
 
@@ -58,10 +59,58 @@
     <string name="snb_delete_favorite_play_fail">관심 연극 삭제를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
 
     <!-- license -->
-    <string name="license_butter_knife" />
-    <string name="license_retrofit" />
-    <string name="license_glide" />
+    <string name="license_butter_knife_name">Butter Knife</string>>
+    <string name="license_butter_knife">
+        Copyright 2013 Jake Wharton
 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+    </string>
+    <string name="license_retrofit_name">Retrofit</string>
+    <string name="license_retrofit">
+        Copyright 2013 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+    </string>
+    <string name="license_glide_name">Glide</string>
+    <string name="license_glide">
+        TODO: Glide추가해야되는데
+    </string>
+    <string name="license_ted_permission_name">TedPermission</string>
+    <string name="license_ted_permission">
+        Copyright 2016 Ted Park
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.```
+    </string>
     <string name="btn_search">검색</string>
     <string name="btn_show_map">위치보기</string>
     <string name="title_activity_setting">Settings</string>

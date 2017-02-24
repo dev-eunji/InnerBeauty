@@ -37,16 +37,16 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="colorAccent">#8593AE</color>
+    <color name="colorAccent">#F44336</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorFacebook">#3b5998</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorKakao">#fcd411</color>
-    <color name="colorNaver">#123456</color>
-    <color name="colorPrimarLight">#DD8C95</color>
+    <color name="colorNaver">#32AF0E</color>
+    <color name="colorPrimarLight">#D4E157</color>
     <color name="colorPrimarText">#212121</color>
-    <color name="colorPrimary">#DDA288</color>
-    <color name="colorPrimaryDark">#72675E</color>
+    <color name="colorPrimary">#C0CA33</color>
+    <color name="colorPrimaryDark">#9E9D24</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="com_facebook_blue">#3B5998</color>
     <color name="com_facebook_button_background_color">#415dae</color>
@@ -543,6 +543,7 @@
     <dimen name="com_kakao_padding">10dp</dimen>
     <dimen name="com_kakao_profile_property_margin">10dp</dimen>
     <dimen name="com_kakao_profile_property_text">15sp</dimen>
+    <dimen name="contents_detail_app_bar_height">300dp</dimen>
     <dimen name="design_appbar_elevation">4dp</dimen>
     <dimen name="design_bottom_navigation_active_item_max_width">168dp</dimen>
     <dimen name="design_bottom_navigation_active_text_size">14sp</dimen>
@@ -596,6 +597,7 @@
     <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="naver_map_height">300dp</dimen>
     <dimen name="notification_action_icon_size">32dp</dimen>
     <dimen name="notification_action_text_size">13sp</dimen>
     <dimen name="notification_big_circle_margin">12dp</dimen>
@@ -679,18 +681,21 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="action_settings">Settings</string>
     <string name="activity_my_favorite_contents_label">나의 관심 작품</string>
+    <string name="activity_opensource_library_license_label">오픈소스 라이브버리</string>
     <string name="activity_search_label">Search</string>
     <string name="address_label">주소</string>
     <string name="app_name">InnerBeauty</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="btn_search">검색</string>
+    <string name="btn_show_map">위치보기</string>
     <string name="call_label">문의전화</string>
     <string name="cd_detail_exhibition">전시 상세 이미지</string>
     <string name="cd_detail_play">연극 상세 이미지</string>
     <string name="cd_favorite_contents_list_item_img">favorite 이미지</string>
     <string name="cd_list_exhibition">전시 이미지</string>
     <string name="cd_list_play">연극 이미지</string>
+    <string name="cd_list_search">검색 이미지</string>
     <string name="cd_login_img">로그인 이미지</string>
     <string name="cd_user_profile">사용자 프로필 이미지</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
@@ -743,20 +748,71 @@
     <string name="com_kakao_tokeninfo_button">Token Info</string>
     <string name="com_kakao_unlink_button">Unlink</string>
     <string name="core_com_kakao_sdk_loading">Loading…</string>
+    <string name="detail_info_label">상세정보</string>
     <string name="facebook_app_id">1415141601849975</string>
+    <string name="facebook_login_label">페이스북으로 로그인하기</string>
     <string name="kakao_app_key">1b1c49678aa37601f38222d4fc3423a5</string>
+    <string name="kakao_login_label">카카오톡으로 로그인하기</string>
     <string name="kakao_scheme">kakao1b1c49678aa37601f38222d4fc3423a5</string>
     <string name="kakaolink_host">kakaolink</string>
-    <string name="license_butter_knife"/>
-    <string name="license_glide"/>
-    <string name="license_retrofit"/>
+    <string name="license_butter_knife">
+        Copyright 2013 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+    </string>
+    <string name="license_butter_knife_name">Butter Knife</string>
+    <string name="license_glide">
+        TODO: Glide추가해야되는데
+    </string>
+    <string name="license_glide_name">Glide</string>
+    <string name="license_retrofit">
+        Copyright 2013 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+    </string>
+    <string name="license_retrofit_name">Retrofit</string>
+    <string name="license_ted_permission">
+        Copyright 2016 Ted Park
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.```
+    </string>
+    <string name="license_ted_permission_name">TedPermission</string>
     <string name="logout_success">로그아웃 되었습니다.</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="nav_logout">로그아웃</string>
     <string name="nav_my_like_label">나의 관심 작품</string>
-    <string name="nav_send">보내기</string>
     <string name="nav_setting">Setting</string>
-    <string name="nav_share">공유하기</string>
+    <string name="naver_login_label">네이버로 로그인하기</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="open_time_label">시간</string>
@@ -772,6 +828,7 @@
     <string name="price_label">입장료</string>
     <string name="real_call_label">전화걸기</string>
     <string name="real_map_label">지도보기</string>
+    <string name="runtime_label">런타임</string>
     <string name="search_menu_title">Search</string>
     <string name="snb_add_favorite_exhibition_fail">관심 전시 추가를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
     <string name="snb_add_favorite_exhibition_success">관심 전시에 추가되었습니다.</string>
@@ -789,7 +846,10 @@
     <string name="tedpermission_close">Close</string>
     <string name="tedpermission_confirm">Confirm</string>
     <string name="tedpermission_setting">Setting</string>
+    <string name="ticket_site1_label">예매 사이트1</string>
+    <string name="ticket_site2_label">예매 사이트2</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_setting">Settings</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

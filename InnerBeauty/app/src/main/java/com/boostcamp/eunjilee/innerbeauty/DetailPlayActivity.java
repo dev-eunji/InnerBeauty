@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -42,6 +41,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailPlayActivity extends AppCompatActivity {
+    @BindView(R.id.app_bar)
+    protected AppBarLayout mAppBarLayout;
     @BindView(R.id.fab)
     protected FloatingActionButton mFab;
     @BindView(R.id.fab_naver)
@@ -93,12 +94,13 @@ public class DetailPlayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_detail);
+        setContentView(R.layout.activity_detail_play);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         mPlay = (PlayModel)intent.getSerializableExtra("Play");
         mToolbar.setTitle(mPlay.getPlayTitle());
         setSupportActionBar(mToolbar);
+        mAppBarLayout.setExpanded(false);
         initDetailPlayInfo();
         initFabAnimation();
     }
@@ -164,7 +166,7 @@ public class DetailPlayActivity extends AppCompatActivity {
     public void checkPermissionForRealCall() {
         new TedPermission(this)
                 .setPermissionListener(permissionlistenerCall)
-                .setDeniedMessage("If you reject permission,you can not use setting address service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .check();
     }
@@ -203,12 +205,14 @@ public class DetailPlayActivity extends AppCompatActivity {
         } else{
             try {
                 String serviceDomain = APP_WEB_SITE; //앱 도메인 ( 임시:앱 소개 사이트)
-                String encodedText = URLEncoder.encode("[ " + mPlay.getPlayTitle() + " ] " + "\n"
-                        + "전시 기간: " + mPlay.getPlayTime() + "\n"
-                        + "런타임: " + mPlay.getPlayRunTime() + "\n"
-                        + "장소: " + mPlay.getPlayPlace() + "\n"
-                        + "주소: " + mPlay.getPlayAddress() + "\n"
-                        + "상세 정보 " + mPlay.getPlayDetailInfo(), "utf-8");
+
+                StringBuilder sb = new StringBuilder();
+                sb.append("[ " ).append(mPlay.getPlayTitle()).append(" ]\n")
+                        .append("시간: ").append(mPlay.getPlayTime()).append("\n")
+                        .append("런타인: ").append(mPlay.getPlayRunTime()).append("\n")
+                        .append("장소: ").append(mPlay.getPlayPlace())
+                        .append("주소 ").append(mPlay.getPlayAddress());
+                String encodedText = URLEncoder.encode(sb.toString(), "utf-8");
                 Uri uri = Uri.parse("bandapp://create/post?text=" + encodedText
                         + "&route=" + serviceDomain);
                 Intent bandIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -221,13 +225,15 @@ public class DetailPlayActivity extends AppCompatActivity {
     @OnClick(R.id.fab_kakao)
     void shareKakao(View view) {
         try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[ " ).append(mPlay.getPlayTitle()).append(" ]\n")
+                    .append("시간: ").append(mPlay.getPlayTime()).append("\n")
+                    .append("런타인: ").append(mPlay.getPlayRunTime()).append("\n")
+                    .append("장소: ").append(mPlay.getPlayPlace())
+                    .append("주소 ").append(mPlay.getPlayAddress());
             final KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
             final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-            kakaoTalkLinkMessageBuilder.addText("[ " + mPlay.getPlayTitle() + " ]"+ "\n"
-                    + "시간: " + mPlay.getPlayTime()+ "\n"
-                    + "런타임: " + mPlay.getPlayRunTime()+ "\n"
-                    + "장소: " + mPlay.getPlayPlace()+ "\n"
-                    + "주소: " +mPlay.getPlayPlace());
+            kakaoTalkLinkMessageBuilder.addText(sb.toString());
             kakaoTalkLinkMessageBuilder.addImage(mPlay.getPlayPicture(), 100, 150);
             //kakaoTalkLinkMessageBuilder.addWebButton(APP_WEB_SITE);
             //kakaoTalkLinkMessageBuilder.addAppButton("")
@@ -236,7 +242,6 @@ public class DetailPlayActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     @OnClick(R.id.fab_facebook)
     void shareFacebook() { // all must be not null

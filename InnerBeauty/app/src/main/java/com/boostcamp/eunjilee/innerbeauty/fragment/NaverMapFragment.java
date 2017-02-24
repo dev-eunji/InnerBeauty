@@ -57,7 +57,6 @@ public class NaverMapFragment extends Fragment {
     private NMapLocationManager mMapLocationManager;
     private NMapCompassManager mMapCompassManager;
     private NMapViewerResourceProvider mMapViewerResourceProvider;
-
     private String mAddress;
     private static final String CLIENT_ID = "IIUrL9SHY62I8qM3OdtT";// 애플리케이션 클라이언트 아이디 값
 
@@ -114,7 +113,6 @@ public class NaverMapFragment extends Fragment {
                 });
     }
 
-
     /* MapView State Change Listener*/
     private final NMapView.OnMapStateChangeListener onMapViewStateChangeListener = new NMapView.OnMapStateChangeListener() {
         @Override
@@ -124,7 +122,7 @@ public class NaverMapFragment extends Fragment {
                 //restoreInstanceState();
                 new TedPermission(getContext())
                         .setPermissionListener(permissionlistenerLocation)
-                        .setDeniedMessage("If you reject permission,you can not use setting address service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                        .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
                         .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                         .check();
             } else { // fail

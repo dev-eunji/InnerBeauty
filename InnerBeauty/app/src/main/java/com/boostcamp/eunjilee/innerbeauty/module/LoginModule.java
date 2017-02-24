@@ -44,7 +44,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginModule {
     private final static String SERVER_URL = SERVER_PREFIX + "Users/";
-
     private static UserSharedPreference mUserSharedPreference;
 
     public LoginModule(Context context) {
@@ -108,9 +107,7 @@ public class LoginModule {
                         tag = parser.getName();
                         inText = false;
                         break;
-
                 }
-
                 parserEvent = parser.next();
             }
         } catch (Exception e) {
@@ -121,7 +118,6 @@ public class LoginModule {
         userId = f_array[6];
         userName = f_array[7];
         registerUserWithSNS(Long.valueOf(userId), userName, userEmail, userProfilePicture, NAVER_TYPE, callback);
-
     }
 
     public static void loginWithFacebook(LoginResult loginResult, final LoginService.LoginCallback loginCallback) {

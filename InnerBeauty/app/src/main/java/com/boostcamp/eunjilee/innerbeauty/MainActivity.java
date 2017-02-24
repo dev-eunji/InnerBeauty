@@ -40,7 +40,6 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
     @BindView(R.id.nav_view)
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity
     protected TabLayout mTabLayout;
     @BindView(R.id.main_view_papger)
     protected ViewPager mViewPager;
-
     private UserSharedPreference mUserSharedPreference;
 
     @Override

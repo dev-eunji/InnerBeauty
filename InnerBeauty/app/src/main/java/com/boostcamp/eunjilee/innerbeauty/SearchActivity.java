@@ -1,12 +1,15 @@
 package com.boostcamp.eunjilee.innerbeauty;
 
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.boostcamp.eunjilee.innerbeauty.adapter.SearchContentsAdapter;
@@ -26,16 +29,18 @@ public class SearchActivity extends AppCompatActivity {
     protected EditText mSearchEditText;
     @BindView(R.id.rv_search_contents)
     protected RecyclerView mSearchRecyclerView;
-
     private List<SearchContentsModel> mSearchContentsList;
     private SearchContentsAdapter mSearchContentsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
         initRecyclerView();
-
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -50,7 +55,15 @@ public class SearchActivity extends AppCompatActivity {
         };
         mSearchEditText.addTextChangedListener(textWatcher);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @OnClick(R.id.btn_search)
     void searchContents(){
         SearchModule searchModule = new SearchModule();

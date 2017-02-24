@@ -16,7 +16,6 @@ import com.kakao.auth.KakaoSDK;
  */
 
 public class InnerBeautyActivity extends Application {
-
     //TODO: Do not place Android context classes in static fields; this is a memory leak (and also breaks Instant Run)
     private static Activity mCurrentActivity;
     private static Application mApplication;

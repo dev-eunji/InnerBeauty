@@ -18,7 +18,6 @@ import com.bumptech.glide.load.resource.bitmap.BitmapResource;
  * Created by eunjilee on 09/02/2017.
  */
 public class RoundedCornersTransformation implements Transformation<Bitmap> {
-
     private BitmapPool mBitmapPool;
     private int mRadius;
     private int mDiameter;

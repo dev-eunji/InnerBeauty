@@ -60,12 +60,13 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
 
     @Override
     public int getItemCount() {
-        if (mMyFavoriteContentsList == null)
+        if (mMyFavoriteContentsList == null) {
             return 0;
-        else
+        } else {
             return mMyFavoriteContentsList.size();
+        }
     }
-
+    
     class MyFavoriteContentsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_my_favorite_contents)
         protected ImageView mMyFavoriteContentsContentsImageView;

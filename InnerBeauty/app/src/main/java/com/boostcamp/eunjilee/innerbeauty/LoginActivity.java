@@ -195,18 +195,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UserProfile userProfile) {
                 mLoginModule.loginWithKakao(new LoginService.LoginCallback() {
-                @Override
-                public void success() {
-                    moveToMainActivity();
-                }
-
-                @Override
-                public void error(Throwable throwable) {
-                    Log.v("LOGIN ERROR", "LOGINERROR_kakao");
-                }
-            });
-
-
+                    @Override
+                    public void success() {
+                        moveToMainActivity();
+                    }
+                    @Override
+                    public void error(Throwable throwable) {
+                        Log.v("LOGIN ERROR", "LOGINERROR_kakao");
+                    }
+                 });
             }
 
             @Override
@@ -216,9 +213,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     private class RequestApiTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -252,6 +246,4 @@ public class LoginActivity extends AppCompatActivity {
         private void Pasingversiondata(String data) { // xml 파싱
         }
     }
-
-
 }
