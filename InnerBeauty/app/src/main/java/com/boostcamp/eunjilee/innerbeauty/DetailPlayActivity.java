@@ -182,7 +182,7 @@ public class DetailPlayActivity extends AppCompatActivity {
     public void checkPermissionForRealCall() {
         new TedPermission(this)
                 .setPermissionListener(permissionlistenerCall)
-                .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
+                .setDeniedMessage(getString(R.string.permission_call_deny_ment))
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .check();
     }
@@ -201,7 +201,7 @@ public class DetailPlayActivity extends AppCompatActivity {
     public void shareNaver(View view) {
         try {
             String encodedURL = URLEncoder.encode(mPlay.getPlayTicketSite1(), "utf-8");
-            String encodedTitle = URLEncoder.encode("[ " + mPlay.getPlayTitle() + " ] _InnerBeuty","utf-8");
+            String encodedTitle = URLEncoder.encode("[ " + mPlay.getPlayTitle() + " ] _InnerBeauty","utf-8");
             Uri uri = Uri.parse("http://share.naver.com/web/shareView.nhn?url=" + encodedURL
                     + "&title=" + encodedTitle );
             Intent naverIntent = new Intent(Intent.ACTION_VIEW, uri);

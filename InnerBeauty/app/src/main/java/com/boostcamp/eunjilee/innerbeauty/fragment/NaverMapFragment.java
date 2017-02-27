@@ -116,7 +116,7 @@ public class NaverMapFragment extends Fragment {
                 //restoreInstanceState();
                 new TedPermission(getContext())
                         .setPermissionListener(permissionlistenerLocation)
-                        .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
+                        .setDeniedMessage(getString(R.string.permission_map_deny_ment))
                         .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                         .check();
             } else { // fail

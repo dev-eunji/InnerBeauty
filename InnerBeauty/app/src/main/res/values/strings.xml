@@ -86,4 +86,8 @@
     <string name="naver_login_label">네이버로 로그인하기</string>
     <string name="kakao_login_label">카카오톡으로 로그인하기</string>
     <string name="facebook_login_label">페이스북으로 로그인하기</string>
+
+    <!--Permission Deny-->
+    <string name="permission_call_deny_ment">권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.</string>
+    <string name="permission_map_deny_ment">권한을 거절하시면 지도를 사용하실 수 없습니다\n\n[Setting] > [Permission]에서 권한을 켜주세요.</string>
 </resources>
