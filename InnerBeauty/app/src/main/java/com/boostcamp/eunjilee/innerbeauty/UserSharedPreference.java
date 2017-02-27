@@ -25,7 +25,6 @@ public class UserSharedPreference {
         mEditor = mSharedPreference.edit();
     }
 
-
     public void setUserInfo(UserModel userModel) {
         mEditor.putLong(USER_ID, userModel.getUserId());
         mEditor.putString(USER_NAME, userModel.getUserName());
@@ -34,7 +33,6 @@ public class UserSharedPreference {
         mEditor.putInt(USER_SNS_TYPE, userModel.getLoginSnsType());
         mEditor.apply();
     }
-
 
     public void resetUserInfo(){
         mEditor = mSharedPreference.edit();

@@ -1,4 +1,4 @@
-package com.boostcamp.eunjilee.innerbeauty;
+package com.boostcamp.eunjilee.innerbeauty.nmap;
 /*
  * Copyright 2016 NAVER Corp.
  *

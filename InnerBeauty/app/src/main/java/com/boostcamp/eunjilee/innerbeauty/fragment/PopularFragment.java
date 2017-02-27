@@ -30,9 +30,11 @@ import butterknife.ButterKnife;
 
 public class PopularFragment extends Fragment {
     private static final int PAGE = 1;
+
     @BindView(R.id.rv_popular_exhibition)
     protected RecyclerView mPopularExhibitionRecyclerView;
     @BindView(R.id.rv_popular_play)
+
     protected RecyclerView mPopularPlayRecyclerView;
     private List<ExhibitionModel> mPopularExhibitionList;
     private PopularExhibitionAdapter mPopularExhibitionAdapter;

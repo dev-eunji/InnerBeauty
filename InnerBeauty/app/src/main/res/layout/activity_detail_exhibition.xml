@@ -430,5 +430,4 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         tools:targetApi="lollipop" />
-
 </android.support.design.widget.CoordinatorLayout>

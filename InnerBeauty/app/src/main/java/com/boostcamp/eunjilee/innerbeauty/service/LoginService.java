@@ -14,7 +14,6 @@ import retrofit2.http.Query;
  */
 
 public interface LoginService {
-
     @GET("getLogin")
     Call<UserModel> longin(@Query("user_id") long userId, @Query("user_pw") String userPw);
 

@@ -1,4 +1,4 @@
-package com.boostcamp.eunjilee.innerbeauty;
+package com.boostcamp.eunjilee.innerbeauty.nmap;
 
 /**
  * Created by eunjilee on 21/02/2017.

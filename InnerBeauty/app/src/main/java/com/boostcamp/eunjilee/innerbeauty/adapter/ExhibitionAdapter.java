@@ -85,9 +85,9 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
         @BindView(R.id.btn_like_exhibition)
         protected ToggleButton mLikeBtn;
 
-      private ExhibitionModel mExhibition;
+        private ExhibitionModel mExhibition;
 
-      public ExhibitionViewHolder(View itemView) {
+        public ExhibitionViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
@@ -127,6 +127,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
                             @Override
                             public void error(Throwable throwable) {
                                 Snackbar.make(mExhibitionImageView, R.string.snb_add_favorite_exhibition_fail, Snackbar.LENGTH_SHORT).show();
+
                             }
                         });
                     } else {
@@ -138,13 +139,14 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
 
                             @Override
                             public void error(Throwable throwable) {
-                                 Snackbar.make(mExhibitionImageView, R.string.snb_delete_favorite_exhibition_fail, Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(mExhibitionImageView, R.string.snb_delete_favorite_exhibition_fail, Snackbar.LENGTH_SHORT).show();
                             }
                         });
                     }
                 }
             });
         }
+
         private void setLikeBtn(){
             ContentsModule.getFavoriteContentsListByContentsType(mUserSharedPreference.getUserId(), EXHIBITION_TYPE, new ContentsService.getFavoriteContentsListCallback() {
                 @Override
@@ -161,6 +163,7 @@ public class ExhibitionAdapter extends RecyclerView.Adapter<ExhibitionAdapter.Ex
                 }
             });
         }
+
         @Override
         public void onClick(View v) {
             ExhibitionLoadModule.addClickNumToExhibition(mExhibition.getExhibitionId(), new ExhibitionService.addClickNumCallback() {

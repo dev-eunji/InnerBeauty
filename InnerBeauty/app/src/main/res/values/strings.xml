@@ -59,65 +59,31 @@
     <string name="snb_delete_favorite_play_fail">관심 연극 삭제를 실패했습니다. 재시도 해주세요ㅠㅠ</string>
 
     <!-- license -->
-    <string name="license_butter_knife_name">Butter Knife</string>>
-    <string name="license_butter_knife">
-        Copyright 2013 Jake Wharton
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-    </string>
+    <string name="license_android_compatibility_v4_name">Android Compatibility Library v4</string>
+    <string name="license_android_compatibility_v4_name_txt">AndroidCompatibilityLibrary_v4</string>
+    <string name="license_android_compatibility_v7_name">Android Compatibility Library v7</string>
+    <string name="license_android_compatibility_v7_name_txt">AndroidCompatibilityLibrary_v7</string>
+    <string name="license_android_design_support_name">Android Design Support Library</string>
+    <string name="license_android_design_support_name_txt">AndroidDesignSupportLibrary</string>
+    <string name="license_butter_knife_name">Butter Knife</string>
+    <string name="license_butter_knife_name_txt">ButterKnife</string>
     <string name="license_retrofit_name">Retrofit</string>
-    <string name="license_retrofit">
-        Copyright 2013 Square, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-    </string>
+    <string name="license_retrofit_name_txt">Retrofit</string>
+    <string name="license_okhttp_name">OkHttp</string>
+    <string name="license_okhttp_name_txt">OkHttp</string>
     <string name="license_glide_name">Glide</string>
-    <string name="license_glide">
-        TODO: Glide추가해야되는데
-    </string>
+    <string name="license_glide_name_txt">Glide</string>
     <string name="license_ted_permission_name">TedPermission</string>
-    <string name="license_ted_permission">
-        Copyright 2016 Ted Park
+    <string name="license_ted_permission_name_txt">TedPermission</string>
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.```
-    </string>
     <string name="btn_search">검색</string>
     <string name="btn_show_map">위치보기</string>
     <string name="title_activity_setting">Settings</string>
+    <string name="search_contents_label">컨텐츠 찾기</string>
 
     <!--login-->
     <string name="naver_login_label">네이버로 로그인하기</string>
     <string name="kakao_login_label">카카오톡으로 로그인하기</string>
     <string name="facebook_login_label">페이스북으로 로그인하기</string>
-
 </resources>

@@ -54,7 +54,6 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.SettingV
         @BindView(R.id.tv_setting_title)
         protected TextView mSettingTextView;
 
-
         public SettingViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
