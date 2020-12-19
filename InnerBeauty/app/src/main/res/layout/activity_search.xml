@@ -18,18 +18,16 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_search"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:layout_weight="4">
-
             <EditText
                 android:id="@+id/edt_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="컨텐츠 찾기" />
+                android:hint="@string/search_contents_label" />
         </android.support.design.widget.TextInputLayout>
 
         <Button

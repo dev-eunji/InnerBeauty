@@ -143,6 +143,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                 }
             });
         }
+
         private void setLikeBtn(){
             ContentsModule.getFavoriteContentsListByContentsType(mUserSharedPreference.getUserId(), PLAY_TYPE, new ContentsService.getFavoriteContentsListCallback() {
                 @Override
@@ -158,6 +159,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.PlayViewHolder
                 }
             });
         }
+
         @Override
         public void onClick(View v) {
             PlayLoadModule.addClickNumToPlay(mPlay.getPlayId(), new PlayService.addClickNumCallback() {

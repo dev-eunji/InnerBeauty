@@ -13,8 +13,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -100,9 +103,22 @@ public class DetailPlayActivity extends AppCompatActivity {
         mPlay = (PlayModel)intent.getSerializableExtra("Play");
         mToolbar.setTitle(mPlay.getPlayTitle());
         setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
         mAppBarLayout.setExpanded(false);
         initDetailPlayInfo();
         initFabAnimation();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initDetailPlayInfo() {
@@ -166,7 +182,7 @@ public class DetailPlayActivity extends AppCompatActivity {
     public void checkPermissionForRealCall() {
         new TedPermission(this)
                 .setPermissionListener(permissionlistenerCall)
-                .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
+                .setDeniedMessage(getString(R.string.permission_call_deny_ment))
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .check();
     }
@@ -185,7 +201,7 @@ public class DetailPlayActivity extends AppCompatActivity {
     public void shareNaver(View view) {
         try {
             String encodedURL = URLEncoder.encode(mPlay.getPlayTicketSite1(), "utf-8");
-            String encodedTitle = URLEncoder.encode("[ " + mPlay.getPlayTitle() + " ] _InnerBeuty","utf-8");
+            String encodedTitle = URLEncoder.encode("[ " + mPlay.getPlayTitle() + " ] _InnerBeauty","utf-8");
             Uri uri = Uri.parse("http://share.naver.com/web/shareView.nhn?url=" + encodedURL
                     + "&title=" + encodedTitle );
             Intent naverIntent = new Intent(Intent.ACTION_VIEW, uri);

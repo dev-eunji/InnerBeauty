@@ -66,7 +66,7 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
             return mMyFavoriteContentsList.size();
         }
     }
-    
+
     class MyFavoriteContentsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.imgv_my_favorite_contents)
         protected ImageView mMyFavoriteContentsContentsImageView;
@@ -89,6 +89,7 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
         private void setTitle(String title){
             mMyFavoriteContentsTitleTextView.setText(title);
         }
+
         private void setDate(String startDate, String endDate) {
             if(endDate.equals("70.01.01")){
                 endDate="오픈런";
@@ -142,6 +143,7 @@ public class MyFavoriteContentsAdapter extends RecyclerView.Adapter<MyFavoriteCo
                 });
             }
         }
+
         @Override
         public void onClick(View v) {
             if(mMyFavoriteContents.getContentsType() == EXHIBITION_TYPE){

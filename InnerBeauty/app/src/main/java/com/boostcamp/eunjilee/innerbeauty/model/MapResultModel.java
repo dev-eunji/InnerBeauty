@@ -22,7 +22,6 @@ public class MapResultModel {
         this.mapItem = mapItem;
     }
 
-
     public int getTotalNum() {
         return totalNum;
     }

@@ -14,7 +14,6 @@ import retrofit2.http.Path;
  */
 
 public interface PlayService {
-
     @GET("getPlay/{playId}")
     Call<PlayModel> getPlay(@Path("playId") int playId);
 

@@ -36,6 +36,9 @@
             android:name=".DetailExhibitionActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
             <intent-filter>
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -74,6 +77,9 @@
             android:name=".DetailPlayActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
             <intent-filter>
                 <category android:name="android.intent.category.BROWSABLE" />
 

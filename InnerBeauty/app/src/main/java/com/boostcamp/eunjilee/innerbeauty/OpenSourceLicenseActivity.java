@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import com.boostcamp.eunjilee.innerbeauty.adapter.OpenSourceLicenseAdapter;
 import com.boostcamp.eunjilee.innerbeauty.model.OpenSourceLicenseModel;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,10 +55,28 @@ public class OpenSourceLicenseActivity extends AppCompatActivity {
     }
     private void initOpenSourceLicenseModelList(){
         mOpenSourceLicenseModelList = new ArrayList<>();
-        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_butter_knife_name),getString(R.string.license_butter_knife)));
-        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_glide_name),getString(R.string.license_glide)));
-        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_retrofit_name),getString(R.string.license_retrofit)));
-        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_ted_permission_name),getString(R.string.license_ted_permission)));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_android_compatibility_v4_name),OpenLicenseContents(getString(R.string.license_android_compatibility_v4_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_android_compatibility_v7_name),OpenLicenseContents(getString(R.string.license_android_compatibility_v7_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_android_design_support_name),OpenLicenseContents(getString(R.string.license_android_design_support_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_butter_knife_name),OpenLicenseContents(getString(R.string.license_butter_knife_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_glide_name),OpenLicenseContents(getString(R.string.license_glide_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_okhttp_name),OpenLicenseContents(getString(R.string.license_okhttp_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_retrofit_name),OpenLicenseContents(getString(R.string.license_retrofit_name_txt))));
+        mOpenSourceLicenseModelList.add(new OpenSourceLicenseModel(getString(R.string.license_ted_permission_name),OpenLicenseContents(getString(R.string.license_ted_permission_name_txt))));
+    }
 
+    private String OpenLicenseContents(String libraryName){
+        String licenseContents="";
+        try {
+            InputStream inputStream = getAssets().open(libraryName + ".txt");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            licenseContents = new String(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return licenseContents;
     }
 }

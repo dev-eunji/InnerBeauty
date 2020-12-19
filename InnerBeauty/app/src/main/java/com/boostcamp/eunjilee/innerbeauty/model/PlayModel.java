@@ -20,39 +20,39 @@ public class PlayModel implements Serializable {
     @SerializedName("start_date")
     private  String startDate;
     @SerializedName("end_date")
-    private  String endDate;
+    private String endDate;
     @SerializedName("close_date")
-    private  String closeDate;
+    private String closeDate;
     @SerializedName("play_time")
-    private  String playTime;
+    private String playTime;
     @SerializedName("play_run_time")
-    private  String playRunTime;
+    private String playRunTime;
     @SerializedName("play_place")
-    private  String playPlace;
+    private String playPlace;
     @SerializedName("play_address")
-    private  String playAddress;
+    private String playAddress;
     @SerializedName("play_picture")
-    private  String playPicture;
+    private String playPicture;
     @SerializedName("play_price_adult")
-    private  int priceAdult;
+    private int priceAdult;
     @SerializedName("play_price_student")
-    private  int priceStudent;
+    private int priceStudent;
     @SerializedName("play_price_children")
-    private  int priceChildren;
+    private int priceChildren;
     @SerializedName("play_price_old_infirm")
-    private  int priceOldInfirm;
+    private int priceOldInfirm;
     @SerializedName("play_price")
-    private  String pricePlay;
+    private String pricePlay;
     @SerializedName("play_call")
-    private  String playCall;
+    private String playCall;
     @SerializedName("play_site")
-    private  String playSite;
+    private String playSite;
     @SerializedName("play_detail_info")
-    private  String playDetailInfo;
+    private String playDetailInfo;
     @SerializedName("play_ticket_site1")
-    private  String playTicketSite1;
+    private String playTicketSite1;
     @SerializedName("play_ticket_site2")
-    private  String playTicketSite2;
+    private String playTicketSite2;
 
     private int playClicked;
     private int playLiked;

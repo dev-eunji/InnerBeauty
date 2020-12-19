@@ -1,4 +1,4 @@
-package com.boostcamp.eunjilee.innerbeauty;
+package com.boostcamp.eunjilee.innerbeauty.nmap;
 
 /*
  * Copyright 2016 NAVER Corp.
@@ -37,7 +37,7 @@ import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
  * @author kyjkim
  */
 public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
-    private static final String LOG_TAG = "NMapCalloutCustomOverlay";
+    private static final String LOG_TAG = "NMCO";
     private static final boolean DEBUG = false;
 
     private static final int CALLOUT_TEXT_COLOR = 0xFFFFFFFF;
@@ -299,7 +299,7 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
             mWidthTitleTruncated = mapViewWidth;
             float maxWidth = mWidthTitleTruncated - 2 * mMarginX - 2 * mPaddingX;
             if (DEBUG) {
-                Log.i(LOG_TAG, "adjustTextBounds: maxWidth=" + maxWidth + ", mMarginX=" + mMarginX
+                Log.i(LOG_TAG, "maxWidth=" + maxWidth + ", mMarginX=" + mMarginX
                         + ", mPaddingX="
                         + mPaddingX);
             }
@@ -321,7 +321,7 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
             mTitleTruncated = title;
 
             if (DEBUG) {
-                Log.i(LOG_TAG, "adjustTextBounds: mTitleTruncated=" + mTitleTruncated + ", length="
+                Log.i(LOG_TAG, "mTitleTruncated=" + mTitleTruncated + ", length="
                         + mTitleTruncated.length());
             }
         }

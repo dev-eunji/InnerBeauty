@@ -36,6 +36,8 @@ import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.boostcamp.eunjilee.innerbeauty.BuildConfig.NAVER_CLIENT_ID;
+import static com.boostcamp.eunjilee.innerbeauty.BuildConfig.NAVER_CLIENT_SECRET;
 import static com.kakao.auth.Session.getCurrentSession;
 import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
 
@@ -43,15 +45,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 public class LoginActivity extends AppCompatActivity {
+    private static String OAUTH_CLIENT_NAME = "InnerBeauty";
+    private static OAuthLogin mOAuthLoginModule;
     private CallbackManager mFacebookCallbackManager;
     private SessionCallback mKakaoCallback;
     private LoginModule mLoginModule;
-    private static OAuthLogin mOAuthLoginModule;
-
-    //TODO: properties로 옮기
-    private static String OAUTH_CLIENT_ID = "IIUrL9SHY62I8qM3OdtT";
-    private static String OAUTH_CLIENT_SECRET = "0FN4pPMj4Z";
-    private static String OAUTH_CLIENT_NAME = "InnerBeauty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
         mOAuthLoginModule = OAuthLogin.getInstance();
         mOAuthLoginModule.init(
                 LoginActivity.this
-                ,OAUTH_CLIENT_ID
-                ,OAUTH_CLIENT_SECRET
+                ,NAVER_CLIENT_ID
+                ,NAVER_CLIENT_SECRET
                 ,OAUTH_CLIENT_NAME
         );
     }
@@ -203,7 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void error(Throwable throwable) {
                         Log.v("LOGIN ERROR", "LOGINERROR_kakao");
                     }
-                 });
+                });
             }
 
             @Override

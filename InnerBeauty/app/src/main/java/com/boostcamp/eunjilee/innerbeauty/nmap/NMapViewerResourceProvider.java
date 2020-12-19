@@ -1,4 +1,4 @@
-package com.boostcamp.eunjilee.innerbeauty;
+package com.boostcamp.eunjilee.innerbeauty.nmap;
 
 /*
  * Copyright 2016 NAVER Corp.
@@ -29,6 +29,9 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.boostcamp.eunjilee.innerbeauty.R;
+import com.boostcamp.eunjilee.innerbeauty.nmap.NMapCalloutCustomOldOverlay;
+import com.boostcamp.eunjilee.innerbeauty.nmap.NMapPOIflagType;
 import com.nhn.android.maps.NMapOverlayItem;
 import com.nhn.android.maps.overlay.NMapPOIitem;
 import com.nhn.android.mapviewer.overlay.NMapResourceProvider;

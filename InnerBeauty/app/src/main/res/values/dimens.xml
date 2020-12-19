@@ -14,6 +14,6 @@
     <dimen name="view_divide_line">1dp</dimen>
     <dimen name="tb_like_contents_width">30dp</dimen>
     <dimen name="tb_like_contents_height">30dp</dimen>
-    <dimen name="naver_map_height">300dp</dimen>
+    <dimen name="naver_map_height">500dp</dimen>
     <dimen name="contents_detail_app_bar_height">300dp</dimen>
 </resources>

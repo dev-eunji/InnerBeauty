@@ -1,6 +1,6 @@
 package com.boostcamp.eunjilee.innerbeauty.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
+import static com.boostcamp.eunjilee.innerbeauty.BuildConfig.NAVER_CLIENT_ID;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -14,12 +14,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.boostcamp.eunjilee.innerbeauty.DetailExhibitionActivity;
-import com.boostcamp.eunjilee.innerbeauty.NMapCalloutCustomOldOverlay;
-import com.boostcamp.eunjilee.innerbeauty.NMapPOIflagType;
-import com.boostcamp.eunjilee.innerbeauty.NMapViewerResourceProvider;
+import com.boostcamp.eunjilee.innerbeauty.nmap.NMapCalloutCustomOldOverlay;
+import com.boostcamp.eunjilee.innerbeauty.nmap.NMapPOIflagType;
+import com.boostcamp.eunjilee.innerbeauty.nmap.NMapViewerResourceProvider;
 import com.boostcamp.eunjilee.innerbeauty.R;
 import com.boostcamp.eunjilee.innerbeauty.model.MapModel;
 import com.boostcamp.eunjilee.innerbeauty.module.MapModule;
@@ -43,7 +41,6 @@ import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by eunjilee on 20/02/2017.
@@ -58,19 +55,20 @@ public class NaverMapFragment extends Fragment {
     private NMapCompassManager mMapCompassManager;
     private NMapViewerResourceProvider mMapViewerResourceProvider;
     private String mAddress;
-    private static final String CLIENT_ID = "IIUrL9SHY62I8qM3OdtT";// 애플리케이션 클라이언트 아이디 값
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAddress = getArguments().getString("address");
         return inflater.inflate(R.layout.fragment_naver_map, container, false);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMapContext = new NMapContext(super.getActivity());
         mMapContext.onCreate();
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -78,7 +76,7 @@ public class NaverMapFragment extends Fragment {
         if (mNMapView  == null) {
             throw new IllegalArgumentException("NMapFragment dose not have an instance of NMapView.");
         }
-        mNMapView.setClientId(CLIENT_ID);// 클라이언트 아이디 설정
+        mNMapView.setClientId(NAVER_CLIENT_ID);// 클라이언트 아이디 설정
         mMapContext.setupMapView(mNMapView);
 
         mNMapView.setClickable(true);
@@ -86,10 +84,7 @@ public class NaverMapFragment extends Fragment {
         mNMapView.setOnMapViewTouchEventListener(onMapViewTouchEventListener);
         mNMapView.setBuiltInZoomControls(true, null);
         mNMapView.setScalingFactor(1.5f);
-        // create resource provider
         mMapViewerResourceProvider = new NMapViewerResourceProvider(getContext());
-
-        // create overlay manager
         mOverlayManager = new NMapOverlayManager(getContext(), mNMapView, mMapViewerResourceProvider);
 
         MapModule.getLatLngFromAddressCallback(mAddress,
@@ -113,7 +108,6 @@ public class NaverMapFragment extends Fragment {
                 });
     }
 
-    /* MapView State Change Listener*/
     private final NMapView.OnMapStateChangeListener onMapViewStateChangeListener = new NMapView.OnMapStateChangeListener() {
         @Override
         public void onMapInitHandler(NMapView mapView, NMapError errorInfo) {
@@ -122,7 +116,7 @@ public class NaverMapFragment extends Fragment {
                 //restoreInstanceState();
                 new TedPermission(getContext())
                         .setPermissionListener(permissionlistenerLocation)
-                        .setDeniedMessage("권한을 거절하시면 전화를 걸 수 없습니다.\n\n[Setting] > [Permission]에서 권한을 켜주세요.")
+                        .setDeniedMessage(getString(R.string.permission_map_deny_ment))
                         .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                         .check();
             } else { // fail
@@ -153,7 +147,6 @@ public class NaverMapFragment extends Fragment {
     };
 
     private final NMapView.OnMapViewTouchEventListener onMapViewTouchEventListener = new NMapView.OnMapViewTouchEventListener() {
-
         @Override
         public void onLongPress(NMapView mapView, MotionEvent ev) {
             mapView.setBuiltInZoomControls(true, null);
@@ -194,7 +187,6 @@ public class NaverMapFragment extends Fragment {
         @Override
         public NMapCalloutOverlay onCreateCalloutOverlay(NMapOverlay itemOverlay, NMapOverlayItem overlayItem,
                 Rect itemBounds) {
-
             // handle overlapped items
             if (itemOverlay instanceof NMapPOIdataOverlay) {
                 NMapPOIdataOverlay poiDataOverlay = (NMapPOIdataOverlay)itemOverlay;
@@ -222,7 +214,6 @@ public class NaverMapFragment extends Fragment {
                     }
                 }
             }
-            // use custom old callout overlay
             if (overlayItem instanceof NMapPOIitem) {
                 NMapPOIitem poiItem = (NMapPOIitem)overlayItem;
                 if (poiItem.showRightButton()) {
@@ -230,13 +221,11 @@ public class NaverMapFragment extends Fragment {
                             mMapViewerResourceProvider);
                 }
             }
-            // use custom callout overlay
             return new NMapCalloutCustomOverlay(itemOverlay, overlayItem, itemBounds, mMapViewerResourceProvider);
         }
 
     };
 
-    /* POI data State Change Listener*/
     private final NMapPOIdataOverlay.OnStateChangeListener onPOIdataStateChangeListener = new NMapPOIdataOverlay.OnStateChangeListener() {
 
         @Override
@@ -261,7 +250,7 @@ public class NaverMapFragment extends Fragment {
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(getContext(),
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-                    //startMyLocation();
+                //startMyLocation();
             } else {
                 Snackbar.make(mNMapView, "Location Permission Denied\n", Snackbar.LENGTH_SHORT).show();
             }
@@ -286,17 +275,11 @@ public class NaverMapFragment extends Fragment {
         }
     }
 
-    /* MyLocation Listener */
     private final NMapLocationManager.OnLocationChangeListener onMyLocationChangeListener = new NMapLocationManager.OnLocationChangeListener() {
 
         @Override
         public boolean onLocationChanged(NMapLocationManager locationManager, NGeoPoint myLocation) {
             mMapContext.findPlacemarkAtLocation(myLocation.getLongitude(), myLocation.getLatitude());
-            Log.d("myLog", "myLocation  lat " + myLocation.getLatitude());
-            Log.d("myLog", "myLocation  lng " + myLocation.getLongitude());
-
-            mMapContext.findPlacemarkAtLocation(myLocation.getLongitude(), myLocation.getLatitude());
-            //위도경도를 주소로 변환
             return true;
         }
 
@@ -320,7 +303,6 @@ public class NaverMapFragment extends Fragment {
             if (mNMapView.isAutoRotateEnabled()) {
                 mMyLocationOverlay.setCompassHeadingVisible(false);
                 mMapCompassManager.disableCompass();
-                mNMapView.setAutoRotateEnabled(false, false);
             }
         }
     }
@@ -330,25 +312,30 @@ public class NaverMapFragment extends Fragment {
         super.onStart();
         mMapContext.onStart();
     }
+
     @Override
     public void onResume() {
         super.onResume();
         mMapContext.onResume();
     }
+
     @Override
     public void onPause() {
         super.onPause();
         mMapContext.onPause();
     }
+
     @Override
     public void onStop() {
         mMapContext.onStop();
         super.onStop();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
     }
+
     @Override
     public void onDestroy() {
         mMapContext.onDestroy();
